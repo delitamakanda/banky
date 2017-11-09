@@ -4,7 +4,7 @@ staticfiles
 .env
 env
 node_modules
-bank/static/build
+apps/static/build
 db.sqlite3
 .DS_Store
 __pycache__
