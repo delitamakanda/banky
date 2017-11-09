@@ -25,6 +25,32 @@ class Account(models.Model):
     modified = models.DateTimeField(blank=True)
     balance = models.PositiveIntegerField(verbose_name='Current balance')
 
+    def deposit(self, amount, deposited_by, asof):
+        assert amount > 0
+
+        if not self.MIN_DEPOSIT <= amount <= self.MAX_DEPOSIT:
+            raise InvalidAmount(amount)
+
+        if self.balance + amount > self.MAX_BALANCE:
+            raise ExceedsLimit()
+
+        total = Balance.objects.aggregate(
+            total=Sum('balance')
+        )['total']
+        if total + amount > self.MAX_TOTAL_BALANCES:
+            raise ExceedsLimit()
+
+        action = self.actions.create(
+            user=deposited_by,
+            type=Action.ACTION_TYPE_DEPOSITED,
+            delta=amount,
+            asof=asof,
+        )
+
+        self.balance += amount
+        self.modified = asof
+
+        self.save()
 
 class Action(models.Model):
     class Meta:

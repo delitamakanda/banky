@@ -46,10 +46,12 @@ DJANGO_APPS = [
 
 THIRD_PARTY_APPS = [
     'webpack_loader',
+    'rest_framework',
 ]
 
 PROJECT_APPS = [
     'bank',
+    'api',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + PROJECT_APPS
