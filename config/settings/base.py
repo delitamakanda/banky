@@ -26,12 +26,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', cast=bool)
 
-ALLOWED_HOSTS = config(
-    'ALLOWED_HOSTS',
-    cast=lambda v: [d for d in [s.strip() for s in v.split(' ')] if d],
-    default='',
-)
-
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=lambda v: [d for d in [s.strip() for s in v.split(' ')] if d], default='')
 
 # Application definition
 
@@ -146,3 +141,9 @@ WEBPACK_LOADER = {
         'STATS_FILE': os.path.join(BASE_DIR, './webpack-stats.json')
     }
 }
+
+if not DEBUG:
+    WEBPACK_LOADER['DEFAULT'].update({
+        'BUNDLE_DIR_NAME': 'dist/',
+        'STATS_FILE': os.path.join(BASE_DIR, './webpack-stats-prod.json')
+    })
