@@ -50,7 +50,6 @@ THIRD_PARTY_APPS = [
 ]
 
 PROJECT_APPS = [
-    'bank',
     'api',
 ]
 
