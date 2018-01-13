@@ -1,6 +1,7 @@
 var webpack = require('webpack');
 var path = require('path');
 var BundleTracker = require('webpack-bundle-tracker');
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 var config = require('./webpack.base.config.js');
 
@@ -18,7 +19,8 @@ config.plugins = config.plugins.concat([
         compressor: {
             warnings: false
         }
-    })
+    }),
+    new ExtractTextPlugin('styles.css')
 ])
 
 config.module.loaders.push(
@@ -29,7 +31,7 @@ config.module.loaders.push(
     },
     {
         test: /\.css$/,
-        loaders: ['style-loader', 'css-loader']
+        loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
     }
 )
 
