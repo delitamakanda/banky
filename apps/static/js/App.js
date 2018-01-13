@@ -4,6 +4,9 @@ import { Container } from 'flux/utils';
 import BankBalanceStore from './store/BankBalanceStore';
 import BankRewardStore from './store/BankRewardStore';
 import BankActions from './actions/BankActions';
+import Button from 'antd/lib/button';
+import './App.css';
+
 
 class App extends Component {
     constructor() {
@@ -27,9 +30,9 @@ class App extends Component {
                 <div>Your balance is ${(this.state.balance).toFixed(2)}</div>
                 <div>Your points rewards tier is {this.state.rewardsTier}</div>
                 <div>
-                    <input type="text" placeholder="Enter amount" ref="amount" />
-                    <button onClick={this.deposit.bind(this)}>Deposit</button>
-                    <button onClick={this.withdraw.bind(this)}>Withdraw</button>
+                    <input type="number" placeholder="Enter amount" ref="amount" />
+                    <Button onClick={this.deposit.bind(this)}>Deposit</Button>
+                    <Button onClick={this.withdraw.bind(this)}>Withdraw</Button>
                 </div>
                 {/*<div className="heart">&hearts;</div>
                 <ShoppingList />*/}
