@@ -23,7 +23,7 @@ config.plugins = config.plugins.concat([
 config.module.loaders.push(
     {
         test: /\.jsx?$/,
-        exclude: /node_modules/,
+        exclude: /node_modules(?!\/antd)/,
         loaders: ['react-hot', 'babel']
     },
     {
