@@ -31,7 +31,7 @@ config.module.loaders.push(
     },
     {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract('style-loader','css')
+        loader: ExtractTextPlugin.extract('style-loader','css-loader')
     }
 )
 

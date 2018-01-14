@@ -29,7 +29,7 @@ config.module.loaders.push(
     {
         test: /\.css$/,
         //loaders: ['style-loader', 'css-loader']
-        loader: ExtractTextPlugin.extract('style-loader', 'css?indentedSyntax=true&sourceMap=true')
+        loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
     }
 )
 
