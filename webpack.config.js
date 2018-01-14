@@ -1,6 +1,7 @@
 var path = require('path');
 var webpack = require('webpack');
 var BundleTracker = require('webpack-bundle-tracker');
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 var config = require('./webpack.base.config.js');
 
@@ -16,6 +17,7 @@ config.plugins = config.plugins.concat([
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
     new BundleTracker({filename: './webpack-stats.json'}),
+    new ExtractTextPlugin('styles.[hash].css'),
 ])
 
 config.module.loaders.push(
@@ -26,7 +28,8 @@ config.module.loaders.push(
     },
     {
         test: /\.css$/,
-        loaders: ['style-loader', 'css-loader']
+        //loaders: ['style-loader', 'css-loader']
+        loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
     }
 )
 

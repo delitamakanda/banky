@@ -20,7 +20,7 @@ config.plugins = config.plugins.concat([
             warnings: false
         }
     }),
-    new ExtractTextPlugin('styles.css')
+    new ExtractTextPlugin('styles.[hash].css')
 ])
 
 config.module.loaders.push(
