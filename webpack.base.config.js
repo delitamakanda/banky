@@ -22,6 +22,6 @@ module.exports = {
 
     resolve: {
         modulesDirectories: ['node_modules', 'bower_components'],
-        extensions: ['', '.js', '.jsx']
+        extensions: ['', '.js', '.jsx', '.css']
     },
 }
