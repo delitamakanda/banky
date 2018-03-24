@@ -12,6 +12,26 @@ class App extends Component {
     constructor() {
         super(...arguments);
         BankActions.createAccount();
+        this.state = {
+            authenticated: false
+        }
+
+        this.login = this.login.bind(this);
+        this.logout = this.logout.bind(this);
+    }
+
+    login() {
+        this.props.lock.show((err, profile, token) => {
+            if (err) {
+                alert(err);
+                return;
+            }
+            this.setState({authenticated: true});
+        })
+    }
+
+    logout() {
+        this.setState({authenticated: false});
     }
 
     deposit() {
@@ -34,8 +54,6 @@ class App extends Component {
                     <Button onClick={this.deposit.bind(this)}>Deposit</Button>
                     <Button onClick={this.withdraw.bind(this)}>Withdraw</Button>
                 </div>
-                {/*<div className="heart">&hearts;</div>
-                <ShoppingList />*/}
             </div>
         );
     }
@@ -49,4 +67,4 @@ App.calculateState = (prevState) => ({
 
 const AppContainer = Container.create(App);
 
-render(<AppContainer />, document.getElementById('app'))
+export default AppContainer;
