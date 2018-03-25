@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import { Container } from 'flux/utils';
-import AuthStore from './store/AuthStore';
-// import AuthActions from './actions/AuthActions';
-import AuthService from './AuthService';
 import './App.css';
 
 
@@ -19,10 +15,6 @@ class SignupContainer extends Component {
 
     signup (e) {
         e.preventDefault();
-        AuthService.signup(this.state.username, this.state.password, this.state.email)
-        .catch(function(err) {
-            console.log('Error logging in', err);
-        });
     }
 
     render() {

@@ -1,39 +1,45 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import { Container } from 'flux/utils';
+import { hashHistory } from 'react-router';
 import BankBalanceStore from './store/BankBalanceStore';
 import BankRewardStore from './store/BankRewardStore';
 import BankActions from './actions/BankActions';
 import { Button } from 'element-react';
-import AuthService from './AuthService';
-import AuthStore from './store/AuthStore';
+import AuthService from './Auth';
 import './App.css';
-
+import $ from 'jquery';
 
 class App extends Component {
     constructor() {
         super(...arguments);
         BankActions.createAccount();
-        this.state = this.getLoginState();
+        this.state = {
+            user: []
+        }
     }
 
-    getLoginState() {
-        return {
-            userLoggedIn: AuthStore.isLoggedIn()
-        };
+    componentDidMount () {
+        this.loadUserData();
     }
 
-    componentDidMount() {
-        this.changeListener = this.onChange.bind(this);
-        AuthStore.addChangeListener(this.changeListener);
+    logout () {
+        AuthService.logout();
+        hashHistory.push('/login');
     }
 
-    onChange() {
-        this.setState(this.getLoginState());
-    }
-
-    componentWillUnmount() {
-        AuthStore.removeChangeListener(this.changeListener);
+    loadUserData () {
+        $.ajax({
+            method: 'GET',
+            url: '/api/users/i/',
+            dataType: 'json',
+            headers: {
+                'Authorization': 'Token ' + localStorage.token
+            },
+            success: function(res) {
+                this.setState({user: res})
+            }.bind(this)
+        })
     }
 
     deposit() {
@@ -46,14 +52,10 @@ class App extends Component {
         this.refs.amount.value = '';
     }
 
-    logout (e) {
-        e.preventDefault();
-        AuthService.logout();
-    }
-
     render() {
         return (
             <div>
+                Hello, { this.state.user.username } <button onClick={this.logout.bind(this)}>Log out</button>
                 <div>Your balance is ${(this.state.balance).toFixed(2)}</div>
                 <div>Your points rewards tier is {this.state.rewardsTier}</div>
                 <div>

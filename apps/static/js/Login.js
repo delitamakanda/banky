@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
+import { hashHistory } from 'react-router';
 import { render } from 'react-dom';
-import { Container } from 'flux/utils';
-import AuthStore from './store/AuthStore';
-// import AuthActions from './actions/AuthActions';
-import AuthService from './AuthService';
+import AuthService  from './Auth';
 import './App.css';
 
 
@@ -11,33 +9,42 @@ class LoginContainer extends Component {
     constructor() {
         super(...arguments);
         this.state = {
-            username: '',
-            password: ''
+            login_error: false
         }
     }
 
-    login(e) {
+    login (e) {
         e.preventDefault();
-        AuthService.login(this.state.username, this.state.password)
-        .catch(function(err) {
-            console.log('Error logging in', err);
-        });
+
+        let username = this.refs.username.value;
+        let pass = this.refs.pass.value;
+
+        AuthService.login(username, pass, (loggedIn) => {
+            if (loggedIn) {
+                hashHistory.push('/');
+            } else {
+                this.setState({login_error: true})
+            }
+        })
+
     }
 
     render() {
 
         return (
             <div>
-                <form role="form">
+                <form role="form" onSubmit={this.login.bind(this)}>
                     <div className="form-group">
-                        <input type="text" name="username" placeholder="username" />
+                        <input type="text" name="username" placeholder="username" ref="username" />
                     </div>
                     <div className="form-group">
-                        <input type="password" name="password" placeholder="password" />
+                        <input type="password" name="pass" placeholder="password" ref="pass" />
                     </div>
                     <div className="form-group">
-                        <button type="submit" onClick={this.login.bind(this)}>Login</button>
+                        <button type="submit">Login</button>
                     </div>
+
+                    { this.state.login_error }
                 </form>
             </div>
         );
