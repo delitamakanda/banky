@@ -43,8 +43,6 @@ class LoginContainer extends Component {
                     <div className="form-group">
                         <button type="submit">Login</button>
                     </div>
-
-                    { this.state.login_error }
                 </form>
             </div>
         );

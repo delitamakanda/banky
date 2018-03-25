@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
+import { hashHistory } from 'react-router';
+import AuthService  from './Auth';
 import './App.css';
 
 
@@ -7,31 +9,35 @@ class SignupContainer extends Component {
     constructor() {
         super(...arguments);
         this.state = {
-            username: '',
-            password: '',
-            email: ''
+            login_error: false
         }
     }
 
     signup (e) {
         e.preventDefault();
+
+        let username = this.refs.username.value.trim();
+        let pass = this.refs.pass.value.trim();
+        let email = this.refs.email.value.trim();
+
+        AuthService.signup(username, pass, email);
     }
 
     render() {
         return (
             <div>
-                <form role="form">
+                <form role="form" onSubmit={this.signup.bind(this)}>
                     <div className="form-group">
-                        <input type="text" name="username" placeholder="username" />
+                        <input type="text" name="username" placeholder="username" ref="username" />
                     </div>
                     <div className="form-group">
-                        <input type="password" name="password" placeholder="password" />
+                        <input type="email" name="email" placeholder="e-mail" ref="email" />
                     </div>
                     <div className="form-group">
-                        <input type="email" name="email" placeholder="e-mail" />
+                        <input type="password" name="password" placeholder="password" ref="pass" />
                     </div>
                     <div className="form-group">
-                        <button type="submit" onClick={this.signup.bind(this)}>Create an account</button>
+                        <button type="submit">Create an account</button>
                     </div>
                 </form>
             </div>

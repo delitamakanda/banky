@@ -1,4 +1,6 @@
 import $ from 'jquery';
+import React from 'react';
+import { hashHistory } from 'react-router';
 
 class AuthService {
 
@@ -13,6 +15,26 @@ class AuthService {
                 if (cb) cb(true)
             } else {
                 if (cb) cb(false)
+            }
+        })
+    }
+
+    signup (username, pass, email) {
+
+        $.ajax({
+            type: 'POST',
+            url: '/api/users/',
+            data: {
+                username: username,
+                password: pass,
+                email: email
+            },
+            success: function(res){
+                console.log(res);
+                hashHistory.push('/login');
+            },
+            error: (xhr, status, err) => {
+                console.error(status, err.toString());
             }
         })
     }
