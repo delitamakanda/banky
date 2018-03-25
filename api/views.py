@@ -6,7 +6,7 @@ from api.serializers import ActionSerializer
 from api.serializers import AccountSerializer
 from api.serializers import UserSerializer
 
-from rest_framework import viewsets, status, response
+from rest_framework import viewsets, status, response, permissions
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -28,7 +28,14 @@ class AccountViewSet(viewsets.ModelViewSet):
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    permission_classes = (IsAuthenticated,)
+    permission_classes = ()
+
+    def get_permissions(self):
+        if self.request.method in permissions.SAFE_METHODS:
+            return (permissions.IsAuthenticated(),)
+
+        if self.request.method == 'POST':
+            return (permissions.AllowAny(),)
 
     def retrieve(self, request, pk=None):
         if pk == 'i':
