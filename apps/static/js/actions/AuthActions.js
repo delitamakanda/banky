@@ -3,24 +3,29 @@ import AuthConstants from '../constants';
 
 let AuthActions = {
 
-    logUserIn (profile, token) {
+    logUserIn (token) {
+        let saveToken = localStorage.getItem('token');
+
         AppDispatcher.dispatch({
             type: AuthConstants.LOGIN_USER,
-            profile: profile,
             token: token
         });
+
+        if (saveToken !== token) {
+            localStorage.setItem('token', token);
+        }
     },
 
     logUserOut () {
+        localStorage.removeItem('token');
         AppDispatcher.dispatch({
             type: AuthConstants.LOGOUT_USER
         });
     },
 
-    signUser (token) {
+    signupUser () {
         AppDispatcher.dispatch({
-            type: AuthConstants.SIGNUP_USER,
-            token: token
+            type: AuthConstants.SIGNUP_USER
         })
     }
 }

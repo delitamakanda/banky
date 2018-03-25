@@ -5,6 +5,8 @@ import BankBalanceStore from './store/BankBalanceStore';
 import BankRewardStore from './store/BankRewardStore';
 import BankActions from './actions/BankActions';
 import { Button } from 'element-react';
+import AuthService from './AuthService';
+import AuthStore from './store/AuthStore';
 import './App.css';
 
 
@@ -12,26 +14,26 @@ class App extends Component {
     constructor() {
         super(...arguments);
         BankActions.createAccount();
-        this.state = {
-            authenticated: false
-        }
-
-        this.login = this.login.bind(this);
-        this.logout = this.logout.bind(this);
+        this.state = this.getLoginState();
     }
 
-    login() {
-        this.props.lock.show((err, profile, token) => {
-            if (err) {
-                alert(err);
-                return;
-            }
-            this.setState({authenticated: true});
-        })
+    getLoginState() {
+        return {
+            userLoggedIn: AuthStore.isLoggedIn()
+        };
     }
 
-    logout() {
-        this.setState({authenticated: false});
+    componentDidMount() {
+        this.changeListener = this.onChange.bind(this);
+        AuthStore.addChangeListener(this.changeListener);
+    }
+
+    onChange() {
+        this.setState(this.getLoginState());
+    }
+
+    componentWillUnmount() {
+        AuthStore.removeChangeListener(this.changeListener);
     }
 
     deposit() {
@@ -42,6 +44,11 @@ class App extends Component {
     withdraw() {
         BankActions.withdrawFromAccount(Number(this.refs.amount.value));
         this.refs.amount.value = '';
+    }
+
+    logout (e) {
+        e.preventDefault();
+        AuthService.logout();
     }
 
     render() {

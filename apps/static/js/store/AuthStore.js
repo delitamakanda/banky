@@ -1,29 +1,48 @@
-import { ReduceStore } from 'flux/utils';
-import AppDispatcher from '../AppDispatcher';
+import BaseStore from './BaseStore';
 import AuthConstants from '../constants';
+import jwt_decode from 'jwt-decode';
 
-class AuthStore extends ReduceStore {
+class AuthStore extends BaseStore {
 
-    getInitialState() {
-        return null;
+    constructor () {
+        super();
+        this.subscribe(() => this.reduce.bind(this));
+        this._user = null;
+        this._token = null;
     }
 
-    reduce(state, action) {
+    reduce(action) {
         switch (action.type) {
             case AuthConstants.LOGIN_USER:
-                return null;
+                this._token = action.token;
+                this._user = jwt_decode(this._token);
+                this.emitChange();
+                break;
 
             case AuthConstants.LOGOUT_USER:
-                return null;
-
+                this._user = null;
+                this.emitChange();
+                break;
 
             case AuthConstants.SIGNUP_USER:
-                return null;
+                break;
 
             default:
-                return state;
-        }
+                break;
+        };
+    }
+
+    get user() {
+        return this._user;
+    }
+
+    get token() {
+        return this._token;
+    }
+
+    isLoggedIn() {
+        return !!this._user;
     }
 }
 
-export default new AuthStore(AppDispatcher);
+export default new AuthStore();
