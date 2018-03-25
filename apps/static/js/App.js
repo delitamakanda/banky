@@ -4,7 +4,7 @@ import { Container } from 'flux/utils';
 import BankBalanceStore from './store/BankBalanceStore';
 import BankRewardStore from './store/BankRewardStore';
 import BankActions from './actions/BankActions';
-import Button from 'antd/lib/button';
+import { Button } from 'element-react';
 import './App.css';
 
 

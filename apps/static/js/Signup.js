@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { render } from 'react-dom';
 import { Container } from 'flux/utils';
 import AuthStore from './store/AuthStore';
-import Button from 'antd/lib/button';
+import AuthActions from './actions/AuthActions';
 import './App.css';
 
 
