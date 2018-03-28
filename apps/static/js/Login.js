@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { hashHistory } from 'react-router';
 import { render } from 'react-dom';
 import AuthService  from './Auth';
+import Header from './Header';
 import './App.css';
 
 
