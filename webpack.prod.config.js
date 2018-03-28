@@ -32,7 +32,11 @@ config.module.loaders.push(
     {
         test: /\.css$/,
         loader: ExtractTextPlugin.extract('style-loader','css-loader')
-    }
+    },
+	{
+    	test: /\.(ttf|eot|woff|woff2|svg)$/,
+    	loader: 'url-loader?limit=50000&name=fonts/[name].[ext]'
+	}
 )
 
 module.exports = config
