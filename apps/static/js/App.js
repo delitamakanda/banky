@@ -6,6 +6,7 @@ import BankBalanceStore from './store/BankBalanceStore';
 import BankRewardStore from './store/BankRewardStore';
 import BankActions from './actions/BankActions';
 import { Button } from 'element-react';
+import Header from './Header';
 import AuthService from './Auth';
 import './App.css';
 import $ from 'jquery';
