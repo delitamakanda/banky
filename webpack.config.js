@@ -17,7 +17,7 @@ config.plugins = config.plugins.concat([
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
     new BundleTracker({filename: './webpack-stats.json'}),
-    new ExtractTextPlugin('styles.[hash].css'),
+    // new ExtractTextPlugin('styles.[hash].css'),
 ])
 
 config.module.loaders.push(
@@ -28,9 +28,13 @@ config.module.loaders.push(
     },
     {
         test: /\.css$/,
-        //loaders: ['style-loader', 'css-loader']
-        loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
-    }
+        loaders: ['style-loader', 'css-loader']
+        // loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
+    },
+	{
+    	test: /\.(ttf|eot|woff|woff2|svg)$/,
+    	loaders: ['url-loader?limit=50000&name=fonts/[name].[ext]']
+	}
 )
 
 module.exports = config
