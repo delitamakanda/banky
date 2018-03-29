@@ -16,7 +16,8 @@ class App extends Component {
         super(...arguments);
         BankActions.createAccount();
         this.state = {
-            user: []
+            user: [],
+			amount: []
         }
     }
 
@@ -64,6 +65,9 @@ class App extends Component {
                     <Button onClick={this.deposit.bind(this)}>Deposit</Button>
                     <Button onClick={this.withdraw.bind(this)}>Withdraw</Button>
                 </div>
+				<div>
+						{ amount }
+				</div>
             </div>
         );
     }
