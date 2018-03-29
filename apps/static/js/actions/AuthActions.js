@@ -5,7 +5,7 @@ let AuthActions = {
     
     login() {
         AppDispatcher.dispatch({
-            type: AuthConstants.login,
+            type: AuthConstants.LOGIN_USER,
             username: '',
             password: '',
             token: token
