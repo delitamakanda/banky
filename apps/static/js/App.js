@@ -55,6 +55,9 @@ class App extends Component {
     }
 
     render() {
+		let balance = this.state.amount.map((value, index) => (
+			return <div key={value.id}>{value.action}</div>
+		));
         return (
             <div>
                 Hello, { this.state.user.username } <button onClick={this.logout.bind(this)}>Log out</button>
@@ -66,7 +69,7 @@ class App extends Component {
                     <Button onClick={this.withdraw.bind(this)}>Withdraw</Button>
                 </div>
 				<div>
-						{ amount }
+						{ balance }
 				</div>
             </div>
         );
