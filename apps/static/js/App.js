@@ -5,9 +5,8 @@ import { hashHistory } from 'react-router';
 import BankBalanceStore from './store/BankBalanceStore';
 import BankRewardStore from './store/BankRewardStore';
 import BankActions from './actions/BankActions';
-import { Button } from 'element-react';
 import Header from './Header';
-import AuthService from './Auth';
+import AuthService from './services/AuthService';
 import './App.css';
 import $ from 'jquery';
 
@@ -55,9 +54,7 @@ class App extends Component {
     }
 
     render() {
-		let balance = this.state.amount.map((value, index) => (
-			return <div key={value.id}>{value.action}</div>
-		));
+
         return (
             <div>
                 Hello, { this.state.user.username } <button onClick={this.logout.bind(this)}>Log out</button>
@@ -65,11 +62,11 @@ class App extends Component {
                 <div>Your points rewards tier is {this.state.rewardsTier}</div>
                 <div>
                     <input type="number" placeholder="Enter amount" ref="amount" />
-                    <Button onClick={this.deposit.bind(this)}>Deposit</Button>
-                    <Button onClick={this.withdraw.bind(this)}>Withdraw</Button>
+                    <button onClick={this.deposit.bind(this)}>Deposit</button>
+                    <button onClick={this.withdraw.bind(this)}>Withdraw</button>
                 </div>
 				<div>
-						{ balance }
+
 				</div>
             </div>
         );

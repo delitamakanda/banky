@@ -26,7 +26,7 @@ config.plugins = config.plugins.concat([
 config.module.loaders.push(
     {
         test: /\.jsx?$/,
-        exclude: /node_modules(?!\/antd)/,
+        exclude: /node_modules/,
         loader: 'babel'
     },
     {
@@ -34,8 +34,8 @@ config.module.loaders.push(
         loader: ExtractTextPlugin.extract('style-loader','css-loader')
     },
 	{
-    	test: /\.(ttf|eot|woff|woff2|svg)$/,
-    	loader: 'url-loader?limit=50000&name=fonts/[name].[ext]'
+        test: /\.(png|woff|woff2|eot|ttf|svg)$/,
+    	loader: 'file-loader?limit=100000'
 	}
 )
 

@@ -4,5 +4,6 @@ export default {
     DEPOSITED_INTO_ACCOUNT: 'deposited into account',
 	LOGIN_USER: 'login user',
 	SIGNUP_USER: 'signup user',
-	CURRENT_USER: 'authenticated user'
+	CURRENT_USER: 'authenticated user',
+    LOGOUT_USER: 'logout user'
 };

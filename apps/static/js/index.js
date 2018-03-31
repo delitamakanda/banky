@@ -5,7 +5,7 @@ import AppContainer from './App';
 import LoginContainer from './Login';
 import SignupContainer from './Signup';
 import NotFound from './NotFound';
-import AuthService from './Auth';
+import AuthService from './services/AuthService';
 
 function requireAuth (nextState, replace) {
     if (!AuthService.loggedIn()) {
