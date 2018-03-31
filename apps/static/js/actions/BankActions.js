@@ -30,7 +30,7 @@ let BankActions = {
             type: BankConstants.WITHDREW_FROM_ACCOUNT,
             amount: amount
         });
-    }
+    },
 };
 
 export default BankActions;
