@@ -23,7 +23,7 @@ class Account(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.PROTECT)
     created = models.DateTimeField(blank=True)
     modified = models.DateTimeField(blank=True)
-    balance = models.PositiveIntegerField(verbose_name='Current balance')
+    balance = models.PositiveIntegerField(verbose_name='Current balance', default='0')
 
     def deposit(self, amount, deposited_by, asof):
         assert amount > 0
