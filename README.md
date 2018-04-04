@@ -1,6 +1,4 @@
-# BANK APP
-
-![img](account.png)
+# Budget app
 
 ```
 npm run start
