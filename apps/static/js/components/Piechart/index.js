@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import d3 from 'd3';
 import { LabeledArc } from './Arc';
  
 class Piechart extends Component {
