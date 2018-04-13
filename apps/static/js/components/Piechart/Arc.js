@@ -5,6 +5,8 @@ import d3 from 'd3';
 class Arc extends Component {
     constructor() {
         super();
+		
+        this.arc = d3.svg.arc();
     }
  
     componentWillMount() {
@@ -16,8 +18,33 @@ class Arc extends Component {
     }
  
     updateD3(newProps) {
+		this.arc.innerRadius(newProps.innerRadius);
+        this.arc.outerRadius(newProps.outerRadius);
     }
  
     render() {
+		return (
+            <path d={this.arc(this.props.data)} style={{fill: this.props.color}}></path>
+        );
     }
 }
+
+class LabeledArc extends Arc {
+    render() {
+        let [labelX, labelY] = this.arc.centroid(this.props.data),
+            labelTranslate = `translate(${labelX}, ${labelY})`;
+ 
+        return (
+            <g>
+                {super.render()}
+                <text transform={labelTranslate}
+                      textAnchor="middle">
+                    {this.props.data.data.label}
+                </text>
+            </g>
+        );
+    }
+}
+
+
+export LabeledArc;
