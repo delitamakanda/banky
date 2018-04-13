@@ -63,6 +63,7 @@
     "@types/jwt-decode": "^2.2.1",
     "classnames": "^2.2.5",
     "element-theme-default": "^1.4.13",
-    "jwt-decode": "^2.2.0"
+    "jwt-decode": "^2.2.0",
+    "d3": "^5.0.0"
   }
 }
