@@ -16,4 +16,4 @@ python3 manage.py runserver
 
 ## circle continious integration
 
-[![CircleCI](https://circleci.com/gh/delitamakanda/bank-app.svg?style=svg)](https://circleci.com/gh/delitamakanda/banky)
+[![CircleCI](https://circleci.com/gh/delitamakanda/banky.svg?style=svg)](https://circleci.com/gh/delitamakanda/banky)
