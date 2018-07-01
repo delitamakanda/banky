@@ -1,18 +1,23 @@
 from django.contrib import admin
-from api.models import Account, Action
+from api.models import Account
+from api.models import Action
+
 # Register your models here.
 
-@admin.register(Account)
+
 class AccountAdmin(admin.ModelAdmin):
     list_display = ['uid', 'user', 'created']
     date_hierarchy = 'created'
-    list_filter = ('user', 'balance',)
+    list_filter = ('created', 'modified',)
     search_fields = ['uid', 'user',]
 
 
-@admin.register(Action)
+
 class ActionAdmin(admin.ModelAdmin):
     list_display = ['user_friendly_id', 'user', 'created']
     date_hierarchy = 'created'
     list_filter = ('user', 'reference',)
     search_fields = ['reference', 'comment',]
+
+admin.site.register(Action, ActionAdmin)
+admin.site.register(Account, AccountAdmin)

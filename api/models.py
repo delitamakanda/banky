@@ -1,6 +1,11 @@
 import uuid
 from django.conf import settings
 from django.db import models
+from django.db.models.signals import post_save
+from django.contrib.auth.models import User
+from django.dispatch import receiver
+
+from django.utils import timezone
 
 # Create your models here.
 class Account(models.Model):
@@ -21,8 +26,8 @@ class Account(models.Model):
     id = models.AutoField(primary_key=True)
     uid = models.UUIDField(unique=True,editable=False,default=uuid.uuid4, verbose_name='Public identifier')
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.PROTECT)
-    created = models.DateTimeField(blank=True)
-    modified = models.DateTimeField(blank=True)
+    created = models.DateTimeField(auto_now_add=True)
+    modified = models.DateTimeField(auto_now=True)
     balance = models.PositiveIntegerField(verbose_name='Current balance', default='0')
 
     def deposit(self, amount, deposited_by, asof):
@@ -52,6 +57,21 @@ class Account(models.Model):
 
         self.save()
 
+    def __str__(self):
+        return self.user.username
+
+@receiver(post_save, sender=User)
+def update_user_account(sender, instance, created, **kwargs):
+    """
+	Create an balance account on signup
+	"""
+    if created:
+        Account.objects.create(user=instance)
+    instance.account.save()
+
+
+
+
 class Action(models.Model):
     class Meta:
         verbose_name = 'Account action'
@@ -80,7 +100,7 @@ class Action(models.Model):
     id = models.AutoField(primary_key=True)
     user_friendly_id = models.UUIDField(unique=True,editable=False,max_length=30)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT, help_text='User on make an action')
-    created = models.DateTimeField(blank=True)
+    created = models.DateTimeField(auto_now_add=True)
     account = models.ForeignKey(Account, on_delete=models.CASCADE)
     type = models.CharField(max_length=30,choices=ACTION_TYPE_CHOICES)
     delta = models.IntegerField(help_text='Balance delta.')
@@ -88,3 +108,6 @@ class Action(models.Model):
     reference_type = models.CharField(max_length=30, choices=REFERENCE_TYPE_CHOICES, default=REFRENCE_TYPE_NONE)
     comment = models.TextField(blank=True)
     debug_balance = models.IntegerField(help_text='Balance after action')
+
+    def __str__(self):
+        return self.type
