@@ -1,3 +1,8 @@
 body {
     text-align: center;
 }
+
+svg {
+    width: 350px;
+    height: 350px;
+}

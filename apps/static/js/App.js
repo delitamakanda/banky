@@ -8,6 +8,9 @@ import BankActions from './actions/BankActions';
 import Header from './Header';
 import AccountService from './services/AccountService';
 import AuthService from './services/AuthService';
+
+import Piechart from './components/Piechart';
+
 import './App.css';
 import $ from 'jquery';
 
@@ -86,6 +89,7 @@ class App extends Component {
                     <button onClick={this.deposit.bind(this)}>Deposit</button>
                     <button onClick={this.withdraw.bind(this)}>Withdraw</button>
                 </div>
+                <Piechart x={150} y={100} outerRadius={100} innerRadius={50} data={[{value: 92-34, label: 'Deposit'},{value: 34, label: 'Withdraw'}]} />
             </div>
         );
     }
