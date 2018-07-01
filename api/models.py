@@ -81,7 +81,7 @@ class Action(models.Model):
     user_friendly_id = models.UUIDField(unique=True,editable=False,max_length=30)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT, help_text='User on make an action')
     created = models.DateTimeField(blank=True)
-    account = models.ForeignKey(Account)
+    account = models.ForeignKey(Account, on_delete=models.CASCADE)
     type = models.CharField(max_length=30,choices=ACTION_TYPE_CHOICES)
     delta = models.IntegerField(help_text='Balance delta.')
     reference = models.TextField(blank=True)
