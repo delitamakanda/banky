@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { hashHistory, Link } from 'react-router';
 import { render } from 'react-dom';
 import AuthService from './services/AuthService';
-import Header from './Header';
+import Header from './components/Header';
 import './App.css';
 
 class LoginContainer extends Component {

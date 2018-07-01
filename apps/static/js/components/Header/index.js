@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import './App.css';
+import '../../App.css';
 import classNames from 'classnames';
 import BackButton from './BackButton';
 

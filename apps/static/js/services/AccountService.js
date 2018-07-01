@@ -1,6 +1,8 @@
 import $ from 'jquery';
 import React from 'react';
 
+import { csrftoken } from './utils';
+
 class AccountService {
 
     createAccount () {
@@ -13,7 +15,8 @@ class AccountService {
                 balance: amount
             },
             headers: {
-                'Authorization': 'Token ' + localStorage.token
+                'Authorization': 'Token ' + localStorage.token,
+                'X-CSRFToken': csrftoken
             },
             success: function(res){
                 console.log(res);

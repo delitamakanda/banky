@@ -2,6 +2,8 @@ import $ from 'jquery';
 import React from 'react';
 import { hashHistory } from 'react-router';
 
+import { csrftoken } from './utils';
+
 class AuthService {
 
     login (username, pass, cb) {
@@ -29,6 +31,9 @@ class AuthService {
                 password: pass,
                 email: email
             },
+            headers: {
+                'X-CSRFToken': csrftoken
+            },
             success: function(res){
                 console.log(res);
                 hashHistory.push('/login');
@@ -55,11 +60,15 @@ class AuthService {
                 username: username,
                 password: pass
             },
+            headers: {
+                'X-CSRFToken': csrftoken
+            },
             success: function(res){
                 cb({
                     authenticated: true,
                     token: res.token
                 })
+
             },
             error: (xhr, status, err) => {
                 cb({

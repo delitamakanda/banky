@@ -5,7 +5,7 @@ import { hashHistory } from 'react-router';
 import BankBalanceStore from './store/BankBalanceStore';
 import BankRewardStore from './store/BankRewardStore';
 import BankActions from './actions/BankActions';
-import Header from './Header';
+import Header from './components/Header';
 import AccountService from './services/AccountService';
 import AuthService from './services/AuthService';
 
