@@ -14,7 +14,7 @@ config.plugins = config.plugins.concat([
             'NODE_ENV': JSON.stringify('production')
         }
     }),
-    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin({
         compressor: {
             warnings: false
@@ -23,19 +23,19 @@ config.plugins = config.plugins.concat([
     new ExtractTextPlugin('styles.[hash].css')
 ])
 
-config.module.loaders.push(
+config.module.rules.push(
     {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        loader: 'babel'
+        use: ['babel-loader']
     },
     {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract('style-loader','css-loader')
+        use: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader' })
     },
 	{
         test: /\.(png|woff|woff2|eot|ttf|svg)$/,
-    	loader: 'file-loader?limit=100000'
+    	use: ['file-loader?limit=100000']
 	}
 )
 

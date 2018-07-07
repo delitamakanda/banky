@@ -17,11 +17,14 @@ module.exports = {
     ],
 
     module: {
-        loaders: []
+        rules: []
     },
 
     resolve: {
-        modulesDirectories: ['node_modules', 'bower_components'],
-        extensions: ['', '.js', '.jsx', '.css']
+        extensions: ['.js', '.jsx', '.css']
     },
+
+    resolveLoader: {
+        modules: ['node_modules', 'bower_components'],
+    }
 }

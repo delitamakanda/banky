@@ -15,25 +15,23 @@ config.output.publicPath = 'http://localhost:3000/static/bundles/',
 
 config.plugins = config.plugins.concat([
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
-    new BundleTracker({filename: './webpack-stats.json'}),
-    new ExtractTextPlugin('styles.[hash].css')
+    new webpack.NoEmitOnErrorsPlugin(),
+    new BundleTracker({filename: './webpack-stats.json'})
 ])
 
-config.module.loaders.push(
+config.module.rules.push(
     {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        loaders: ['react-hot', 'babel']
+        use: ['react-hot-loader', 'babel-loader']
     },
     {
         test: /\.css$/,
-        // loaders: ['style-loader', 'css-loader',]
-        loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
+        use: ['style-loader', 'css-loader',]
     },
 	{
     	test: /\.(png|woff|woff2|eot|ttf|svg)$/,
-    	loader: 'url-loader?limit=100000'
+    	use: 'url-loader?limit=100000'
 	}
 )
 
