@@ -13,3 +13,4 @@ whitenoise==3.3.1
 waitress
 hellowebapp-deploy
 psycopg2
+django-cors-headers==2.3.0
