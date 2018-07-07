@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import { hashHistory, Link } from 'react-router';
-import AuthService from './services/AuthService';
-import Header from './components/Header';
-import './App.css';
+import AuthService from '../../services/AuthService';
+import Header from '../Header';
+import '../../App.css';
 
 
 class SignupContainer extends Component {
@@ -27,7 +27,7 @@ class SignupContainer extends Component {
     render() {
         return (
             <div>
-                <Header title="Budgetto" subtitle="Signup" hasBackButton={true}/>
+                <Header title="Banky" subtitle="Signup" hasBackButton={true}/>
 
                 <form role="form" onSubmit={this.signup.bind(this)}>
                     <div className="form-group">

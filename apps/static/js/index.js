@@ -2,9 +2,8 @@ import React from 'react';
 import ReactDOM, { render } from 'react-dom';
 import { Router, Route, hashHistory } from 'react-router';
 import AppContainer from './App';
-import LoginContainer from './Login';
-import SignupContainer from './Signup';
-import NotFound from './NotFound';
+import LoginContainer from './components/Auth/Login';
+import SignupContainer from './components/Auth/Signup';
 import AuthService from './services/AuthService';
 
 function requireAuth (nextState, replace) {
@@ -21,6 +20,5 @@ render((
     <Route path="/login" component={LoginContainer}/>
     <Route path="/signup" component={SignupContainer}/>
     <Route path="/" component={AppContainer} onEnter={requireAuth} />
-    <Route path="*" component={NotFound}/>
   </Router>
 ), document.getElementById('app'))

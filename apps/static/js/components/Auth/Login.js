@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { hashHistory, Link } from 'react-router';
 import { render } from 'react-dom';
-import AuthService from './services/AuthService';
-import Header from './components/Header';
-import './App.css';
+import AuthService from '../../services/AuthService';
+import Header from '../Header';
+import '../../App.css';
+
+import Icon from '../Icons'
 
 class LoginContainer extends Component {
     constructor() {
@@ -33,7 +35,7 @@ class LoginContainer extends Component {
 
         return (
             <div>
-                <Header title="Budgetto" subtitle="Login" hasBackButton={false}/>
+                <Header title="Banky" subtitle="Login" hasBackButton={false}/>
 
                 <form role="form" onSubmit={this.login.bind(this)}>
                     <div className="form-group">
@@ -45,6 +47,9 @@ class LoginContainer extends Component {
                     <div className="form-group">
                         <button type="submit">Login</button>
                     </div>
+                    <Icon kind="user" width="20" height="20" color="black" />
+                    <Icon kind="envelope" width="20" height="20" color="black" />
+                    <Icon kind="lock" width="20" height="20" color="black" />
                 </form>
 
                 <div>Not an account ? <Link to="signup">Create one !</Link></div>
