@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import '../../App.css';
+import '../App.css';
 import classNames from 'classnames';
 import { Link, Router, Route, hashHistory } from 'react-router';
+
+import Icon from '../Icons'
 
 class BackButton extends Component{
 
@@ -19,7 +21,7 @@ class BackButton extends Component{
     render() {
         return (
             <div onClick={this.handleClick.bind(this)} className={'uiButton backButton'}>
-              &laquo;
+              <Icon kind="chevron-left" width="20" height="20" color="white" className="back-icon" />
             </div>
         );
     }

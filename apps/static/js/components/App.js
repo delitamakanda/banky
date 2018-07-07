@@ -2,14 +2,16 @@ import React, { Component } from 'react';
 import { render } from 'react-dom';
 import { Container } from 'flux/utils';
 import { hashHistory } from 'react-router';
-import BankBalanceStore from './store/BankBalanceStore';
-import BankRewardStore from './store/BankRewardStore';
-import BankActions from './actions/BankActions';
-import Header from './components/Header';
-import AccountService from './services/AccountService';
-import AuthService from './services/AuthService';
+import BankBalanceStore from '../store/BankBalanceStore';
+import BankRewardStore from '../store/BankRewardStore';
+import BankActions from '../actions/BankActions';
+import Header from './Header';
+import AccountService from '../services/AccountService';
+import AuthService from '../services/AuthService';
 
-import Piechart from './components/Piechart';
+import Piechart from './Piechart';
+
+import Icon from './Icons';
 
 import './App.css';
 import $ from 'jquery';
@@ -75,21 +77,21 @@ class App extends Component {
     render() {
 
         return (
-            <div>
-                Hello, { this.state.user.username } <button onClick={this.logout.bind(this)}>Log out</button>
-                <div>
-                    <div>{ this.state.amount.uid }</div>
-                    <div>{ this.state.amount.days_since_created } days since created</div>
+            <div className="app">
+                <Header title={ "Hello, " + this.state.user.username + " !" } subtitle={ this.state.amount.days_since_created + " days since created" } hasBackButton={false}  />
+                <div className="content">
+                    <button onClick={this.logout.bind(this)} className="button btn-logout"><Icon kind="power-switch" width="20" height="20" color="white" /></button>
                     <div>${ this.state.amount.balance }</div>
-				</div>
-                <div>Your balance is ${(this.state.balance).toFixed(2)}</div>
-                <div>Your points rewards tier is {this.state.rewardsTier}</div>
-                <div>
-                    <input type="number" placeholder="Enter amount" ref="amount" />
-                    <button onClick={this.deposit.bind(this)}>Deposit</button>
-                    <button onClick={this.withdraw.bind(this)}>Withdraw</button>
+                    <Piechart x={150} y={100} outerRadius={100} innerRadius={50} data={[{value: 92-34, label: 'Deposit'},{value: 34, label: 'Withdraw'}]} />
+                    <div>Your balance is ${(this.state.balance).toFixed(2)}</div>
+                    <div>Your points rewards tier is {this.state.rewardsTier}</div>
+                    <div>
+                        <input type="number" placeholder="Enter amount" ref="amount" />
+                        <button onClick={this.deposit.bind(this)}>Deposit</button>
+                        <button onClick={this.withdraw.bind(this)}>Withdraw</button>
+                    </div>
+                    <div id="canvas"></div>
                 </div>
-                <Piechart x={150} y={100} outerRadius={100} innerRadius={50} data={[{value: 92-34, label: 'Deposit'},{value: 34, label: 'Withdraw'}]} />
             </div>
         );
     }

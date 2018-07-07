@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM, { render } from 'react-dom';
 import { Router, Route, hashHistory } from 'react-router';
-import AppContainer from './App';
+import AppContainer from './components/App';
 import LoginContainer from './components/Auth/Login';
 import SignupContainer from './components/Auth/Signup';
 import AuthService from './services/AuthService';

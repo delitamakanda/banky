@@ -3,16 +3,13 @@ import { hashHistory, Link } from 'react-router';
 import { render } from 'react-dom';
 import AuthService from '../../services/AuthService';
 import Header from '../Header';
-import '../../App.css';
+import '../App.css';
 
-import Icon from '../Icons'
+import Icon from '../Icons';
 
 class LoginContainer extends Component {
     constructor() {
         super(...arguments);
-        this.state = {
-            login_error: false
-        }
     }
 
     login (e) {
@@ -24,35 +21,44 @@ class LoginContainer extends Component {
         AuthService.login(username, pass, (loggedIn) => {
             if (loggedIn) {
                 hashHistory.push('/');
-            } else {
-                this.setState({login_error: true})
             }
         })
 
     }
 
+    checkValue(e) {
+        let elem = e.target;
+
+        if(elem.value != "") {
+            elem.classList.add('js-input-filled');
+        } else {
+            elem.classList.remove('js-input-filled');
+        }
+    }
+
     render() {
 
         return (
-            <div>
+            <div className="account">
                 <Header title="Banky" subtitle="Login" hasBackButton={false}/>
+                <div className="content">
+                    <form role="form" onSubmit={this.login.bind(this)}>
+                        <label htmlFor="">
+                            <Icon kind="user" width="20" height="20" color="black" className="icon" />
+                            <input onBlur={this.checkValue} type="text" name="username" ref="username" />
+                            <span>username</span>
+                        </label>
+                        <label htmlFor="">
+                            <Icon kind="lock" width="20" height="20" color="black" className="icon" />
+                            <input onBlur={this.checkValue} type="password" name="pass" ref="pass" />
+                            <span>password</span>
+                        </label>
 
-                <form role="form" onSubmit={this.login.bind(this)}>
-                    <div className="form-group">
-                        <input type="text" name="username" placeholder="username" ref="username" />
-                    </div>
-                    <div className="form-group">
-                        <input type="password" name="pass" placeholder="password" ref="pass" />
-                    </div>
-                    <div className="form-group">
                         <button type="submit">Login</button>
-                    </div>
-                    <Icon kind="user" width="20" height="20" color="black" />
-                    <Icon kind="envelope" width="20" height="20" color="black" />
-                    <Icon kind="lock" width="20" height="20" color="black" />
-                </form>
+                    </form>
 
-                <div>Not an account ? <Link to="signup">Create one !</Link></div>
+                    <div>No account ? <Link to="signup" className="link">Join us !</Link></div>
+                </div>
             </div>
         );
     }

@@ -3,15 +3,13 @@ import { render } from 'react-dom';
 import { hashHistory, Link } from 'react-router';
 import AuthService from '../../services/AuthService';
 import Header from '../Header';
-import '../../App.css';
+import '../App.css';
 
+import Icon from '../Icons'
 
 class SignupContainer extends Component {
     constructor() {
         super(...arguments);
-        this.state = {
-            login_error: false
-        }
     }
 
     signup (e) {
@@ -24,25 +22,44 @@ class SignupContainer extends Component {
         AuthService.signup(username, pass, email);
     }
 
+    checkValue(e) {
+        let elem = e.target;
+
+        if(elem.value != "") {
+            elem.classList.add('js-input-filled');
+        } else {
+            elem.classList.remove('js-input-filled');
+        }
+    }
+
     render() {
         return (
-            <div>
-                <Header title="Banky" subtitle="Signup" hasBackButton={true}/>
+            <div className="account">
+                <Header title="Banky" subtitle="Signup" hasBackButton={false}/>
+                <div className="content">
+                    <form role="form" onSubmit={this.signup.bind(this)}>
+                        <label htmlFor="">
+                            <Icon kind="user" width="20" height="20" color="black" className="icon" />
+                            <input onBlur={this.checkValue} type="text" name="username" ref="username" />
+                            <span>username</span>
+                        </label>
+                        <label htmlFor="">
+                            <Icon kind="envelope" width="20" height="20" color="black" className="icon" />
+                            <input onBlur={this.checkValue} type="email" name="email" ref="email" />
+                            <span>email</span>
+                        </label>
+                        <label htmlFor="">
+                            <Icon kind="lock" width="20" height="20" color="black" className="icon" />
+                            <input onBlur={this.checkValue} type="password" name="password" ref="pass" />
+                            <span>password</span>
+                        </label>
 
-                <form role="form" onSubmit={this.signup.bind(this)}>
-                    <div className="form-group">
-                        <input type="text" name="username" placeholder="username" ref="username" />
-                    </div>
-                    <div className="form-group">
-                        <input type="email" name="email" placeholder="e-mail" ref="email" />
-                    </div>
-                    <div className="form-group">
-                        <input type="password" name="password" placeholder="password" ref="pass" />
-                    </div>
-                    <div className="form-group">
                         <button type="submit">Create an account</button>
-                    </div>
-                </form>
+                    </form>
+
+                    <div>Already an account ? <Link to="login" className="link">Login</Link></div>
+
+                </div>
             </div>
         );
     }

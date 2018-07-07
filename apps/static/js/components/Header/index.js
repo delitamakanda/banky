@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import '../../App.css';
+import '../App.css';
 import classNames from 'classnames';
 import BackButton from './BackButton';
 
@@ -47,8 +47,8 @@ class Header extends Component {
                     <div className={this.getTitleStyle() + ' '}>
                         <div className=" "> {this.props.title} </div>
                     </div>
-                    {this.props.subtitle === '' ? '' : <div className={this.getSubtitleStyle()}>{this.props.subtitle}</div>}
                 </div>
+                {this.props.subtitle === '' ? '' : <div className={this.getSubtitleStyle()}>{this.props.subtitle}</div>}
             </div>
         );
     }
