@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { render } from 'react-dom';
 import { hashHistory, Link } from 'react-router';
 import AuthService from '../../services/AuthService';
-import Header from '../Header';
+
 import '../App.css';
 
 import Icon from '../Icons'
@@ -35,7 +35,6 @@ class SignupContainer extends Component {
     render() {
         return (
             <div className="account">
-                <Header title="Banky" subtitle="Signup" hasBackButton={false}/>
                 <div className="content">
                     <form role="form" onSubmit={this.signup.bind(this)}>
                         <label htmlFor="">

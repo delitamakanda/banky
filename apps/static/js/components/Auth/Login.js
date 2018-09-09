@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { hashHistory, Link } from 'react-router';
 import { render } from 'react-dom';
 import AuthService from '../../services/AuthService';
-import Header from '../Header';
+
 import '../App.css';
 
 import Icon from '../Icons';
@@ -40,7 +40,6 @@ class LoginContainer extends Component {
 
         return (
             <div className="account">
-                <Header title="Banky" subtitle="Login" hasBackButton={false}/>
                 <div className="content">
                     <form role="form" onSubmit={this.login.bind(this)}>
                         <label htmlFor="">
