@@ -1,0 +1,138 @@
+/* --------------------------------
+Buttons
+-------------------------------- */
+
+:root {
+    --btn-font-size: 1em;
+    --btn-sm: calc(var(--btn-font-size) - 0.2em);
+    --btn-md: calc(var(--btn-font-size) + 0.2em);
+    --btn-lg: calc(var(--btn-font-size) + 0.4em);
+
+    --btn-radius: var(--radius);
+}
+
+.btn {
+    display: inline-flex;
+    position: relative;
+    white-space: nowrap;
+    text-decoration: none;
+    line-height: 1;
+
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--btn-radius);
+    font-size: var(--btn-font-size);
+    color: var(--color-link);
+
+    transition: .2s;
+
+    &:active {
+        transition: none;
+    }
+
+    .icon {
+        /* icon inherits color of button label */
+        color: inherit;
+        flex-shrink: 0;
+    }
+}
+
+/* themes */
+.btn--primary {
+    // main button
+    background-color: var(--btn-primary-bg);
+    color: var(--btn-primary-label);
+    @include fontSmooth;
+
+    &:visited {
+        color: var(--btn-primary-label);
+    }
+
+    &:hover {
+        background-color: var(--btn-primary-hover);
+    }
+
+    &:active {
+        background-color: var(--btn-primary-active);
+    }
+}
+
+.btn--secondary {
+    // subtle version, used for secondary actions or in combo with primary/accent button
+    background-color: var(--btn-secondary-bg);
+    color: var(--btn-secondary-label);
+
+    &:visited {
+        color: var(--btn-secondary-label);
+    }
+
+    &:active {
+        background-color: var(--btn-secondary-active);
+    }
+}
+
+.btn--accent {
+    // used to draw special attention to the button (e.g. destructive actions)
+    background-color: var(--btn-accent-bg);
+    color: var(--btn-accent-label);
+    @include fontSmooth;
+
+    &:visited {
+        color: var(--btn-accent-label);
+    }
+
+    &:hover {
+        background-color: var(--btn-accent-hover);
+    }
+
+    &:active {
+        background-color: var(--btn-accent-active);
+    }
+}
+
+/* feedback */
+.btn[disabled] {
+    cursor: not-allowed;
+    background-color: var(--btn-disabled-bg);
+    color: var(--btn-disabled-label);
+    box-shadow: none;
+    opacity: 0.6;
+
+    &:visited {
+        color: var(--btn-disabled-label);
+    }
+}
+
+/* button size */
+.btn--sm {
+    font-size: var(--btn-sm);
+}
+
+.btn--md {
+    font-size: var(--btn-md);
+}
+
+.btn--lg {
+    font-size: var(--btn-lg);
+}
+
+.btn--full-width {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+/* buttons group */
+.btns {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: calc(-1 * var(--space-xs));
+
+    > * {
+        margin-right: var(--space-xs);
+        margin-bottom: var(--space-xs);
+
+        &:last-of-type {
+            margin-right: 0;
+        }
+    }
+}
