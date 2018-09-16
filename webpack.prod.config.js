@@ -1,7 +1,9 @@
 var webpack = require('webpack');
 var path = require('path');
+var fs = require('fs');
 var BundleTracker = require('webpack-bundle-tracker');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var WebpackOnBuildPlugin = require('on-build-webpack');
 
 var config = require('./webpack.base.config.js');
 
@@ -20,7 +22,26 @@ config.plugins = config.plugins.concat([
             warnings: false
         }
     }),
-    new ExtractTextPlugin('styles.[hash].css')
+    new ExtractTextPlugin('styles.[hash].css'),
+    new WebpackOnBuildPlugin(function(stats) {
+        var newlyCreatedAssets = stats.compilation.assets;
+
+        var unlinked = [];
+
+        var buildDir = path.resolve('./apps/static/dist');
+
+        fs.readdir(path.resolve(buildDir), (err, files) => {
+          files.forEach(file => {
+            if (!newlyCreatedAssets[file]) {
+              fs.unlink(path.resolve(buildDir + file));
+              unlinked.push(file);
+            }
+          });
+          if (unlinked.length > 0) {
+            console.log('Removed old assets: ', unlinked);
+          }
+      });
+  })
 ])
 
 config.module.rules.push(
