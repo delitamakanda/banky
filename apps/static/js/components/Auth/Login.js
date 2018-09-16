@@ -3,8 +3,6 @@ import { hashHistory, Link } from 'react-router';
 import { render } from 'react-dom';
 import AuthService from '../../services/AuthService';
 
-import '../App.css';
-
 import Icon from '../Icons';
 
 class LoginContainer extends Component {

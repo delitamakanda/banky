@@ -6,6 +6,8 @@ import LoginContainer from './components/Auth/Login';
 import SignupContainer from './components/Auth/Signup';
 import AuthService from './services/AuthService';
 
+import './styles/app.scss';
+
 function requireAuth (nextState, replace) {
     if (!AuthService.loggedIn()) {
         replace({

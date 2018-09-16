@@ -13,7 +13,6 @@ import Piechart from './Piechart';
 
 import Icon from './Icons';
 
-import './App.css';
 import $ from 'jquery';
 
 class App extends Component {
