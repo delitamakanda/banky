@@ -14,6 +14,7 @@ config.entry = [
 config.output.publicPath = 'http://localhost:3000/static/bundles/',
 
 config.plugins = config.plugins.concat([
+    new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
     new BundleTracker({filename: './webpack-stats.json'})
@@ -26,12 +27,18 @@ config.module.rules.push(
         use: ['react-hot-loader', 'babel-loader']
     },
     {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader',]
+        test:/\.(s*)css$/,
+        use:['style-loader','css-loader', 'sass-loader']
     },
 	{
     	test: /\.(png|woff|woff2|eot|ttf|svg)$/,
-    	use: 'url-loader?limit=100000'
+        use: [{
+           loader: 'url-loader',
+           options: {
+               limit: 8000,
+               name: 'images/[hash]-[name].[ext]'
+           }
+       }]
 	}
 )
 

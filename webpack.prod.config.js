@@ -30,22 +30,21 @@ config.module.rules.push(
         use: ['babel-loader']
     },
     {
-        test: /\.css$/,
+        test:/\.(s*)css$/,
         use: ExtractTextPlugin.extract({
             fallback: 'style-loader',
-            use: [
-                {
-                loader: 'css-loader',
-                options: {
-                    minimize: true
-                    }
-                }
-            ]
+            use: ['css-loader','sass-loader']
         })
     },
-	{
-        test: /\.(png|woff|woff2|eot|ttf|svg)$/,
-    	use: ['file-loader?limit=100000']
+    {
+    	test: /\.(png|woff|woff2|eot|ttf|svg)$/,
+        use: [{
+           loader: 'url-loader',
+           options: {
+               limit: 8000,
+               name: 'images/[hash]-[name].[ext]'
+           }
+       }]
 	}
 )
 
