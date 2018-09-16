@@ -621,6 +621,13 @@ Buttons
     .btns > *:last-of-type {
       margin-right: 0; }
 
+body,
+html {
+  margin: 0; }
+
+div:first-of-type {
+  padding-top: 0; }
+
 /*
 * — Utility classes —
 */

@@ -43,13 +43,12 @@ class Header extends Component {
 
         return (
             <div className={this.getHeaderStyle() + ' '}>
-                <div className='container '>
-                    {this.props.hasBackButton ? <BackButton icon={'leftArrow'} url={this.props.urlBack}/> : ''}
-                    <div className={this.getTitleStyle() + ' '}>
-                        <div className=" "> {this.props.title} </div>
-                    </div>
+                {this.props.hasBackButton ? <BackButton icon={'leftArrow'} url={this.props.urlBack}/> : ''}
+                <div className={this.getTitleStyle() + ' '}>
+                    <div className=" "> {this.props.title} </div>
+                    {this.props.subtitle === '' ? '' : <div className={this.getSubtitleStyle()}>{this.props.subtitle}</div>}
                 </div>
-                {this.props.subtitle === '' ? '' : <div className={this.getSubtitleStyle()}>{this.props.subtitle}</div>}
+
             </div>
         );
     }

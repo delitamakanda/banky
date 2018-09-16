@@ -45,6 +45,7 @@ class App extends Component {
             },
             success: function(res) {
                 this.setState({amount: res[0]})
+                console.log(res);
             }.bind(this)
         })
     }
@@ -76,10 +77,10 @@ class App extends Component {
     render() {
 
         return (
-            <div className="app">
-                <Header title={ "Hello, " + this.state.user.username + " !" } subtitle={ this.state.amount.days_since_created + " days since created" } hasBackButton={false}  />
+            <div className="container">
+                <Header title={ "Budget" } hasBackButton={false}  />
                 <div className="content">
-                    <button onClick={this.logout.bind(this)} className="button btn-logout"><Icon kind="power-switch" width="20" height="20" color="white" /></button>
+                    <div><button onClick={this.logout.bind(this)} className="button btn-logout"><Icon kind="power-switch" width="20" height="20" color="black" /> </button></div>
                     <div>${ this.state.amount.balance }</div>
                     <Piechart x={150} y={100} outerRadius={100} innerRadius={50} data={[{value: 92-34, label: 'Deposit'},{value: 34, label: 'Withdraw'}]} />
                     <div>Your balance is ${(this.state.balance).toFixed(2)}</div>
@@ -89,7 +90,6 @@ class App extends Component {
                         <button onClick={this.deposit.bind(this)}>Deposit</button>
                         <button onClick={this.withdraw.bind(this)}>Withdraw</button>
                     </div>
-                    <div id="canvas"></div>
                 </div>
             </div>
         );

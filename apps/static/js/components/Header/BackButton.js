@@ -20,7 +20,7 @@ class BackButton extends Component{
     render() {
         return (
             <div onClick={this.handleClick.bind(this)} className={'uiButton backButton'}>
-              <Icon kind="chevron-left" width="20" height="20" color="white" className="back-icon" />
+              <Icon kind="chevron-left" width="20" height="20" color="black" className="back-icon" />
             </div>
         );
     }
