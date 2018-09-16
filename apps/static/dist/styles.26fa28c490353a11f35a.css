@@ -628,112 +628,75 @@ html {
 div:first-of-type {
   padding-top: 0; }
 
-/*
-* — Utility classes —
-*/
-#canvas {
-  width: 280px;
-  height: 250px;
-  padding: 15px 0; }
-
-/*
-.link {
-    color: orange;
+.header {
+  -webkit-box-shadow: 0 1px 2px var(--gray-2);
+  background-color: var(--white);
+  box-shadow: 0 1px 2px var(--gray-2);
+  display: flex;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  text-align: center;
+  align-items: center;
+  align-content: center;
+  width: 100%;
+  height: 3em;
+  z-index: 88; }
+  .header .backButton + .title {
+    padding-left: 0; }
+  .header .title {
     font-weight: bold;
-    text-decoration: none;
-}
+    padding-left: 1.2em; }
+    .header .title .subtitle {
+      font-weight: lighter; }
 
-.account, .app {
-    text-align: center;
-}
+.container {
+  position: relative;
+  overflow: hidden;
+  margin-top: 0; }
 
 .content {
-    padding-top: 5rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    padding-bottom: 1rem;
-}
+  padding-top: 3em;
+  height: calc(100vh - 3em);
+  overflow: auto; }
 
-.account form {
+.account {
+  /*.js-input-filled + span {
+        -webkit-transform: translateY(-8px) scale(0.7);
+        transform: translateY(-8px) scale(0.7);
+    }*/ }
+  .account form {
     position: relative;
-    margin-bottom: 1rem;
-    margin: 0 auto;
-}
-
-.account form label {
-    display: flex;
-    border-bottom: 1px solid lightgrey;
-    position: relative;
-}
-
-.account form label:nth-child(n+2) {
-    margin-top: 1rem;
-}
-
-.account input {
+    display: inline-block; }
+  .account button,
+  .account input {
+    display: block; }
+  .account label {
+    display: block;
+    position: relative; }
+  .account input {
     appearance: none;
     -webkit-appearance: none;
     border: 0;
-    padding: 12px 10px;
-    padding-top: 20px;
-    padding-left: 50px;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-    font-size: 1rem;
-    outline: 0;
+    padding: 8px 10px 8px 20px;
+    border-radius: 5px;
+    font-size: 1em;
     width: 100%;
-}
-
-.account input:-webkit-autofill,
-.account input:-webkit-autofill:hover,
-.account input:-webkit-autofill:focus,
-.account input:-webkit-autofill:active {
-    transition: background-color 5000s ease-in-out 0s;
-}
-
-.account input:focus + span {
-    -webkit-transform: translateY(-8px) scale(0.7);
-    transform: translateY(-8px) scale(0.7);
-}
-
-.account button,
-.button {
-    display: inline-block;
-    border-radius: 35px;
-    border: 0;
-    font-size: 1rem;
-    background: #88CAC9;
-    color: #fff;
-    width: 100%;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-    padding: .5rem .65rem;
-    box-shadow: 0 1px 1px rgba(0,0,0,0.6);
-}
-
-.account button:focus,
-.button:focus {
-    outline: 0;
-    background-color: #6ca1a0;
-}
-
-.button.btn-logout {
-    width: auto;
-    border-radius: 100%;
-    bottom: 0;
-    right: 1rem;
-    position: fixed;
-    z-index: 11;
-
-}
-.account .icon{
+    border: 1px solid var(--black); }
+    .account input:focus {
+      outline: 0; }
+      .account input:focus + span {
+        -webkit-transform: translateY(-8px) scale(0.7);
+        transform: translateY(-8px) scale(0.7); }
+    .account input:-webkit-autofill, .account input:-webkit-autofill:hover, .account input:-webkit-autofill:focus, .account input:-webkit-autofill:active {
+      transition: background-color 5000s ease-in-out 0s; }
+  .account .icon {
     position: absolute;
     top: 50%;
     left: 5px;
-    margin-top: -10px;
-}
-
-.account span {
+    margin-top: -10px; }
+  .account span {
     position: absolute;
     left: 50px;
     top: 15px;
@@ -742,37 +705,12 @@ div:first-of-type {
     transform-origin: left top;
     transition: -webkit-transform 0.25s ease-out;
     transition: transform 0.25s ease-out;
-    transition: transform 0.25s ease-out, -webkit-transform 0.25s ease-out;
-}
+    transition: transform 0.25s ease-out, -webkit-transform 0.25s ease-out; }
 
-.js-input-filled + span {
-    -webkit-transform: translateY(-8px) scale(0.7);
-    transform: translateY(-8px) scale(0.7);
-}
-
-.header {
-    background: #88CAC9;
-    color: white;
-    width: 100%;
-    left: 0;
-    top: 0;
-    position: fixed;
-    z-index: 10;
-    padding-top: .8rem;
-    padding-bottom: .8rem;
-}
-
-
-.header .title {
-    font-weight: bold;
-}
-
-.header .subtitle {
-    font-size: .8rem;
-}
-
-
-
-.uiButton.backButton {
-    float: left;
-}*/
+/*
+* — Utility classes —
+*/
+#canvas {
+  width: 280px;
+  height: 250px;
+  padding: 15px 0; }
