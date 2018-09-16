@@ -28,7 +28,7 @@ config.plugins = config.plugins.concat([
 
         var unlinked = [];
 
-        var buildDir = path.resolve('./apps/static/dist');
+        var buildDir = 'apps/static/dist/';
 
         fs.readdir(path.resolve(buildDir), (err, files) => {
           files.forEach(file => {
