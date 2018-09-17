@@ -1,4 +1,5 @@
-# Budget app [![Build Status](https://travis-ci.org/delitamakanda/banky.svg?branch=master)](https://travis-ci.org/delitamakanda/banky)
+# Budget app
+[![Build Status](https://travis-ci.org/delitamakanda/banky.svg?branch=master)](https://travis-ci.org/delitamakanda/banky)
 
 ```
 npm run start
