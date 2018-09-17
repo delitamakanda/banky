@@ -4,7 +4,6 @@ import 'babel-polyfill';
 const API_URL = 'http://localhost:8000/api';
 const API_HEADERS = {
     'Content-Type': 'application/json',
-    Authorization: 'connard',
     mode: 'opaque'
 };
 
