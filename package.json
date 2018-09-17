@@ -62,7 +62,8 @@
     "react-svg-icon-generator": "^0.4.2",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.19.1",
-    "url-loader": "^1.0.1"
+    "url-loader": "^1.0.1",
+    "whatwg-fetch": "3.0.0"
   },
   "dependencies": {
     "webpack": "^3.12.0",
