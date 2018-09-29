@@ -45,7 +45,7 @@ class Header extends Component {
             <div className={this.getHeaderStyle() + ' '}>
                 {this.props.hasBackButton ? <BackButton icon={'leftArrow'} url={this.props.urlBack}/> : ''}
                 <div className={this.getTitleStyle() + ' '}>
-                    <div className=" "> {this.props.title} </div>
+                    <div className="header--text"> {this.props.title} </div>
                     {this.props.subtitle === '' ? '' : <div className={this.getSubtitleStyle()}>{this.props.subtitle}</div>}
                 </div>
 

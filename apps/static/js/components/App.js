@@ -78,9 +78,8 @@ class App extends Component {
 
         return (
             <div className="container">
-                <Header title={ "Budget" } hasBackButton={false}  />
+                <Header title={ "Budget" } subtitle="Deposit & withdraw" hasBackButton={false}  />
                 <div className="content">
-                    <div><button onClick={this.logout.bind(this)} className="button btn-logout"><Icon kind="power-switch" width="20" height="20" color="black" /> </button></div>
                     <div>${ this.state.amount.balance }</div>
                     <Piechart x={150} y={100} outerRadius={100} innerRadius={50} data={[{value: 92-34, label: 'Deposit'},{value: 34, label: 'Withdraw'}]} />
                     <div>Your balance is ${(this.state.balance).toFixed(2)}</div>
@@ -90,6 +89,7 @@ class App extends Component {
                         <button onClick={this.deposit.bind(this)}>Deposit</button>
                         <button onClick={this.withdraw.bind(this)}>Withdraw</button>
                     </div>
+                    <div><button onClick={this.logout.bind(this)} className="btn ripple btn-logout"><Icon kind="power-switch" width="20" height="20" color="black" /> Logout</button></div>
                 </div>
             </div>
         );

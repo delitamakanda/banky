@@ -540,11 +540,36 @@ Buttons
   white-space: nowrap;
   text-decoration: none;
   line-height: 1;
+  background-color: #f5f5f5;
   padding: var(--space-xs) var(--space-sm);
   border-radius: var(--btn-radius);
   font-size: var(--btn-font-size);
   color: var(--color-link);
+  width: 100%;
   transition: .2s; }
+  .btn.ripple {
+    position: relative;
+    overflow: hidden;
+    transform: translate3d(0, 0, 0); }
+  .btn.ripple:after  {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    background-image: radial-gradient(circle, #fff 10%, transparent 10.01%);
+    background-repeat: no-repeat;
+    background-position: 50%;
+    transform: scale(10, 10);
+    opacity: 0;
+    transition: transform .5s, opacity 1s; }
+  .btn.ripple:active:after {
+    transform: scale(0, 0);
+    opacity: .3s;
+    transition: 0s; }
   .btn:active {
     transition: none; }
   .btn .icon {
@@ -621,6 +646,9 @@ Buttons
     .btns > *:last-of-type {
       margin-right: 0; }
 
+* {
+  box-sizing: border-box; }
+
 body,
 html {
   margin: 0; }
@@ -628,84 +656,79 @@ html {
 div:first-of-type {
   padding-top: 0; }
 
+.wrapper {
+  padding-left: 2em;
+  padding-right: 2em; }
+
 .header {
-  -webkit-box-shadow: 0 1px 2px var(--gray-2);
   background-color: var(--white);
-  box-shadow: 0 1px 2px var(--gray-2);
   display: flex;
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
   text-align: center;
   align-items: center;
   align-content: center;
   width: 100%;
-  height: 3em;
-  z-index: 88; }
-  .header .backButton + .title {
-    padding-left: 0; }
-  .header .title {
+  height: 3em; }
+  .header .header--text,
+  .header .subtitle {
+    text-align: left; }
+  .header .header--text {
     font-weight: bold;
-    padding-left: 1.2em; }
-    .header .title .subtitle {
-      font-weight: lighter; }
+    font-size: 1.8em; }
+    .header .header--text .subtitle {
+      font-weight: lighter;
+      font-size: 0.8em; }
 
-.container {
-  position: relative;
-  overflow: hidden;
-  margin-top: 0; }
+.account label {
+  display: block;
+  position: relative; }
 
-.content {
-  padding-top: 3em;
-  height: calc(100vh - 3em);
-  overflow: auto; }
+.account input {
+  appearance: none;
+  -webkit-appearance: none;
+  border: 0;
+  height: 3em;
+  font-size: 1em;
+  width: 100%;
+  border: 1px solid var(--black); }
+  .account input:focus {
+    outline: 0; }
+    .account input:focus + span {
+      -webkit-transform: translateY(-8px) scale(0.7);
+      transform: translateY(-8px) scale(0.7); }
+  .account input:-webkit-autofill, .account input:-webkit-autofill:hover, .account input:-webkit-autofill:focus, .account input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s; }
 
-.account {
-  /*.js-input-filled + span {
-        -webkit-transform: translateY(-8px) scale(0.7);
-        transform: translateY(-8px) scale(0.7);
-    }*/ }
-  .account form {
-    position: relative;
-    display: inline-block; }
-  .account button,
-  .account input {
-    display: block; }
-  .account label {
-    display: block;
-    position: relative; }
-  .account input {
-    appearance: none;
-    -webkit-appearance: none;
-    border: 0;
-    padding: 8px 10px 8px 20px;
-    border-radius: 5px;
-    font-size: 1em;
-    width: 100%;
-    border: 1px solid var(--black); }
-    .account input:focus {
-      outline: 0; }
-      .account input:focus + span {
-        -webkit-transform: translateY(-8px) scale(0.7);
-        transform: translateY(-8px) scale(0.7); }
-    .account input:-webkit-autofill, .account input:-webkit-autofill:hover, .account input:-webkit-autofill:focus, .account input:-webkit-autofill:active {
-      transition: background-color 5000s ease-in-out 0s; }
-  .account .icon {
-    position: absolute;
-    top: 50%;
-    left: 5px;
-    margin-top: -10px; }
-  .account span {
-    position: absolute;
-    left: 50px;
-    top: 15px;
-    pointer-events: none;
-    -webkit-transform-origin: left top;
-    transform-origin: left top;
-    transition: -webkit-transform 0.25s ease-out;
-    transition: transform 0.25s ease-out;
-    transition: transform 0.25s ease-out, -webkit-transform 0.25s ease-out; }
+.account .icon {
+  position: absolute;
+  top: 50%;
+  left: 5px;
+  margin-top: -10px; }
+
+.account span {
+  position: absolute;
+  left: 10%;
+  top: 20%;
+  pointer-events: none;
+  -webkit-transform-origin: left top;
+  transform-origin: left top;
+  transition: -webkit-transform 0.25s ease-out;
+  transition: transform 0.25s ease-out;
+  transition: transform 0.25s ease-out, -webkit-transform 0.25s ease-out; }
+
+.account .js-input-filled + span {
+  -webkit-transform: translateY(-8px) scale(0.7);
+  transform: translateY(-5px) scale(0.7); }
+
+a.link {
+  color: var(--color-link);
+  -o-transition: color 2s ease-out, background 2s ease-in;
+  -ms-transition: color 2s ease-out, background 2s ease-in;
+  -moz-transition: color 2s ease-out, background 2s ease-in;
+  -webkit-transition: color 2s ease-out, background 2s ease-in;
+  transition: color 2s ease-out, background 2s ease-in; }
+  a.link:hover {
+    color: var(--color-primary-dark);
+    background: yellow; }
 
 /*
 * — Utility classes —

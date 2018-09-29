@@ -3,6 +3,8 @@ import { hashHistory, Link } from 'react-router';
 import { render } from 'react-dom';
 import AuthService from '../../services/AuthService';
 
+import Logo from '../Logo';
+
 import Icon from '../Icons';
 
 class LoginContainer extends Component {
@@ -39,22 +41,23 @@ class LoginContainer extends Component {
         return (
             <div className="account">
                 <div className="content">
+                    <Logo title="MyBank" />
                     <form role="form" onSubmit={this.login.bind(this)}>
                         <label htmlFor="">
                             <Icon kind="user" width="20" height="20" color="black" className="icon" />
-                            <input onBlur={this.checkValue} type="text" name="username" ref="username" />
+                            <input className="margin-bottom--sm" onBlur={this.checkValue} type="text" name="username" ref="username" />
                             <span>username</span>
                         </label>
                         <label htmlFor="">
                             <Icon kind="lock" width="20" height="20" color="black" className="icon" />
-                            <input onBlur={this.checkValue} type="password" name="pass" ref="pass" />
+                            <input className="margin-bottom--sm" onBlur={this.checkValue} type="password" name="pass" ref="pass" />
                             <span>password</span>
                         </label>
 
-                        <button type="submit">Login</button>
+                        <button type="submit" className="btn ripple">Login</button>
                     </form>
 
-                    <div>No account ? <Link to="signup" className="link">Join us !</Link></div>
+                    <div className="margin-top--sm">No account ? <Link to="signup" className="link">Join us !</Link></div>
                 </div>
             </div>
         );
