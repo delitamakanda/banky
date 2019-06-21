@@ -21,14 +21,16 @@ class AuthService {
         })
     }
 
-    signup (username, pass, email) {
+    signup (first_name, last_name, username, pwd, email) {
 
         $.ajax({
             type: 'POST',
             url: '/api/users/',
             data: {
+                first_name: first_name,
+                last_name: last_name,
                 username: username,
-                password: pass,
+                password: pwd,
                 email: email
             },
             headers: {

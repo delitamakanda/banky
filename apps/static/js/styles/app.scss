@@ -1,120 +1,86 @@
-@import '_mixins.scss';
-@import '_typography.scss';
-@import '_layout.scss';
-@import '_colors.scss';
-@import '_spacing.scss';
-@import '_icons.scss';
-@import '_buttons.scss';
+:root {
+  --password-btn-width: 3.5em;
+  --password-icon-size: 2em;
+}
 
 * {
     box-sizing: border-box;
 }
 
-body,
-html {
-    margin: 0
-}
-
 .wrapper {
-    padding-left: 2em;
-    padding-right: 2em;
+    width: calc(100% - 2.5rem);
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1.25rem 0;
+    max-width: 64rem;
 }
 
-.header {
-    background-color: var(--white);
-    display: flex;
-    text-align: center;
-    align-items: center;
-    align-content: center;
-    width: 100%;
-    height: 3em;
-
-    .header--text,
-    .subtitle {
-        text-align: left;
-    }
-
-    .header--text {
-        font-weight: bold;
-        font-size: 1.8em;
-
-        .subtitle {
-            font-weight: lighter;
-            font-size: 0.8em;
-        }
-    }
+.password {
+  position: relative;
 }
 
-.account {
+.password__btn {
+  background-color: transparent;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  color: inherit;
+  line-height: inherit;
+  appearance: none;
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: var(--password-btn-width);
+  background-color: rgba(#FFF, 0); // fix issue on IE9/10 - button not clickable
+  display: none; // hide button if js is not enabled
 
-    label {
-        display: block;
-        position: relative;
-    }
-
-    input {
-        appearance: none;
-        -webkit-appearance: none;
-        border: 0;
-        height: 3em;
-        font-size: 1em;
-        width: 100%;
-        border: 1px solid var(--black);
-        &:focus {
-            outline: 0;
-
-            + span {
-               -webkit-transform: translateY(-8px) scale(0.7);
-               transform: translateY(-8px) scale(0.7);
-           }
-        }
-
-        &:-webkit-autofill,
-        &:-webkit-autofill:hover,
-        &:-webkit-autofill:focus,
-        &:-webkit-autofill:active {
-            transition: background-color 5000s ease-in-out 0s;
-        }
-    }
-
-    .icon{
-        position: absolute;
-        top: 50%;
-        left: 5px;
-        margin-top: -10px;
-    }
-
-    span {
-        position: absolute;
-        left: 10%;
-        top: 20%;
-        pointer-events: none;
-        -webkit-transform-origin: left top;
-        transform-origin: left top;
-        transition: -webkit-transform 0.25s ease-out;
-        transition: transform 0.25s ease-out;
-        transition: transform 0.25s ease-out, -webkit-transform 0.25s ease-out;
-    }
-
-    .js-input-filled + span {
-        -webkit-transform: translateY(-8px) scale(0.7);
-        transform: translateY(-5px) scale(0.7);
-    }
+  &:focus {
+    color: var(--color-primary);
+  }
 }
 
-a.link {
-    color: var(--color-link);
-    -o-transition:color 2s ease-out, background 2s ease-in;
-    -ms-transition:color 2s ease-out, background 2s ease-in;
-    -moz-transition:color 2s ease-out, background 2s ease-in;
-    -webkit-transition:color 2s ease-out, background 2s ease-in;
-    transition:color 2s ease-out, background 2s ease-in;
+.password__btn-label {
+  font-size: var(--text-sm);
 
-    &:hover {
-        color: var(--color-primary-dark);
-        background: yellow;
-    }
+  &:last-child {
+    display: none;
+  }
+
+  .icon {
+    display: block;
+    color: inherit;
+    width: var(--password-icon-size);
+    height: var(--password-icon-size);
+  }
 }
+
+.password--text-is-visible {
+  .password__btn-label:first-child {
+    display: none;
+  }
+
+  .password__btn-label:last-child {
+    display: inline-block;
+  }
+}
+
+.js {
+  .password__input {
+    padding-right: calc(var(--space-sm) + var(--password-btn-width));
+  }
+
+  .password__input::-ms-reveal {
+    display: none;
+  }
+
+	.password__btn { // show button if js is enabled
+		display: block; // flex fallback
+		display: flex;
+	}
+}
+
 /*
 * — Utility classes —
 */
@@ -124,5 +90,3 @@ a.link {
     height: 250px;
     padding: 15px 0;
 }
-
-
