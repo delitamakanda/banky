@@ -33,7 +33,7 @@ config.plugins = config.plugins.concat([
         fs.readdir(path.resolve(buildDir), (err, files) => {
           files.forEach(file => {
             if (!newlyCreatedAssets[file]) {
-              fs.unlink(path.resolve(buildDir + file));
+              fs.unlinkSync(path.resolve(buildDir + file));
               unlinked.push(file);
             }
           });
