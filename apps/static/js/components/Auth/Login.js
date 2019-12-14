@@ -25,6 +25,7 @@ class LoginContainer extends Component {
         })
 
     }
+    // https://codyhouse.co/ds/components/app/password-visibility-control
 
     checkValue(e) {
         let elem = e.target;
