@@ -9,3 +9,4 @@ db.sqlite3
 .DS_Store
 __pycache__
 /apps/static/js/svg
+.vscode/
