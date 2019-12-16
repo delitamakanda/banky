@@ -11,7 +11,11 @@ import AuthService from '../services/AuthService';
 
 import Piechart from './Piechart';
 
-import Icon from './Icons';
+// import Icon from './Icons';
+
+import ons from 'onsenui';
+
+import { Page, Toolbar, ToolbarButton, Icon, Input, Splitter, SplitterContent, SplitterSide, Tabbar, Tab } from 'react-onsenui'
 
 import $ from 'jquery';
 
@@ -74,11 +78,30 @@ class App extends Component {
         this.refs.amount.value = '';
     }
 
+    openMenu() {
+        alert('menu')
+    }
+
     render() {
 
         return (
-            <div className="container">
-                <Header title={ "Budget" } subtitle="Deposit & withdraw" hasBackButton={false}  />
+            <Page>
+                <Toolbar>
+                    <div className="left">
+                        <ToolbarButton onClick={this.openMenu.bind(this)}>
+                            <Icon icon="md-menu"></Icon>
+                        </ToolbarButton>
+                    </div>
+                    <div className="center">
+                        
+                    </div>
+                    <div className="right">
+                        <ToolbarButton onClick={this.logout.bind(this)}>
+                            <Icon icon="md-power"></Icon>
+                        </ToolbarButton>
+                    </div>
+                </Toolbar>
+                {/*<Header title={ "Budget" } subtitle="Deposit & withdraw" hasBackButton={false}  />*/}
                 <div className="content">
                     <div>${ this.state.amount.balance }</div>
                     <Piechart x={150} y={100} outerRadius={100} innerRadius={50} data={[{value: 92-34, label: 'Deposit'},{value: 34, label: 'Withdraw'}]} />
@@ -89,9 +112,8 @@ class App extends Component {
                         <button onClick={this.deposit.bind(this)}>Deposit</button>
                         <button onClick={this.withdraw.bind(this)}>Withdraw</button>
                     </div>
-                    <div><button onClick={this.logout.bind(this)} className="btn ripple btn-logout"><Icon kind="power-switch" width="20" height="20" color="black" /> Logout</button></div>
                 </div>
-            </div>
+            </Page>
         );
     }
 }

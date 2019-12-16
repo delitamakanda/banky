@@ -1,86 +1,45 @@
-:root {
-  --password-btn-width: 3.5em;
-  --password-icon-size: 2em;
-}
-
-* {
-    box-sizing: border-box;
-}
-
 .wrapper {
-    width: calc(100% - 2.5rem);
-    margin-left: auto;
-    margin-right: auto;
-    padding: 1.25rem 0;
-    max-width: 64rem;
+  text-align: center;
+  margin-top: 200px;
 }
 
-.password {
+button[type="submit"] {
   position: relative;
-}
-
-.password__btn {
-  background-color: transparent;
+  display: inline-block;
+  box-sizing: border-box;
+  background-clip: padding-box;
   padding: 0;
-  border: 0;
-  border-radius: 0;
+  margin: 0;
+  font: inherit;
   color: inherit;
-  line-height: inherit;
-  appearance: none;
-  position: absolute;
-  z-index: 1;
-  top: 0;
-  right: 0;
-  height: 100%;
-  width: var(--password-btn-width);
-  background-color: rgba(#FFF, 0); // fix issue on IE9/10 - button not clickable
-  display: none; // hide button if js is not enabled
-
-  &:focus {
-    color: var(--color-primary);
-  }
+  background: transparent;
+  border: none;
+  line-height: normal;
+  font-family: -apple-system, 'Helvetica Neue', 'Helvetica', 'Arial', 'Lucida Grande', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 400;
+  cursor: default;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  height: auto;
+  text-decoration: none;
+  padding: 4px 10px;
+  font-size: 17px;
+  line-height: 32px;
+  letter-spacing: 0;
+  color: white;
+  vertical-align: middle;
+  background-color: #0076ff;
+  border: 0 solid currentColor;
+  border-radius: 3px;
+  transition: none;
 }
-
-.password__btn-label {
-  font-size: var(--text-sm);
-
-  &:last-child {
-    display: none;
-  }
-
-  .icon {
-    display: block;
-    color: inherit;
-    width: var(--password-icon-size);
-    height: var(--password-icon-size);
-  }
-}
-
-.password--text-is-visible {
-  .password__btn-label:first-child {
-    display: none;
-  }
-
-  .password__btn-label:last-child {
-    display: inline-block;
-  }
-}
-
-.js {
-  .password__input {
-    padding-right: calc(var(--space-sm) + var(--password-btn-width));
-  }
-
-  .password__input::-ms-reveal {
-    display: none;
-  }
-
-	.password__btn { // show button if js is enabled
-		display: block; // flex fallback
-		display: flex;
-	}
-}
-
 /*
 * — Utility classes —
 */

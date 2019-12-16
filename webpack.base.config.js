@@ -18,6 +18,8 @@ module.exports = {
         //
     ],
 
+    mode: {},
+
     module: {
         rules: []
     },

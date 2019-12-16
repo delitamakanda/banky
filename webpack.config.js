@@ -1,7 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
 var BundleTracker = require('webpack-bundle-tracker');
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 var config = require('./webpack.base.config.js');
 
@@ -11,7 +10,9 @@ config.entry = [
     './apps/static/js/index'
 ]
 
-config.output.publicPath = 'http://localhost:3000/static/bundles/',
+config.output.publicPath = 'http://localhost:3000/static/bundles/';
+
+config.mode = 'development'
 
 config.plugins = config.plugins.concat([
     new webpack.NamedModulesPlugin(),
@@ -36,7 +37,7 @@ config.module.rules.push(
            loader: 'url-loader',
            options: {
                limit: 8000,
-               name: 'images/[hash]-[name].[ext]'
+               name: '[hash]-[name].[ext]'
            }
        }]
 	}

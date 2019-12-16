@@ -1,5 +1,3 @@
-import './main/assets/js/util';
-
 import React from 'react';
 import ReactDOM, { render } from 'react-dom';
 import { Router, Route, hashHistory } from 'react-router';
@@ -8,8 +6,9 @@ import LoginContainer from './components/Auth/Login';
 import SignupContainer from './components/Auth/Signup';
 import AuthService from './services/AuthService';
 
-/* Cody Framework */
-import './main/assets/css/style.scss';
+/* Onsen ui framework */
+import 'onsenui/css/onsenui.css';
+import 'onsenui/css/onsen-css-components.css';
 
 /* styles bank app */
 import './styles/app.scss';

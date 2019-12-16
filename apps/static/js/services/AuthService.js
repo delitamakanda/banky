@@ -2,6 +2,8 @@ import $ from 'jquery';
 import React from 'react';
 import { hashHistory } from 'react-router';
 
+import ons from 'onsenui';
+
 import { csrftoken } from './utils';
 
 class AuthService {
@@ -17,6 +19,7 @@ class AuthService {
                 if (cb) cb(true)
             } else {
                 if (cb) cb(false)
+                ons.notification.alert('Votre identifiant/mot de passe est erroné.');
             }
         })
     }
@@ -41,6 +44,7 @@ class AuthService {
                 hashHistory.push('/login');
             },
             error: (xhr, status, err) => {
+                ons.notification.alert('Formulaire invalide.');
                 console.error(status, err.toString());
             }
         })

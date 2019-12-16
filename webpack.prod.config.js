@@ -9,6 +9,8 @@ var config = require('./webpack.base.config.js');
 
 config.output.path = path.resolve('./apps/static/dist')
 
+config.mode = 'production';
+
 config.plugins = config.plugins.concat([
     new BundleTracker({filename: './webpack-stats-prod.json'}),
     new webpack.DefinePlugin({
@@ -17,11 +19,11 @@ config.plugins = config.plugins.concat([
         }
     }),
     new webpack.optimize.OccurrenceOrderPlugin(),
-    new webpack.optimize.UglifyJsPlugin({
-        compressor: {
-            warnings: false
-        }
-    }),
+    // new webpack.optimize.UglifyJsPlugin({
+        // compressor: {
+            // warnings: false
+        // }
+    // }),
     new ExtractTextPlugin('styles.[hash].css'),
     new WebpackOnBuildPlugin(function(stats) {
         var newlyCreatedAssets = stats.compilation.assets;
@@ -34,15 +36,23 @@ config.plugins = config.plugins.concat([
           files.forEach(file => {
             if (!newlyCreatedAssets[file]) {
               fs.unlinkSync(path.resolve(buildDir + file));
+              //path.resolve(buildDir + file);
               unlinked.push(file);
             }
           });
           if (unlinked.length > 0) {
-            console.log('Removed old assets: ', unlinked);
+              unlinked.forEach(unlink => {
+                  fs.rmdirSync(buildDir);
+              });
+              console.log('Removed old assets: ', unlinked);
           }
       });
   })
 ])
+
+config.optimization = {
+    minimize: true
+};
 
 config.module.rules.push(
     {
@@ -54,7 +64,8 @@ config.module.rules.push(
         test:/\.(s*)css$/,
         use: ExtractTextPlugin.extract({
             fallback: 'style-loader',
-            use: ['css-loader','sass-loader']
+            use: ['css-loader','sass-loader'],
+            publicPath: './',
         })
     },
     {
@@ -63,7 +74,7 @@ config.module.rules.push(
            loader: 'url-loader',
            options: {
                limit: 8000,
-               name: 'images/[hash]-[name].[ext]'
+               name: '[hash]-[name].[ext]'
            }
        }]
 	}
