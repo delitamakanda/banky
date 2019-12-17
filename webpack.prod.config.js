@@ -4,6 +4,7 @@ var fs = require('fs');
 var BundleTracker = require('webpack-bundle-tracker');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var WebpackOnBuildPlugin = require('on-build-webpack');
+var TerserPlugin = require('terser-webpack-plugin');
 
 var config = require('./webpack.base.config.js');
 
@@ -51,7 +52,18 @@ config.plugins = config.plugins.concat([
 ])
 
 config.optimization = {
-    minimize: true
+    minimizer: [
+        new TerserPlugin({
+            cache: true,
+            parallel: true,
+            sourceMap: true,
+            terserOptions: {
+                output: {
+                    comments: false,
+                },
+            },
+        }),
+    ],
 };
 
 config.module.rules.push(
