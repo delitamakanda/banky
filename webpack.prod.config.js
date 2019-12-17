@@ -80,7 +80,6 @@ config.module.rules.push(
                 {
                     loader: 'css-loader',
                     options: {
-                        url: false,
                         minimize: true,
                         sourceMap: true
                     }
