@@ -76,7 +76,22 @@ config.module.rules.push(
         test:/\.(s*)css$/,
         use: ExtractTextPlugin.extract({
             fallback: 'style-loader',
-            use: ['css-loader','sass-loader'],
+            use: [
+                {
+                    loader: 'css-loader',
+                    options: {
+                        url: false,
+                        minimize: true,
+                        sourceMap: true
+                    }
+                },
+                {
+                    loader: 'sass-loader',
+                    options: {
+                        sourceMap: true
+                    }
+                }
+            ],
             publicPath: './',
         })
     },
