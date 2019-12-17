@@ -13,4 +13,4 @@ ADMINS = (
 
 ALLOWED_HOSTS = ['.herokuapp.com']
 
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
