@@ -3,6 +3,11 @@
 
 
 ``` bash
+mac-mini-de-delita:bank delitamakanda$ python3 -m venv bank 
+mac-mini-de-delita:bank delitamakanda$ source bank/bin/activate
+```
+
+``` bash
 npm run start
 ```
 
