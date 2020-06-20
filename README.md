@@ -8,7 +8,7 @@ mac-mini-de-delita:bank delitamakanda$ source bank/bin/activate
 ```
 
 ``` bash
-npm run start
+cd frontend && npm run start
 ```
 
 
