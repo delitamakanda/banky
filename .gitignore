@@ -1,4 +1,4 @@
-venv
+venv/
 *.pyc
 # staticfiles
 .env
@@ -10,3 +10,4 @@ db.sqlite3
 __pycache__
 /apps/static/js/svg
 .vscode/
+bank/
