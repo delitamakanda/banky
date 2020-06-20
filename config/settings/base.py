@@ -72,8 +72,8 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            '{0}/templates'.format(APPS_DIR),
-            # os.path.join(BASE_DIR, 'templates'),
+            # '{0}/templates'.format(APPS_DIR),
+            os.path.join(BASE_DIR, 'templates'),
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -138,9 +138,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATICFILES_DIRS = [
-    '{0}/static'.format(APPS_DIR)
+    # '{0}/static'.format(APPS_DIR)
     # os.path.join(BASE_DIR, 'static'),
-    # os.path.join(BASE_DIR, 'build'),
+    os.path.join(BASE_DIR, 'frontend', 'build'),
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
@@ -154,15 +154,15 @@ SITE_ID = 1
 
 WEBPACK_LOADER = {
     'DEFAULT': {
-        'BUNDLE_DIR_NAME': 'bundles/',
-        'STATS_FILE': os.path.join(BASE_DIR, './webpack-stats.json')
+        'CACHE': not DEBUG,
+        'BUNDLE_DIR_NAME': 'frontend/build/',
+        'STATS_FILE': os.path.join(BASE_DIR, 'frontend', 'webpack-stats.dev.json')
     }
 }
 
 if not DEBUG:
     WEBPACK_LOADER['DEFAULT'].update({
-        'BUNDLE_DIR_NAME': 'dist/',
-        'STATS_FILE': os.path.join(BASE_DIR, './webpack-stats-prod.json')
+        'STATS_FILE': os.path.join(BASE_DIR, 'frontend', 'webpack-stats.prod.json')
     })
 
 
