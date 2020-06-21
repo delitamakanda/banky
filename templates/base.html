@@ -13,8 +13,8 @@
     <link href="//use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
     <title>Bank - {% block title %}{% endblock %}</title>
     <script>document.getElementsByTagName("html")[0].className += " js";</script>
+	{% render_bundle 'vendors' 'css' %}
     {% render_bundle 'main' 'css' %}
-    {% render_bundle 'vendors' 'css' %}
   </head>
 
   <body>
@@ -23,9 +23,9 @@
               {% block content %}{% endblock %}
           </div>
       </div>
+	  {% render_bundle 'vendors' 'js' %}
       {% render_bundle 'main' 'js' %}
       {% render_bundle 'runtime-main' 'js' %}
-      {% render_bundle 'vendors' 'js' %}
   </body>
 
 </html>
