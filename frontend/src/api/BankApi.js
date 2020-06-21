@@ -3,10 +3,13 @@ import 'babel-polyfill';
 
 import { csrftoken } from '../utils/cookie';
 
-const API_HEADERS = {
+export const API_HEADERS = {
     'Content-Type': 'application/json',
-	'X-CSRFToken': csrftoken,
+    'X-CSRFToken': csrftoken,
     mode: 'opaque'
 };
+
+class BankAPI {}
+
 
 export default BankAPI;

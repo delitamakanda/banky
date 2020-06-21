@@ -52,13 +52,13 @@ class AuthService {
         return fetch('/api/obtain-auth-token/', {
             method: 'POST',
             headers: BankAPI.API_HEADERS,
-            body: JSON.stringify(task)
+            body: JSON.stringify(data)
         })
         .then((response) => {
             console.log(response.json());
             cb({
                 authenticated: true,
-                token: res.token
+                token: response.token
             });
         })
         .catch((error) => {
