@@ -1,6 +1,7 @@
 /* eslint jsx-a11y/anchor-is-valid: 0 */
 
 import React from "react";
+import { Redirect } from 'react-router-dom';
 import {
   Container,
   Row,
@@ -12,6 +13,7 @@ import {
   Button
 } from "shards-react";
 
+import auth from '../utils/auth';
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -180,7 +182,11 @@ class Dashboard extends React.Component {
       PostsListThree,
       PostsListFour
     } = this.state;
-
+    
+    if (!auth.loggedIn()) {
+      return <Redirect to="/login" />
+    }
+    
     return (
       <Container fluid className="main-content-container px-4">
         {/* Page Header */}

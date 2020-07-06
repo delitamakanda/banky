@@ -1,4 +1,5 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
 import { Container, Row, Col } from "shards-react";
 
 const CustomLayout = ({ children }) => (
@@ -14,4 +15,4 @@ const CustomLayout = ({ children }) => (
   </Container>
 );
 
-export default CustomLayout;
+export default withRouter(CustomLayout);

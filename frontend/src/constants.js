@@ -1,4 +1,5 @@
 export default {
+	LOGIN_SECRET_KEY: 'AJBPMXEKPQ321!@',
 	CREATED_ACCOUNT: 'created account',
 	WITHDREW_FROM_ACCOUNT: 'withdrew from account',
 	DEPOSITED_INTO_ACCOUNT: 'deposited into account',

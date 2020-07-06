@@ -1,35 +1,49 @@
 import AppDispatcher from '../dispatchers/main';
 import AuthConstants from '../constants';
+import history from '../utils/history';
 
-let AuthActions = {
+export default {
 
-    login () {
+    login: (username, password) => {
+        console.log('Login action dispatches to Store');
+
         AppDispatcher.dispatch({
-            type: AuthConstants.LOGIN_USER,
-            content: data
+            actionType: AuthConstants.LOGIN_USER,
+            username: username,
+            password: password
         });
     },
 
-	signup () {
+	signup: (first_name, last_name, username, pwd, email) => {
 		AppDispatcher.dispatch({
-            type: AuthConstants.SIGNUP_USER,
-            content: data
+            actionType: AuthConstants.SIGNUP_USER,
+            first_name: first_name,
+            last_name: last_name,
+            username: username,
+            password: pwd,
+            email: email
         });
 	},
 
-	loggedIn () {
+	loggedIn: (jwt) => {
+        console.log('Login action dispatches to Store');
+
 		AppDispatcher.dispatch({
-            type: AuthConstants.CURRENT_USER,
-			user: null
+            actionType: AuthConstants.CURRENT_USER,
+			jwt: jwt
         });
+
+        history.push('/dashboard');
 	},
 
     logout () {
+        console.log('Logout action dispatches to Store');
+
         AppDispatcher.dispatch({
-            type: AuthConstants.LOGOUT_USER,
-            user: null
-        })
+            actionType: AuthConstants.LOGOUT_USER
+        });
+
+        history.push('/login');
     }
 };
 
-export default AuthActions;

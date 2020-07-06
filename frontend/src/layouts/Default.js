@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { withRouter } from "react-router-dom";
 import { Container, Row, Col } from "shards-react";
 
 import MainNavbar from "../components/layout/MainNavbar/MainNavbar";
@@ -46,4 +47,4 @@ DefaultLayout.defaultProps = {
   noFooter: false
 };
 
-export default DefaultLayout;
+export default withRouter(DefaultLayout);

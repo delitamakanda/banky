@@ -1,11 +1,13 @@
 /* eslint jsx-a11y/anchor-is-valid: 0 */
 
 import React from "react";
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { Container, Row, Col, Form, FormInput, FormGroup, Button } from "shards-react";
-import AuthService from '../services/AuthService';
+import AuthActions from '../actions/AuthActions';
 
 import { Logo, Icon } from '../components/ui';
+
+import auth from '../utils/auth';
 
 class Signup extends React.Component {
 
@@ -21,19 +23,28 @@ class Signup extends React.Component {
     }
   }
 
-  signup(event) {
+  signup = (event) => {
     event.preventDefault();
 
-    const first_name = this.refs.first_name.value;
-    const last_name = this.refs.last_name.value;
-    const username = this.refs.username.value;
-    const pass = this.refs.pwd.value;
-    const email = this.refs.email.value;
+    const first_name = this.state.first_name;
+    const last_name = this.state.last_name;
+    const username = this.state.username;
+    const pass = this.state.pwd;
+    const email = this.state.email;
 
-    AuthService.signup(first_name, last_name, username, pass, email);
+    AuthActions.signup(first_name, last_name, username, pass, email);
+  }
+
+  handleChange = event => {
+    event.preventDefault();
+    this.setState({ [event.target.name]: event.target.value });
   }
 
   render() {
+
+    if (auth.loggedIn()) {
+      return <Redirect to="/" />
+    }
 
     return (
       <Container fluid className="main-content-container px-4">
@@ -42,26 +53,26 @@ class Signup extends React.Component {
             <Logo title="Bank" />
             <Icon kind="star" />
             <p>Créez un compte. C'est simple et gratuit.</p>
-            <Form onSubmit={this.signup.bind(this)}>
+            <Form onSubmit={this.signup}>
               <FormGroup>
                 <label htmlFor="#username">Identifiant</label>
-                <FormInput id="#username" placeholder="Identifiant" ref="username" value={this.state.username} onChange={(evt) => { this.setState({ username: evt.target.value }) }} />
+                <FormInput id="username" placeholder="Identifiant" name="username" value={this.state.username} onChange={this.handleChange} />
               </FormGroup>
               <FormGroup>
                 <label htmlFor="#email">E-mail</label>
-                <FormInput id="#email" placeholder="E-mail" ref="email" value={this.state.email} onChange={(evt) => { this.setState({ email: evt.target.value }) }} />
+                <FormInput id="email" placeholder="E-mail" name="email" value={this.state.email} onChange={this.handleChange} />
               </FormGroup>
               <FormGroup>
                 <label htmlFor="#password">Mot de passe</label>
-                <FormInput type="password" id="#password" placeholder="Mot de passe" ref="pwd" value={this.state.pwd} onChange={(evt) => { this.setState({ pwd: evt.target.value }) }} />
+                <FormInput type="password" id="password" placeholder="Mot de passe" name="pwd" value={this.state.pwd} onChange={this.handleChange} />
               </FormGroup>
               <FormGroup>
                 <label htmlFor="#first_name">Prénom</label>
-                <FormInput id="#first_name" placeholder="Prénom" ref="first_name" value={this.state.first_name} onChange={(evt) => { this.setState({ first_name: evt.target.value }) }} />
+                <FormInput id="first_name" placeholder="Prénom" name="first_name" value={this.state.first_name} onChange={this.handleChange} />
               </FormGroup>
               <FormGroup>
                 <label htmlFor="#last_name">Nom</label>
-                <FormInput id="#last_name" placeholder="Nom" ref="last_name" value={this.state.last_name} onChange={(evt) => { this.setState({ last_name: evt.target.value }) }} />
+                <FormInput id="last_name" placeholder="Nom" name="last_name" value={this.state.last_name} onChange={this.handleChange} />
               </FormGroup>
               <Button pill type="submit">Se connecter</Button>
             </Form>
