@@ -3,7 +3,7 @@ import 'babel-polyfill';
 
 import { csrftoken } from '../utils/cookie';
 
-const API_HEADERS = {
+let API_HEADERS = {
     'Content-Type': 'application/json',
     'X-CSRFToken': csrftoken,
     // 'Authorization': 'Token ' + localStorage.token,
@@ -35,8 +35,10 @@ export default {
         });
     },
     addAccount(userId, amountAccount) {
+		API_HEADERS['Authorization'] = 'Token ' + localStorage.token;
         return fetch('/api/account/', {
             method: 'post',
+			headers: API_HEADERS,
             body: JSON.stringify({
                 user: userId,
                 balance: amountAccount
@@ -44,9 +46,11 @@ export default {
         })
     },
     getAccount() {
+		API_HEADERS['Authorization'] = 'Token ' + localStorage.token;
         return fetch('/api/account/', {headers: API_HEADERS})
     },
     getUser() {
+		API_HEADERS['Authorization'] = 'Token ' + localStorage.token;
         return fetch('/api/users/i/', {headers: API_HEADERS})
     }
 }
