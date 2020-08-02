@@ -4,7 +4,6 @@ import AuthConstants from '../constants';
 import 'core-js';
 import BaseStore from './BaseStore';
 import BankAPI from '../api/BankApi';
-import jwt from 'jsonwebtoken';
 import history from '../utils/history';
 
 class AuthStore extends BaseStore {
@@ -12,6 +11,7 @@ class AuthStore extends BaseStore {
     constructor() {
         super();
         this.subscribe(() => this.registerToActions.bind(this));
+        this.getUser = this.getUser.bind(this);
 
         this._user = null;
         this._jwt = null;
@@ -24,19 +24,16 @@ class AuthStore extends BaseStore {
                 const data = await BankAPI.login(action.username, action.password);
                 const response = await data.json();
 
-                if (data.ok !== false) {
+                if (data.ok) {
                     console.log('Log in successfully');
                     
                     // Create token
-                    const token = jwt.sign(response, AuthConstants.LOGIN_SECRET_KEY, {
-                        expiresIn: 1440 // expires in 24 hours
-                    });
+                    const token = response.token;
                     
                     // Set token to localStorage to use for authenticated requests
                     localStorage.token = token;
 
                     // Set state
-                    this._user = action.username;
                     this._jwt = token;
 
                     history.push('/dashboard');
@@ -52,6 +49,8 @@ class AuthStore extends BaseStore {
                 this._user = null;
                 this._jwt = null;
 
+                history.push('/login');
+
                 this.emitChange();
                 break;
             case AuthConstants.SIGNUP_USER:
@@ -59,14 +58,18 @@ class AuthStore extends BaseStore {
 
                 const user = await BankAPI.signup(action.first_name, action.last_name, action.username, action.password, action.email);
 
-                if (user.ok !== false) {
+                if (user.ok) {
                     console.log('Signup successfully');
 
-                    history.push('/login');
+                    history.push('/');
 
                 }
 
                 this.emitChange();
+                break;
+            case AuthConstants.AUTHENTICATED_USER:
+                console.log('Store receives user action');
+                this.getUser();
                 break;
 
             default:
@@ -97,7 +100,7 @@ class AuthStore extends BaseStore {
         if (typeof localStorage.token != 'undefined') {
             try {
                 // eslint-disable-next-line
-                const decoded = jwt.verify(localStorage.token, AuthConstants.LOGIN_SECRET_KEY);
+                const decoded = localStorage.token;
                 return true;
             } catch (err) {
                 console.log(err);
@@ -105,6 +108,17 @@ class AuthStore extends BaseStore {
             }
         }
         return false;
+    }
+
+    async getUser() {
+        const currentUser = await BankAPI.getUser();
+        const responseUser = await currentUser.json();
+
+        if (currentUser.ok) {
+            this._user = responseUser;
+            // console.log(this._user);
+        }
+        this.emit('updated');
     }
 
     /* reduce(state, action) {

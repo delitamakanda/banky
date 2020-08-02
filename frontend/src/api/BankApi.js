@@ -6,7 +6,7 @@ import { csrftoken } from '../utils/cookie';
 let API_HEADERS = {
     'Content-Type': 'application/json',
     'X-CSRFToken': csrftoken,
-    // 'Authorization': 'Token ' + localStorage.token,
+    // 'Authorization': localStorage.token,
     mode: 'opaque'
 };
 

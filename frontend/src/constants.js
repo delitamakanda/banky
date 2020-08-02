@@ -5,7 +5,8 @@ export default {
 	DEPOSITED_INTO_ACCOUNT: 'deposited into account',
 	LOGIN_USER: 'login user',
 	SIGNUP_USER: 'signup user',
-	CURRENT_USER: 'authenticated user',
+	CURRENT_USER: 'current user',
+	AUTHENTICATED_USER: 'authenticated user',
 	LOGOUT_USER: 'logout user',
 	ACTION_TYPE: {
 		UPDATE_TRANSACTIONS: 'UPDATE_TRANSACTIONS',

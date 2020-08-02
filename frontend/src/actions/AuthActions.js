@@ -42,8 +42,14 @@ export default {
         AppDispatcher.dispatch({
             actionType: AuthConstants.LOGOUT_USER
         });
+    },
+    
+    getCurrentUser () {
+        console.log('User action dispatches to Store');
 
-        history.push('/login');
+        AppDispatcher.dispatch({
+            actionType: AuthConstants.AUTHENTICATED_USER
+        });
     }
 };
 
