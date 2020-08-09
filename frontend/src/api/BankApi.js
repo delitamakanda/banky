@@ -34,24 +34,15 @@ export default {
             })
         });
     },
-    addAccount(userId, amountAccount) {
-		API_HEADERS['Authorization'] = 'Token ' + localStorage.token;
-        return fetch('/api/account/', {
-            method: 'post',
-			headers: API_HEADERS,
-            body: JSON.stringify({
-                user: userId,
-                balance: amountAccount
-            })
-        })
-    },
     getAccount() {
 		API_HEADERS['Authorization'] = 'Token ' + localStorage.token;
         return fetch('/api/account/', {headers: API_HEADERS})
+        .then((response) => response.json())
     },
     getUser() {
 		API_HEADERS['Authorization'] = 'Token ' + localStorage.token;
         return fetch('/api/users/i/', {headers: API_HEADERS})
+        .then((response) => response.json())
     }
 }
 

@@ -2,13 +2,6 @@ import AppDispatcher from '../dispatchers/main';
 import BankConstants from '../constants';
 
 let BankActions = {
-    
-    createAccount() {
-        AppDispatcher.dispatch({
-            type: BankConstants.CREATED_ACCOUNT,
-            amount: 0
-        });
-    },
 
     /**
      * @param {number} amount to whithdraw

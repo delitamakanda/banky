@@ -1,6 +1,8 @@
 import AppDispatcher from '../dispatchers/main';
 import AuthConstants from '../constants';
 import history from '../utils/history';
+// import { throttle } from '../utils/misc';
+import BankApi from '../api/BankApi';
 
 export default {
 
@@ -47,8 +49,20 @@ export default {
     getCurrentUser () {
         console.log('User action dispatches to Store');
 
-        AppDispatcher.dispatch({
-            actionType: AuthConstants.AUTHENTICATED_USER
+        AppDispatcher.dispatchAsync(BankApi.getUser(), {
+            request: AuthConstants.AUTHENTICATED_USER,
+            success: AuthConstants.AUTHENTICATED_USER_SUCCESS,
+            failure: AuthConstants.AUTHENTICATED_USER_ERROR
+        });
+    },
+
+    fetchAccountUser () {
+        console.log('Account action dispatches to Store');
+
+        AppDispatcher.dispatchAsync(BankApi.getAccount(), {
+            request: AuthConstants.CREATED_ACCOUNT,
+            success: AuthConstants.CREATED_ACCOUNT_SUCCESS,
+            failure: AuthConstants.CREATED_ACCOUNT_ERROR
         });
     }
 };

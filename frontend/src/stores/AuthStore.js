@@ -11,7 +11,6 @@ class AuthStore extends BaseStore {
     constructor() {
         super();
         this.subscribe(() => this.registerToActions.bind(this));
-        this.getUser = this.getUser.bind(this);
 
         this._user = null;
         this._jwt = null;
@@ -19,17 +18,17 @@ class AuthStore extends BaseStore {
 
     async registerToActions(action) {
         console.log(action);
-        switch(action.actionType) {
+        switch (action.actionType) {
             case AuthConstants.LOGIN_USER:
                 const data = await BankAPI.login(action.username, action.password);
                 const response = await data.json();
 
                 if (data.ok) {
                     console.log('Log in successfully');
-                    
+
                     // Create token
                     const token = response.token;
-                    
+
                     // Set token to localStorage to use for authenticated requests
                     localStorage.token = token;
 
@@ -61,15 +60,11 @@ class AuthStore extends BaseStore {
                 if (user.ok) {
                     console.log('Signup successfully');
 
-                    history.push('/');
+                    history.push('/login');
 
                 }
 
                 this.emitChange();
-                break;
-            case AuthConstants.AUTHENTICATED_USER:
-                console.log('Store receives user action');
-                this.getUser();
                 break;
 
             default:
@@ -78,11 +73,11 @@ class AuthStore extends BaseStore {
     }
 
     // Get Method
-    get user() { 
+    get user() {
         return this._user;
     }
 
-    get jwt() { 
+    get jwt() {
         return this._jwt;
     }
 
@@ -110,17 +105,6 @@ class AuthStore extends BaseStore {
         return false;
     }
 
-    async getUser() {
-        const currentUser = await BankAPI.getUser();
-        const responseUser = await currentUser.json();
-
-        if (currentUser.ok) {
-            this._user = responseUser;
-            // console.log(this._user);
-        }
-        this.emit('updated');
-    }
-
     /* reduce(state, action) {
         switch (action.type) {
             case AuthConstants.CREATED_ACCOUNT:
@@ -142,7 +126,7 @@ class AuthStore extends BaseStore {
         }
     } */
 
-    
+
 }
 
 export default new AuthStore(AppDispatcher);

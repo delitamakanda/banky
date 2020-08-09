@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
-import d3 from 'd3';
+import * as d3 from 'd3';
 
 class Arc extends Component {
     constructor() {
         super();
 
-        this.arc = d3.svg.arc();
+        this.arc = d3.arc();
     }
 
     UNSAFE_componentWillMount() {
         this.updateD3(this.props);
     }1
 
-    componentWillReceiveProps(newProps) {
+    UNSAFE_componentWillReceiveProps(newProps) {
         this.updateD3(newProps);
     }
 

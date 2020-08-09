@@ -1,4 +1,5 @@
-import React from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types"
 import {
   Dropdown,
   DropdownToggle,
@@ -10,15 +11,14 @@ import {
 } from "shards-react";
 import Gravatar from 'react-gravatar';
 import AuthActions from '../../../../actions/AuthActions';
-import AuthStore from "../../../../stores/AuthStore";
+// import AuthStore from "../../../../stores/AuthStore";
 
-export default class UserActions extends React.Component {
+class UserActions extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      visible: false,
-      user: AuthStore.getUser()
+      visible: false
     };
 
     this.toggleUserActions = this.toggleUserActions.bind(this);
@@ -32,25 +32,12 @@ export default class UserActions extends React.Component {
 
   logout = event => {
     event.preventDefault();
-  
+
     AuthActions.logout();
   }
 
-  updateState = () => {
-    const { username, id, first_name, last_name, email } = AuthStore.user;
-    this.setState({ user: { username, id, first_name, last_name, email }});
-  }
-
-  UNSAFE_componentWillMount() {
-    AuthStore.on('updated', this.updateState);
-  }
-
-  componentWillUnmount() {
-    AuthStore.off('updated', this.updateState);
-  }
-
   render() {
-    const { user } = this.state;
+    const { user } = this.props;
 
     return (
       <NavItem tag={Dropdown} caret toggle={this.toggleUserActions}>
@@ -75,3 +62,9 @@ export default class UserActions extends React.Component {
     );
   }
 }
+
+UserActions.propTypes = {
+  user: PropTypes.object.isRequired,
+}
+
+export default UserActions;

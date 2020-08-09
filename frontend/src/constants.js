@@ -1,13 +1,23 @@
 export default {
 	LOGIN_SECRET_KEY: 'AJBPMXEKPQ321!@',
+
 	CREATED_ACCOUNT: 'created account',
+	CREATED_ACCOUNT_SUCCESS: 'created account success',
+	CREATED_ACCOUNT_ERROR: 'created account error',
+
 	WITHDREW_FROM_ACCOUNT: 'withdrew from account',
 	DEPOSITED_INTO_ACCOUNT: 'deposited into account',
+
 	LOGIN_USER: 'login user',
 	SIGNUP_USER: 'signup user',
 	CURRENT_USER: 'current user',
+	
 	AUTHENTICATED_USER: 'authenticated user',
+	AUTHENTICATED_USER_SUCCESS: 'authenticated user success',
+	AUTHENTICATED_USER_ERROR: 'authenticated user error',
+	
 	LOGOUT_USER: 'logout user',
+
 	ACTION_TYPE: {
 		UPDATE_TRANSACTIONS: 'UPDATE_TRANSACTIONS',
 		UPDATE_CATEGORIES: 'UPDATE_CATEGORIES',

@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { LabeledArc } from './Arc';
+import * as d3 from 'd3';
 
 class Piechart extends Component {
     constructor() {
 		super();
 
-        this.pie = d3.layout.pie().value((d) => d.value);
-        this.colors = d3.scale.category10();
+        this.pie = d3.pie().value((d) => d.value);
+        this.colors = d3.scaleLinear().range(['green', 'orange']);
     }
 
     arcGenerator(d, i) {
