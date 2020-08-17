@@ -17,7 +17,6 @@ class AuthStore extends BaseStore {
     }
 
     async registerToActions(action) {
-        console.log(action);
         switch (action.actionType) {
             case AuthConstants.LOGIN_USER:
                 const data = await BankAPI.login(action.username, action.password);

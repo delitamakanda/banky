@@ -4,17 +4,17 @@ import 'core-js';
 import { ReduceStore } from 'flux/utils';
 import 'babel-polyfill';
 
-class AccountStore extends ReduceStore {
+class UserStore extends ReduceStore {
 
     getInitialState() {
-        return [];
+        return {};
     }
 
     reduce(state, action) {
         switch (action.type) {
-
-            case AccountConstants.CREATED_ACCOUNT_SUCCESS:
+            case AccountConstants.AUTHENTICATED_USER_SUCCESS:
                 return action.payload.response;
+
         
             default:
                 return state;
@@ -22,4 +22,4 @@ class AccountStore extends ReduceStore {
     }
 }
 
-export default new AccountStore(AppDispatcher);
+export default new UserStore(AppDispatcher);
