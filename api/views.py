@@ -12,7 +12,6 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.authtoken.models import Token
 
-# Create your views here.
 class ActionViewSet(viewsets.ModelViewSet):
     queryset = Action.objects.all()
     serializer_class = ActionSerializer
@@ -47,3 +46,9 @@ class UserViewSet(viewsets.ModelViewSet):
             return response.Response(UserSerializer(request.user, context={'request': request}).data)
 
         return super(UserViewSet, self).retrieve(request, pk)
+
+    def update(self, request, pk=None):
+        if pk == 'i':
+            return response.Response(UserSerializer(request.user, context={'request': request}).data)
+
+        return super(UserViewSet, self).update(request, pk)

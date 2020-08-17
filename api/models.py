@@ -7,7 +7,7 @@ from django.dispatch import receiver
 
 from django.utils import timezone
 
-# Create your models here.
+
 class Account(models.Model):
     class Meta:
         verbose_name = 'Account'
