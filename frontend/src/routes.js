@@ -5,6 +5,7 @@ import { DefaultLayout, CustomLayout } from "./layouts";
 
 import Errors from "./views/Errors";
 import Dashboard from "./views/Dashboard";
+import Profile from "./views/Profile";
 import Signin from "./views/Signin";
 import Signup from "./views/Signup";
 
@@ -20,6 +21,18 @@ export default [
         exact: true,
         layout: DefaultLayout,
         component: Dashboard
+    },
+    {
+        path: "/profile/:username",
+        exact: true,
+        layout: DefaultLayout,
+        component: Profile
+    },
+    {
+        path: "/profile/:username?editing=true",
+        exact: true,
+        layout: DefaultLayout,
+        component: Profile
     },
     {
         path: "/404",
