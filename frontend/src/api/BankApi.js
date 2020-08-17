@@ -45,6 +45,11 @@ export default {
 		API_HEADERS['Authorization'] = 'Token ' + localStorage.token;
         return fetch('/api/users/i/', {headers: API_HEADERS})
         .then((response) => response.json())
+    },
+    updateUser() {
+		API_HEADERS['Authorization'] = 'Token ' + localStorage.token;
+        return fetch('/api/users/i/', {headers: API_HEADERS})
+        .then((response) => response.json())
     }
 }
 

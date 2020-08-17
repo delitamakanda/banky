@@ -6,17 +6,19 @@ import {
     Container as FullContainer,
     Row,
     Col,
-    Card,
-    CardBody,
+    // Card,
+    // CardBody,
 } from "shards-react";
 import { Container } from 'flux/utils';
 
 import auth from '../utils/auth';
 import UserStore from "../stores/UserStore";
+import AccountStore from '../stores/AccountStore';
 import { convert } from '../utils/misc';
 import AuthActions from '../actions/AuthActions';
 
-// import history from '../utils/history';
+import UserDetails from '../components/user-profile/UserDetails';
+import UserForm from '../components/user-profile/UserForm';
 
 class ProfileContainer extends Component {
 
@@ -30,6 +32,7 @@ class ProfileContainer extends Component {
     render() {
         const {
             user,
+            account,
         } = this.state;
 
         //  console.log(user)
@@ -51,16 +54,12 @@ class ProfileContainer extends Component {
                 {/* First Row of Posts */}
                 <Row>
                     <Col>
-                        <Card className="card-post card-post--1">
-                            <CardBody>
-                                {
-                                    isEditing ? <div>edit profile</div>
-                                    :  <div>{user.username}</div>
-                                }
-
-
-                            </CardBody>
-                        </Card>
+                        <div>
+                            {
+                                isEditing ? <UserForm userProfile={user} />
+                                    : <UserDetails userDetails={user} accountDetails={account} />
+                            }
+                        </div>
                     </Col>
                 </Row>
             </FullContainer>
@@ -69,8 +68,9 @@ class ProfileContainer extends Component {
 }
 
 ProfileContainer.getStores = () => ([UserStore]);
-ProfileContainer.calculateState = () => ({
-    user: UserStore.getState()
+ProfileContainer.calculateState = (prevState) => ({
+    user: UserStore.getState(),
+    account: AccountStore.getState()
 });
 
 export default Container.create(convert(ProfileContainer));

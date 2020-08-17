@@ -56,6 +56,16 @@ export default {
         });
     },
 
+    updateCurrentUser () {
+        console.log('Update User action dispatches to Store');
+
+        AppDispatcher.dispatchAsync(BankApi.updateUser(), {
+            request: AuthConstants.UPDATE_AUTHENTICATED_USER,
+            success: AuthConstants.UPDATE_AUTHENTICATED_USER_SUCCESS,
+            failure: AuthConstants.UPDATE_AUTHENTICATED_USER_ERROR
+        });
+    },
+
     fetchAccountUser () {
         console.log('Account action dispatches to Store');
 
