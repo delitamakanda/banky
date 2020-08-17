@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import { Nav } from "shards-react";
 import { Container } from 'flux/utils';
 import { convert } from '../../../../utils/misc';
-import AccountStore from "../../../../stores/AccountStore";
 import AuthActions from '../../../../actions/AuthActions';
 
 import Notifications from "./Notifications";
 import UserActions from "./UserActions";
+import UserStore from "../../../../stores/UserStore";
 
 class NavbarNav extends Component {
 
@@ -22,9 +22,9 @@ class NavbarNav extends Component {
   }
 }
 
-NavbarNav.getStores = () => ([AccountStore]);
+NavbarNav.getStores = () => ([UserStore]);
 NavbarNav.calculateState = () => ({
-  user: AccountStore.getState()
+  user: UserStore.getState(),
 });
 
 export default Container.create(convert(NavbarNav));

@@ -11,6 +11,7 @@ import {
 } from "shards-react";
 import Gravatar from 'react-gravatar';
 import AuthActions from '../../../../actions/AuthActions';
+import { Link } from "react-router-dom";
 // import AuthStore from "../../../../stores/AuthStore";
 
 class UserActions extends Component {
@@ -47,10 +48,10 @@ class UserActions extends Component {
           <span className="d-none d-md-inline-block">{user.username}</span>
         </DropdownToggle>
         <Collapse tag={DropdownMenu} right small open={this.state.visible}>
-          <DropdownItem to="user-profile">
+          <DropdownItem tag={Link} to={`/profile/${user.username}`}>
             <i className="material-icons">&#xE7FD;</i> Profile
           </DropdownItem>
-          <DropdownItem to="edit-user-profile">
+          <DropdownItem tag={Link} to={`/profile/${user.username}?editing=true`}>
             <i className="material-icons">&#xE8B8;</i> Edit Profile
           </DropdownItem>
           <DropdownItem divider />

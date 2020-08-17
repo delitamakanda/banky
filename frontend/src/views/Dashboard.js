@@ -16,6 +16,7 @@ import { Container } from 'flux/utils';
 
 import auth from '../utils/auth';
 import AccountStore from "../stores/AccountStore";
+import UserStore from "../stores/UserStore";
 import { convert } from '../utils/misc';
 import AuthActions from '../actions/AuthActions';
 import BankBalanceStore from '../stores/BankBalanceStore';
@@ -48,8 +49,10 @@ class DashboardContainer extends Component {
   // }
 
   componentDidMount() {
-    AuthActions.getCurrentUser()
-    AuthActions.fetchAccountUser()
+    if (auth.loggedIn()) {
+      AuthActions.getCurrentUser()
+      AuthActions.fetchAccountUser()
+    }
   }
 
   deposit() {
@@ -65,10 +68,13 @@ class DashboardContainer extends Component {
   render() {
     const {
       // PostsListOne,
+      account,
       user,
       balance,
       rewardsTier
     } = this.state;
+
+    console.log(account)
 
     if (!auth.loggedIn()) {
       return <Redirect to="/login" />
@@ -139,9 +145,10 @@ class DashboardContainer extends Component {
   }
 }
 
-DashboardContainer.getStores = () => ([AccountStore, BankBalanceStore, BankRewardStore]);
+DashboardContainer.getStores = () => ([UserStore, AccountStore, BankBalanceStore, BankRewardStore]);
 DashboardContainer.calculateState = () => ({
-  user: AccountStore.getState(),
+  user: UserStore.getState(),
+  account: AccountStore.getState(),
   balance: BankBalanceStore.getState(),
   rewardsTier: BankRewardStore.getState()
 });
