@@ -12,6 +12,7 @@ let API_HEADERS = {
 
 export default {
     login(username, password) {
+        API_HEADERS['Authorization'] = '';
         return fetch('/api/obtain-auth-token/', {
             method: 'post',
             headers: API_HEADERS,
@@ -22,6 +23,7 @@ export default {
         });
     },
     signup(first_name, last_name, username, pwd, email) {
+        API_HEADERS['Authorization'] = '';
         return fetch('/api/users/', {
             method: 'post',
             headers: API_HEADERS,
