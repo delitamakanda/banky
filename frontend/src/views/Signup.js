@@ -18,7 +18,8 @@ class Signup extends React.Component {
       first_name: '',
       last_name: '',
       username: '',
-      pass: '',
+      pwd: '',
+      pwd2: '',
       email: '',
     }
   }
@@ -30,9 +31,10 @@ class Signup extends React.Component {
     const last_name = this.state.last_name;
     const username = this.state.username;
     const pass = this.state.pwd;
+    const passConfirmation = this.state.pwd2;
     const email = this.state.email;
 
-    AuthActions.signup(first_name, last_name, username, pass, email);
+    AuthActions.signup(first_name, last_name, username, pass, passConfirmation, email);
   }
 
   handleChange = event => {
@@ -65,6 +67,10 @@ class Signup extends React.Component {
               <FormGroup>
                 <label htmlFor="#password">Mot de passe</label>
                 <FormInput type="password" id="password" placeholder="Mot de passe" name="pwd" value={this.state.pwd} onChange={this.handleChange} />
+              </FormGroup>
+              <FormGroup>
+                <label htmlFor="#password2">Confirmation de mot de passe</label>
+                <FormInput type="password" id="password2" placeholder="Confirmation de mot de passe" name="pwd2" value={this.state.pwd2} onChange={this.handleChange} />
               </FormGroup>
               <FormGroup>
                 <label htmlFor="#first_name">Prénom</label>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 import {
     Card,
@@ -15,83 +15,102 @@ import {
     Button
 } from "shards-react";
 
-const UserForm = ({ title, userProfile }) => (
-    <Card small className="mb-4">
-        <CardHeader className="border-bottom">
-            <h6 className="m-0">{title}</h6>
-        </CardHeader>
-        <ListGroup flush>
-            <ListGroupItem className="p-3">
-                <Row>
-                    <Col>
-                        <Form>
-                            <Row form>
-                                {/* First Name */}
-                                <Col md="6" className="form-group">
-                                    <label htmlFor="feFirstName">First Name</label>
-                                    <FormInput
-                                        id="feFirstName"
-                                        placeholder="First Name"
-                                        value={userProfile.first_name || ''}
-                                        onChange={() => { }}
-                                    />
-                                </Col>
-                                {/* Last Name */}
-                                <Col md="6" className="form-group">
-                                    <label htmlFor="feLastName">Last Name</label>
-                                    <FormInput
-                                        id="feLastName"
-                                        placeholder="Last Name"
-                                        value={userProfile.last_name || ''}
-                                        onChange={() => {  }}
-                                    />
-                                </Col>
-                            </Row>
-                            <Row form>
-                                {/* Email */}
-                                <Col md="6" className="form-group">
-                                    <label htmlFor="feEmail">Email</label>
-                                    <FormInput
-                                        type="email"
-                                        id="feEmail"
-                                        placeholder="Email Address"
-                                        value={userProfile.email || ''}
-                                        onChange={() => {  }}
-                                        autoComplete="email"
-                                    />
-                                </Col>
-                                {/* Password */}
-                                <Col md="6" className="form-group">
-                                    <label htmlFor="fePassword">Password</label>
-                                    <FormInput
-                                        type="password"
-                                        id="fePassword"
-                                        placeholder="Password"
-                                        value={userProfile.password || ''}
-                                        onChange={() => { }}
-                                        autoComplete="current-password"
-                                    />
-                                </Col>
-                            </Row>
-                            <Button theme="accent">Update Account</Button>
-                        </Form>
-                    </Col>
-                </Row>
-            </ListGroupItem>
-        </ListGroup>
-    </Card>
-);
+class UserForm extends Component {
+
+    handleChange(field, e) {
+        this.props.handleChange(field, e.target.value);
+    }
+
+    render() {
+        const { title, userProfile, handleSubmit } = this.props;
+
+        return (
+            <Card small className="mb-4">
+                <CardHeader className="border-bottom">
+                    <h6 className="m-0">{title}</h6>
+                </CardHeader>
+                <ListGroup flush>
+                    <ListGroupItem className="p-3">
+                        <Row>
+                            <Col>
+                                <Form onSubmit={handleSubmit.bind(this)}>
+                                    <Row form>
+                                        {/* First Name */}
+                                        <Col md="6" className="form-group">
+                                            <label htmlFor="feFirstName">First Name</label>
+                                            <FormInput
+                                                id="feFirstName"
+                                                placeholder="First Name"
+                                                value={userProfile.first_name || ''}
+                                                onChange={this.handleChange.bind(this, 'first_name')}
+                                            />
+                                        </Col>
+                                        {/* Last Name */}
+                                        <Col md="6" className="form-group">
+                                            <label htmlFor="feLastName">Last Name</label>
+                                            <FormInput
+                                                id="feLastName"
+                                                placeholder="Last Name"
+                                                value={userProfile.last_name || ''}
+                                                onChange={this.handleChange.bind(this, 'last_name')}
+                                            />
+                                        </Col>
+                                    </Row>
+                                    <Row form>
+                                        {/* Email */}
+                                        <Col md="6" className="form-group">
+                                            <label htmlFor="feEmail">Email</label>
+                                            <FormInput
+                                                type="email"
+                                                id="feEmail"
+                                                placeholder="Email Address"
+                                                value={userProfile.email || ''}
+                                                onChange={this.handleChange.bind(this, 'email')}
+                                                autoComplete="email"
+                                            />
+                                        </Col>
+                                        {/* Password */}
+                                        <Col md="6" className="form-group">
+                                            <label htmlFor="fePassword">Password</label>
+                                            <FormInput
+                                                type="password"
+                                                id="fePassword"
+                                                placeholder="Password"
+                                                disabled
+                                                value={userProfile.password || ''}
+                                                onChange={this.handleChange.bind(this, 'password')}
+                                                autoComplete="current-password"
+                                            />
+                                        </Col>
+                                    </Row>
+                                    <Button theme="accent" type="submit">Update Account</Button>
+                                </Form>
+                            </Col>
+                        </Row>
+                    </ListGroupItem>
+                </ListGroup>
+            </Card>
+        );
+    }
+}
 
 UserForm.propTypes = {
     /**
      * The component's title.
      */
     title: PropTypes.string,
-    userProfile: PropTypes.object
+    userProfile: PropTypes.shape({
+        first_name: PropTypes.string,
+        last_name: PropTypes.string,
+        password: PropTypes.string,
+        email: PropTypes.string
+    }),
+    handleChange: PropTypes.func,
+    handleSubmit: PropTypes.func
 };
 
 UserForm.defaultProps = {
-    title: "Edit Profile"
+    title: "Edit Profile",
 };
 
 export default UserForm;

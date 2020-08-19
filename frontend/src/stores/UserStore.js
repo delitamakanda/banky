@@ -17,22 +17,23 @@ class UserStore extends ReduceStore {
                 return action.payload.response;
 
             case AccountConstants.UPDATE_AUTHENTICATED_USER:
-                const user = this.getState();
                 return update(this.getState(), {
-                    [user]: {
-                        $set: action.payload.user
-                    }
+                    $set: action.payload.user
                 });
 
             case AccountConstants.UPDATE_AUTHENTICATED_USER_ERROR:
-                const userIndex = this.getState();
                 return update(this.getState(), {
-                    [userIndex]: {
-                        $set: action.payload.user
+                    $set: action.payload.user
+                });
+
+            case AccountConstants.UPDATE_DRAFT:
+                return update(this.getState(), {
+                    [action.payload.field]: {
+                        $set: action.payload.value
                     }
                 });
 
-        
+
             default:
                 return state;
         }

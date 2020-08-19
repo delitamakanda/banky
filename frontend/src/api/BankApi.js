@@ -22,7 +22,7 @@ export default {
             })
         });
     },
-    signup(first_name, last_name, username, pwd, email) {
+    signup(first_name, last_name, username, pwd, pwd2, email) {
         API_HEADERS['Authorization'] = '';
         return fetch('/api/users/', {
             method: 'post',
@@ -32,6 +32,7 @@ export default {
                 last_name: last_name,
                 username: username,
                 password: pwd,
+                password2: pwd2,
                 email: email
             })
         });
@@ -46,10 +47,13 @@ export default {
         return fetch('/api/users/i/', {headers: API_HEADERS})
         .then((response) => response.json())
     },
-    updateUser() {
+    updateUser(user) {
 		API_HEADERS['Authorization'] = 'Token ' + localStorage.token;
-        return fetch('/api/users/i/', {headers: API_HEADERS})
-        .then((response) => response.json())
+        return fetch(`/api/user/${user.id}/`, {
+            method: 'put',
+            headers: API_HEADERS,
+            body: JSON.stringify(user)
+        })
     }
 }
 

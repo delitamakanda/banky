@@ -28,6 +28,15 @@ class ProfileContainer extends Component {
         }
     }
 
+    handleChange(field, value) {
+        AuthActions.updateDraft(field, value);
+    }
+
+    handleSubmit(event) {
+        event.preventDefault()
+        AuthActions.updateCurrentUser(this.state.user);
+    }
+
 
     render() {
         const {
@@ -56,7 +65,7 @@ class ProfileContainer extends Component {
                     <Col>
                         <div>
                             {
-                                isEditing ? <UserForm userProfile={user} />
+                                isEditing ? <UserForm userProfile={user} handleSubmit={this.handleSubmit.bind(this)} handleChange={this.handleChange.bind(this)} />
                                     : <UserDetails userDetails={user} accountDetails={account} />
                             }
                         </div>

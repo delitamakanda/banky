@@ -16,13 +16,14 @@ export default {
         });
     },
 
-	signup: (first_name, last_name, username, pwd, email) => {
+	signup: (first_name, last_name, username, pwd, pwd2, email) => {
 		AppDispatcher.dispatch({
             actionType: AuthConstants.SIGNUP_USER,
             first_name: first_name,
             last_name: last_name,
             username: username,
             password: pwd,
+            password2: pwd2,
             email: email
         });
 	},
@@ -56,13 +57,20 @@ export default {
         });
     },
 
-    updateCurrentUser () {
+    updateCurrentUser (user) {
         console.log('Update User action dispatches to Store');
 
-        AppDispatcher.dispatchAsync(BankApi.updateUser(), {
+        AppDispatcher.dispatchAsync(BankApi.updateUser(user), {
             request: AuthConstants.UPDATE_AUTHENTICATED_USER,
             success: AuthConstants.UPDATE_AUTHENTICATED_USER_SUCCESS,
             failure: AuthConstants.UPDATE_AUTHENTICATED_USER_ERROR
+        }, { user });
+    },
+
+    updateDraft(field, value) {
+        AppDispatcher.dispatch({
+            type: AuthConstants.UPDATE_DRAFT,
+            payload: {field, value}
         });
     },
 

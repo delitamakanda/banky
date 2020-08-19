@@ -54,7 +54,7 @@ class AuthStore extends BaseStore {
             case AuthConstants.SIGNUP_USER:
                 console.log('Store receives signup action');
 
-                const user = await BankAPI.signup(action.first_name, action.last_name, action.username, action.password, action.email);
+                const user = await BankAPI.signup(action.first_name, action.last_name, action.username, action.password, action.password2, action.email);
 
                 if (user.ok) {
                     console.log('Signup successfully');

@@ -19,6 +19,8 @@ export default {
 	UPDATE_AUTHENTICATED_USER: 'update authenticated user',
 	UPDATE_AUTHENTICATED_USER_SUCCESS: 'update authenticated user success',
 	UPDATE_AUTHENTICATED_USER_ERROR: 'update authenticated user error',
+
+	UPDATE_DRAFT: 'update draft',
 	
 	LOGOUT_USER: 'logout user',
 
