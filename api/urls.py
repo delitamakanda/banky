@@ -13,4 +13,5 @@ urlpatterns = router.urls
 
 urlpatterns += [
     url(r'^obtain-auth-token/$', auth_views.obtain_auth_token),
+    url(r'^user/(?P<pk>\d+)/$', views.UserUpdateView.as_view())
 ]

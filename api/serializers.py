@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
 from django.utils.timezone import now
+from django.utils.translation import ugettext as _
 from django.contrib.auth.models import User
 from api.models import Account, Action
 
@@ -51,17 +52,9 @@ class ActionSerializer(serializers.ModelSerializer):
 
 class UserSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(required=True, validators=[UniqueValidator(queryset=User.objects.all())])
-    # username = serializers.CharField(validators=[UniqueValidator(queryset=User.objects.all())])
-    # password = serializers.CharField(min_length=8)
+    username = serializers.CharField(validators=[UniqueValidator(queryset=User.objects.all())])
+    password2 = serializers.CharField(style={'input_type': 'password'}, write_only=True)
 
-    def create(self, validated_data):
-        user = User.objects.create_user(
-            **validated_data
-            #validated_data['username'],
-            #validated_data['email'],
-            #validated_data['password']
-        )
-        return user
 
     class Meta:
         model = User
@@ -73,4 +66,21 @@ class UserSerializer(serializers.ModelSerializer):
             'email',
             'password',
             'date_joined',
+            'password2',
         )
+
+    def create(self, validated_data):
+        user = User.objects.create_user(
+            **validated_data
+            #validated_data['username'],
+            #validated_data['email'],
+            #validated_data['password']
+        )
+        return user
+
+    def validate(self, data):
+        pw = data.get('password')
+        pw2 = data.pop('password2')
+        if pw != pw2:
+            raise serializers.ValidationError(_('Passwords does not match'))
+        return data

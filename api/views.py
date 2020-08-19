@@ -6,7 +6,7 @@ from api.serializers import ActionSerializer
 from api.serializers import AccountSerializer
 from api.serializers import UserSerializer
 
-from rest_framework import viewsets, status, response, permissions
+from rest_framework import viewsets, status, response, permissions, generics
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -47,8 +47,9 @@ class UserViewSet(viewsets.ModelViewSet):
 
         return super(UserViewSet, self).retrieve(request, pk)
 
-    def update(self, request, pk=None):
-        if pk == 'i':
-            return response.Response(UserSerializer(request.user, context={'request': request}).data)
 
-        return super(UserViewSet, self).update(request, pk)
+class UserUpdateView(generics.UpdateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+
