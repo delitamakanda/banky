@@ -24,6 +24,7 @@ import BankRewardStore from '../stores/BankRewardStore';
 import BankActions from '../actions/BankActions';
 
 import Piechart from '../components/Piechart';
+// import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
 
 class DashboardContainer extends Component {
   // constructor() {
@@ -89,20 +90,22 @@ class DashboardContainer extends Component {
         {/* First Row of Posts */}
         <Row>
           <Col>
-            <Card className="card-post card-post--1">
-              <CardBody>
+            {/*<OverlayScrollbarsComponent options={{ scrollbars: { autoHide: 'scroll' } }}>
+            </OverlayScrollbarsComponent>*/}
+              <Card className="card-post card-post--1">
+                <CardBody>
 
-                {user.username}
-                <div>Your balance is ${(balance).toFixed(2)}</div>
-                <div>Your points rewards tier is {rewardsTier}</div>
-                <Piechart x={150} y={100} outerRadius={100} innerRadius={50} data={[{ value: 92 - 34, label: 'Deposit' }, { value: 34, label: 'Withdraw' }]} />
-                <div>
-                  <input type="number" placeholder="Enter amount" ref="amount" />
-                  <button onClick={this.deposit.bind(this)}>Deposit</button>
-                  <button onClick={this.withdraw.bind(this)}>Withdraw</button>
-                </div>
-              </CardBody>
-            </Card>
+                  {user.username}
+                  <div>Your balance is ${(balance).toFixed(2)}</div>
+                  <div>Your points rewards tier is {rewardsTier}</div>
+                  <Piechart x={150} y={100} outerRadius={100} innerRadius={50} data={[{ value: 92 - 34, label: 'Deposit' }, { value: 34, label: 'Withdraw' }]} />
+                  <div>
+                    <input type="number" placeholder="Enter amount" ref="amount" />
+                    <button onClick={this.deposit.bind(this)}>Deposit</button>
+                    <button onClick={this.withdraw.bind(this)}>Withdraw</button>
+                  </div>
+                </CardBody>
+              </Card>
           </Col>
           {/* PostsListOne.map((post, idx) => (
             <Col lg="3" md="6" sm="12" className="mb-4" key={idx}>
