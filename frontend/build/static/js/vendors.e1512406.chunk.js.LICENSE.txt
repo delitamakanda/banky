@@ -25,6 +25,12 @@ object-assign
 
 /*! nouislider - 12.1.0 - 10/25/2018 */
 
+/**
+ * @license frenchkiss 0.2.1
+ * Copyright (c) 2018-2019 Koala Interactive, Inc.
+ * License: MIT
+ */
+
 /** @license React v0.19.1
  * scheduler.production.min.js
  *
