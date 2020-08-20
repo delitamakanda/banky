@@ -2,12 +2,13 @@
 
 import React from "react";
 import { Link, Redirect } from 'react-router-dom';
-import { Container, Row, Col, Form, FormInput, FormGroup, Button } from "shards-react";
+import { Container, Row, Col, Form, FormInput, ListGroup, ListGroupItem, Button, Card, CardHeader } from "shards-react";
 import AuthActions from '../actions/AuthActions';
 
 import { Logo, Icon } from '../components/ui';
 
 import auth from '../utils/auth';
+import frenchkiss from '../utils/translations';
 
 class Signup extends React.Component {
 
@@ -50,42 +51,55 @@ class Signup extends React.Component {
 
     return (
       <Container fluid className="main-content-container px-4">
-        <Row>
-          <Col>
-            <Logo title="Bank" />
-            <Icon kind="star" />
-            <p>Créez un compte. C'est simple et gratuit.</p>
-            <Form onSubmit={this.signup}>
-              <FormGroup>
-                <label htmlFor="#username">Identifiant</label>
-                <FormInput id="username" placeholder="Identifiant" name="username" value={this.state.username} onChange={this.handleChange} />
-              </FormGroup>
-              <FormGroup>
-                <label htmlFor="#email">E-mail</label>
-                <FormInput id="email" placeholder="E-mail" name="email" value={this.state.email} onChange={this.handleChange} />
-              </FormGroup>
-              <FormGroup>
-                <label htmlFor="#password">Mot de passe</label>
-                <FormInput type="password" id="password" placeholder="Mot de passe" name="pwd" value={this.state.pwd} onChange={this.handleChange} />
-              </FormGroup>
-              <FormGroup>
-                <label htmlFor="#password2">Confirmation de mot de passe</label>
-                <FormInput type="password" id="password2" placeholder="Confirmation de mot de passe" name="pwd2" value={this.state.pwd2} onChange={this.handleChange} />
-              </FormGroup>
-              <FormGroup>
-                <label htmlFor="#first_name">Prénom</label>
-                <FormInput id="first_name" placeholder="Prénom" name="first_name" value={this.state.first_name} onChange={this.handleChange} />
-              </FormGroup>
-              <FormGroup>
-                <label htmlFor="#last_name">Nom</label>
-                <FormInput id="last_name" placeholder="Nom" name="last_name" value={this.state.last_name} onChange={this.handleChange} />
-              </FormGroup>
-              <Button pill type="submit">Se connecter</Button>
-            </Form>
-            <p>En adhérant, vous acceptez les <Link to="/"> Conditions </Link> et la <Link to="/"> Politique de confidentialité </Link>.</p>
-            <Link to="login">Vous avez déjà un compte ?</Link>
-          </Col>
-        </Row>
+        <Logo title="Bank" />
+        <Card small className="mb-4">
+          <CardHeader className="border-bottom">
+            <h6>{frenchkiss.t('signup.text')}. <Icon kind="star" /></h6>
+          </CardHeader>
+          <ListGroup flush>
+            <ListGroupItem className="p3">
+              <Row>
+                <Col>
+                  <Form onSubmit={this.signup}>
+                    <Row form>
+                      <Col md="6" className="form-group">
+                        <label htmlFor="#first_name">{frenchkiss.t('signup.form.firstName')}</label>
+                        <FormInput id="first_name" placeholder={frenchkiss.t('signup.form.firstName')} name="first_name" value={this.state.first_name} onChange={this.handleChange} />
+                      </Col>
+                      <Col md="6" className="form-group">
+                        <label htmlFor="#last_name">{frenchkiss.t('signup.form.lastName')}</label>
+                        <FormInput id="last_name" placeholder={frenchkiss.t('signup.form.lastName')} name="last_name" value={this.state.last_name} onChange={this.handleChange} />
+                      </Col>
+                    </Row>
+                    <Row form>
+                      <Col md="6" className="form-group">
+                        <label htmlFor="#username">{frenchkiss.t('signup.form.username')}</label>
+                        <FormInput id="username" placeholder={frenchkiss.t('signup.form.username')} name="username" value={this.state.username} onChange={this.handleChange} />
+                      </Col>
+                      <Col md="6" className="form-group">
+                        <label htmlFor="#email">{frenchkiss.t('signup.form.email')}</label>
+                        <FormInput id="email" placeholder={frenchkiss.t('signup.form.email')} name="email" value={this.state.email} onChange={this.handleChange} />
+                      </Col>
+                    </Row>
+                    <Row form>
+                      <Col md="6" className="form-group">
+                        <label htmlFor="#password">{frenchkiss.t('signup.form.motDePasse')}</label>
+                        <FormInput type="password" id="password" placeholder={frenchkiss.t('signup.form.motDePasse')} name="pwd" value={this.state.pwd} onChange={this.handleChange} />
+                      </Col>
+                      <Col md="6" className="form-group">
+                        <label htmlFor="#password2">{frenchkiss.t('signup.form.motDePasseConfirmation')}</label>
+                        <FormInput type="password" id="password2" placeholder={frenchkiss.t('signup.form.motDePasseConfirmation')} name="pwd2" value={this.state.pwd2} onChange={this.handleChange} />
+                      </Col>
+                    </Row>
+                    <Button pill type="submit">{frenchkiss.t('signup.form.btnRejoindre')}</Button>
+                  </Form>
+                </Col>
+              </Row>
+              <p>{frenchkiss.t('signup.cgvText1')} <Link to="/"> {frenchkiss.t('signup.cgvText2')} </Link> {frenchkiss.t('signup.cgvText3')} <Link to="/"> {frenchkiss.t('signup.cgvText4')} </Link>.</p>
+              <Link to="login">{frenchkiss.t('signup.navigateToSignin')}</Link>
+            </ListGroupItem>
+          </ListGroup>
+        </Card>
       </Container>
     );
   }

@@ -4,9 +4,9 @@ import classNames from 'classnames';
 
 class Logo extends Component {
 
-    getTitleStyle(){
-    	return(
-    		classNames({
+    getTitleStyle() {
+        return (
+            classNames({
                 title: true
             })
         );
@@ -15,15 +15,19 @@ class Logo extends Component {
     render() {
 
         return (
-            <div className={this.getTitleStyle()}>
-                    <h1> {this.props.title} </h1>
+            <div className={this.getTitleStyle()} style={{ margin: "25px auto" }}>
+                <img
+                    src={require("../../images/shards-dashboards-logo.svg")}
+                    alt=""
+                />
+                <h6> {this.props.title} </h6>
             </div>
         );
     }
 }
 
 Logo.defaultProps = {
-    title:'',
+    title: '',
 };
 
 export default Logo;
