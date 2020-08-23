@@ -44,7 +44,7 @@ class Signin extends React.Component {
 
     return (
       <Container fluid className="main-content-container px-4">
-        <Logo title="Bank" />
+        <Logo title="Budget" />
         <Card small className="mb-4">
           <CardHeader className="border-bottom">
             <h6>{frenchkiss.t('signin.text')}</h6>
