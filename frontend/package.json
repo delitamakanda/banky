@@ -49,6 +49,7 @@
     "history": "^4.10.1",
     "install": "^0.13.0",
     "lodash.find": "^4.6.0",
+    "marked": "^1.1.1",
     "overlayscrollbars-react": "^0.2.2",
     "radium": "^0.26.0",
     "react-addons-update": "^15.6.2",
