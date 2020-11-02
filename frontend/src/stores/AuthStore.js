@@ -14,6 +14,7 @@ class AuthStore extends BaseStore {
 
         this._user = null;
         this._jwt = null;
+        this._error = false;
     }
 
     async registerToActions(action) {
@@ -34,7 +35,11 @@ class AuthStore extends BaseStore {
                     // Set state
                     this._jwt = token;
 
+                    this._error = false;
+
                     history.push('/dashboard');
+                } else {
+                    this._error = response;
                 }
 
                 this.emitChange();
@@ -80,6 +85,10 @@ class AuthStore extends BaseStore {
         return this._jwt;
     }
 
+    get error() {
+        return this._error;
+    }
+
     // Set Method
     set user(user) {
         this._user = user;
@@ -87,6 +96,10 @@ class AuthStore extends BaseStore {
 
     set jwt(jwt) {
         this._jwt = jwt;
+    }
+
+    set error(error) {
+        this._error = error;
     }
 
     // Check user logged in

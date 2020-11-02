@@ -9,7 +9,13 @@ export default {
 	DEPOSITED_INTO_ACCOUNT: 'deposited into account',
 
 	LOGIN_USER: 'login user',
+	LOGIN_USER_SUCCESS: 'login user success',
+	LOGIN_USER_ERROR: 'login user error',
+
 	SIGNUP_USER: 'signup user',
+	SIGNUP_USER_SUCCESS: 'signup user success',
+	SIGNUP_USER_ERROR: 'signup user error',
+
 	CURRENT_USER: 'current user',
 	
 	AUTHENTICATED_USER: 'authenticated user',

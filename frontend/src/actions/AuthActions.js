@@ -16,6 +16,15 @@ export default {
         });
     },
 
+    dispatchLoginError: (error) => {
+        console.log('Login error action dispatches to Store');
+
+        AppDispatcher.dispatch({
+            actionType: AuthConstants.LOGIN_USER_ERROR,
+            error: error
+        });
+    },
+
 	signup: (first_name, last_name, username, pwd, pwd2, email) => {
 		AppDispatcher.dispatch({
             actionType: AuthConstants.SIGNUP_USER,
