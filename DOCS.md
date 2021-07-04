@@ -11,3 +11,11 @@
 3. https://www.untangled.dev/2020/08/02/django-websockets-minimal-setup/
 
 - http://www.sheshbabu.com/posts/rust-wasm-yew-single-page-application/
+
+- https://testdriven.io/blog/flask-stripe-subscriptions/
+
+- https://merakiui.com/
+
+- https://www.mattlayman.com/understand-django/user-authentication/
+
+- https://hakibenita.com/how-to-add-custom-action-buttons-to-django-admin

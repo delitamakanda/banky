@@ -1,5 +1,7 @@
+from django.db import transaction
 from django.shortcuts import render
 from django.contrib.auth.models import User
+from django.utils import timezone
 from api.models import Account
 from api.models import Action
 from api.serializers import ActionSerializer
@@ -11,6 +13,9 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.authtoken.models import Token
+from rest_framework.decorators import api_view
+from .errors import InvalidAmount, ExceedsLimit
+
 
 class ActionViewSet(viewsets.ModelViewSet):
     queryset = Action.objects.all()
@@ -53,3 +58,60 @@ class UserUpdateView(generics.UpdateAPIView):
     serializer_class = UserSerializer
     permission_classes = (permissions.IsAuthenticated,)
 
+
+@api_view(['POST'])
+def deposit(request):
+    try:
+        amount = int(request.data['amount'])
+    except (KeyError, ValueError):
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+
+    with transaction.atomic():
+        try:
+            account = (
+                Account.objects
+                .select_for_update()
+                .get(user=request.user)
+            )
+        except Account.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+        try:
+            account.deposit(
+                amount=amount,
+                deposited_by=request.user,
+                asof=timezone.now(),
+            )
+        except (ExceedsLimit, InvalidAmount):
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+
+        return Response(status=status.HTTP_200_OK)
+
+
+@api_view(['POST'])
+def withdraw(request):
+    try:
+        amount = int(request.data['amount'])
+    except (KeyError, ValueError):
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+
+    with transaction.atomic():
+        try:
+            account = (
+                Account.objects
+                .select_for_update()
+                .get(user=request.user)
+            )
+        except Account.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+        try:
+            account.withdraw(
+                amount=amount,
+                withdrawn_by=request.user,
+                asof=timezone.now(),
+            )
+        except (ExceedsLimit, InvalidAmount):
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+
+        return Response(status=status.HTTP_200_OK)
