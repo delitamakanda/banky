@@ -5,6 +5,10 @@ export default {
 	CREATED_ACCOUNT_SUCCESS: 'created account success',
 	CREATED_ACCOUNT_ERROR: 'created account error',
 
+	CREATED_ACTIONS_ACCOUNT: 'created actions account',
+	CREATED_ACTIONS_ACCOUNT_SUCCESS: 'created actions account success',
+	CREATED_ACTIONS_ACCOUNT_ERROR: 'created actions account error',
+
 	WITHDREW_FROM_ACCOUNT: 'withdrew from account',
 	DEPOSITED_INTO_ACCOUNT: 'deposited into account',
 

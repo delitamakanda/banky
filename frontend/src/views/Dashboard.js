@@ -16,12 +16,14 @@ import { Container } from 'flux/utils';
 
 import auth from '../utils/auth';
 import AccountStore from "../stores/AccountStore";
+import ActionsAccountStore from "../stores/ActionsAccountStore";
 import UserStore from "../stores/UserStore";
 import { convert } from '../utils/misc';
 import AuthActions from '../actions/AuthActions';
 import BankBalanceStore from '../stores/BankBalanceStore';
 import BankRewardStore from '../stores/BankRewardStore';
 import BankActions from '../actions/BankActions';
+import AccountActions  from '../actions/AccountActions';
 
 import Piechart from '../components/Piechart';
 // import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
@@ -53,6 +55,7 @@ class DashboardContainer extends Component {
     if (auth.loggedIn()) {
       AuthActions.getCurrentUser()
       AuthActions.fetchAccountUser()
+      AccountActions.fetchAccountActions()      
     }
   }
 
@@ -72,10 +75,12 @@ class DashboardContainer extends Component {
       account,
       user,
       balance,
-      rewardsTier
+      rewardsTier,
+      actions
     } = this.state;
 
     console.log(account)
+    console.log(actions)
 
     if (!auth.loggedIn()) {
       return <Redirect to="/login" />
@@ -148,12 +153,13 @@ class DashboardContainer extends Component {
   }
 }
 
-DashboardContainer.getStores = () => ([UserStore, AccountStore, BankBalanceStore, BankRewardStore]);
+DashboardContainer.getStores = () => ([UserStore, AccountStore, BankBalanceStore, BankRewardStore, ActionsAccountStore]);
 DashboardContainer.calculateState = () => ({
   user: UserStore.getState(),
   account: AccountStore.getState(),
   balance: BankBalanceStore.getState(),
-  rewardsTier: BankRewardStore.getState()
+  rewardsTier: BankRewardStore.getState(),
+  actions: ActionsAccountStore.getState()
 });
 
 export default Container.create(convert(DashboardContainer));

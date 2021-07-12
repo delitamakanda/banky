@@ -22,6 +22,13 @@ class ActionViewSet(viewsets.ModelViewSet):
     serializer_class = ActionSerializer
     permission_classes = (IsAuthenticated,)
 
+    def get_queryset(self):
+        account = Account.objects.get(user=self.request.user)
+        queryset = self.queryset
+        query_set = queryset.filter(account=account)
+        return query_set
+
+
 
 class AccountViewSet(viewsets.ModelViewSet):
     queryset = Account.objects.all()

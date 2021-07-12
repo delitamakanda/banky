@@ -16,8 +16,8 @@ export default {
         return fetch('/api/obtain-auth-token/', {
             method: 'post',
             headers: API_HEADERS,
-            body: JSON.stringify({ 
-                username, 
+            body: JSON.stringify({
+                username,
                 password
             })
         });
@@ -38,21 +38,48 @@ export default {
         });
     },
     getAccount() {
-		API_HEADERS['Authorization'] = 'Token ' + localStorage.token;
-        return fetch('/api/account/', {headers: API_HEADERS})
-        .then((response) => response.json())
+        API_HEADERS['Authorization'] = 'Token ' + localStorage.token;
+        return fetch('/api/account/', { headers: API_HEADERS })
+            .then((response) => response.json())
+    },
+    getActionsAccount() {
+        API_HEADERS['Authorization'] = 'Token ' + localStorage.token;
+        return fetch('/api/action/', { headers: API_HEADERS })
+            .then((response) => response.json())
     },
     getUser() {
-		API_HEADERS['Authorization'] = 'Token ' + localStorage.token;
-        return fetch('/api/users/i/', {headers: API_HEADERS})
-        .then((response) => response.json())
+        API_HEADERS['Authorization'] = 'Token ' + localStorage.token;
+        return fetch('/api/users/i/', { headers: API_HEADERS })
+            .then((response) => response.json())
     },
     updateUser(user) {
-		API_HEADERS['Authorization'] = 'Token ' + localStorage.token;
+        API_HEADERS['Authorization'] = 'Token ' + localStorage.token;
         return fetch(`/api/user/${user.id}/`, {
             method: 'put',
             headers: API_HEADERS,
             body: JSON.stringify(user)
+        })
+    },
+    withdraw(amount, userId) {
+        API_HEADERS['Authorization'] = 'Token ' + localStorage.token;
+        return fetch(`/api/withdraw/`, {
+            method: 'post',
+            headers: API_HEADERS,
+            body: JSON.stringify({
+                amount,
+                user: userId
+            })
+        })
+    },
+    deposit(amount, userId) {
+        API_HEADERS['Authorization'] = 'Token ' + localStorage.token;
+        return fetch(`/api/deposit/`, {
+            method: 'post',
+            headers: API_HEADERS,
+            body: JSON.stringify({
+                amount,
+                user: userId
+            })
         })
     }
 }
