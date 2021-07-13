@@ -13,6 +13,9 @@ class ActionsAccountStore extends ReduceStore {
     reduce(state, action) {
         switch (action.type) {
 
+            case ActionsAccountConstants.CREATED_ACTIONS_ACCOUNT:
+                return [];
+
             case ActionsAccountConstants.CREATED_ACTIONS_ACCOUNT_SUCCESS:
                 return action.payload.response;
         

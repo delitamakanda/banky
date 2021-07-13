@@ -19,7 +19,7 @@ class BankRewardStore extends ReduceStore {
             BankBalanceStore.getDispatchToken()
         ]);
         if (action.type === BankConstants.DEPOSITED_INTO_ACCOUNT || action.type === BankConstants.WITHDREW_FROM_ACCOUNT) {
-            let balance = BankBalanceStore.getState();
+            let balance = BankBalanceStore.getInitialState();
             if (balance < 5000)
                 return 'Basic';
             else if (balance < 10000)

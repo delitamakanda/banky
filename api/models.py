@@ -17,7 +17,7 @@ class Account(models.Model):
         verbose_name_plural = 'Accounts'
 
     MAX_TOTAL_BALANCES = 1000000
-    MAX_BALANCE = 10000
+    MAX_BALANCE = 100000000000000 # increase balance limit
     MIN_BALANCE = 0
 
     MAX_DEPOSIT = 1000

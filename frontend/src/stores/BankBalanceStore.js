@@ -3,7 +3,6 @@
 import { ReduceStore } from 'flux/utils';
 import AppDispatcher from '../dispatchers/main';
 import BankConstants from '../constants';
-
 //const CHANGE_EVENT = 'change';
 //let __emitter = new EventEmitter();
 //let balance = 0;
@@ -16,8 +15,8 @@ class BankBalanceStore extends ReduceStore {
 
     reduce(state, action) {
         switch (action.type) {
-            case BankConstants.CREATED_ACCOUNT:
-                return 0;
+            case BankConstants.CREATED_ACCOUNT_SUCCESS:
+                return action.payload.response[0].balance;
 
             case BankConstants.WITHDREW_FROM_ACCOUNT:
                 return state - action.amount;

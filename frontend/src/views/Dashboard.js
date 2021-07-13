@@ -23,7 +23,7 @@ import AuthActions from '../actions/AuthActions';
 import BankBalanceStore from '../stores/BankBalanceStore';
 import BankRewardStore from '../stores/BankRewardStore';
 import BankActions from '../actions/BankActions';
-import AccountActions  from '../actions/AccountActions';
+import AccountActions from '../actions/AccountActions';
 
 import Piechart from '../components/Piechart';
 // import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
@@ -55,18 +55,22 @@ class DashboardContainer extends Component {
     if (auth.loggedIn()) {
       AuthActions.getCurrentUser()
       AuthActions.fetchAccountUser()
-      AccountActions.fetchAccountActions()      
+      AccountActions.fetchAccountActions()
     }
   }
 
   deposit() {
-    BankActions.depositIntoAccount(Number(this.refs.amount.value));
+    BankActions.depositIntoAccount(+this.refs.amount.value);
     this.refs.amount.value = '';
+    AuthActions.fetchAccountUser()
+    AccountActions.fetchAccountActions()
   }
 
   withdraw() {
-    BankActions.withdrawFromAccount(Number(this.refs.amount.value));
+    BankActions.withdrawFromAccount(+this.refs.amount.value);
     this.refs.amount.value = '';
+    AuthActions.fetchAccountUser()
+    AccountActions.fetchAccountActions()
   }
 
   render() {
@@ -97,56 +101,34 @@ class DashboardContainer extends Component {
           <Col>
             {/*<OverlayScrollbarsComponent options={{ scrollbars: { autoHide: 'scroll' } }}>
             </OverlayScrollbarsComponent>*/}
-              <Card className="card-post card-post--1">
-                <CardBody>
+            <Card className="card-post card-post--1">
+              <CardBody>
 
-                  {user.username}
-                  <div>Your balance is ${(balance).toFixed(2)}</div>
-                  <div>Your points rewards tier is {rewardsTier}</div>
-                  <Piechart x={150} y={100} outerRadius={100} innerRadius={50} data={[{ value: 92 - 34, label: 'Deposit' }, { value: 34, label: 'Withdraw' }]} />
-                  <div>
-                    <input type="number" placeholder="Enter amount" ref="amount" />
-                    <button onClick={this.deposit.bind(this)}>Deposit</button>
-                    <button onClick={this.withdraw.bind(this)}>Withdraw</button>
-                  </div>
-                </CardBody>
-              </Card>
+                {user.username}
+                <div>Your balance is ${(balance).toFixed(2)}</div>
+                <div>Your points rewards tier is {rewardsTier}</div>
+                <Piechart x={150} y={100} outerRadius={100} innerRadius={50} data={[{ value: 92 - 34, label: 'Deposit' }, { value: 34, label: 'Withdraw' }]} />
+                <div>
+                  <input type="number" placeholder="Enter amount" ref="amount" />
+                  <button onClick={this.deposit.bind(this)}>Deposit</button>
+                  <button onClick={this.withdraw.bind(this)}>Withdraw</button>
+                </div>
+              </CardBody>
+            </Card>
           </Col>
-          {/* PostsListOne.map((post, idx) => (
+        </Row>
+        <hr />
+        <Row>
+          {actions.map((action, idx) => (
             <Col lg="3" md="6" sm="12" className="mb-4" key={idx}>
               <Card small className="card-post card-post--1">
-                <div
-                  className="card-post__image"
-                  style={{ backgroundImage: `url(${post.backgroundImage})` }}
-                >
-                  <Badge
-                    pill
-                    className={`card-post__category bg-${post.categoryTheme}`}
-                  >
-                  </Badge>
-                  <div className="card-post__author d-flex">
-                    <a
-                      href="#"
-                      className="card-post__author-avatar card-post__author-avatar--small"
-                      style={{ backgroundImage: `url('${post.authorAvatar}')` }}
-                    >
-                    {post.category}
-                      Written by {post.author} 
-                    </a>
-                  </div>
-                </div>
                 <CardBody>
-                  <h5 className="card-title">
-                    <a href="#" className="text-fiord-blue">
-                      {post.title}
-                    </a>
-                  </h5>
-                  <p className="card-text d-inline-block mb-3">{post.body}</p>
-                  <span className="text-muted">{post.date}</span> { user.username }
+                  <p className="card-text d-inline-block mb-3">{action.delta} €</p>
+                  <span className="text-muted">{action.type}</span> {action.created}
                 </CardBody>
               </Card>
             </Col>
-          ))*/}
+          ))}
         </Row>
       </FullContainer>
     );

@@ -1,5 +1,6 @@
 import AppDispatcher from '../dispatchers/main';
 import BankConstants from '../constants';
+import BankApi from '../api/BankApi';
 
 let BankActions = {
 
@@ -8,7 +9,7 @@ let BankActions = {
      */
 
     depositIntoAccount(amount) {
-        AppDispatcher.dispatch({
+        AppDispatcher.dispatchAsync(BankApi.deposit(amount), {
             type: BankConstants.DEPOSITED_INTO_ACCOUNT,
             amount: amount
         });
@@ -19,7 +20,7 @@ let BankActions = {
      */
 
     withdrawFromAccount(amount) {
-        AppDispatcher.dispatch({
+        AppDispatcher.dispatchAsync(BankApi.withdraw(amount), {
             type: BankConstants.WITHDREW_FROM_ACCOUNT,
             amount: amount
         });

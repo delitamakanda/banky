@@ -60,25 +60,23 @@ export default {
             body: JSON.stringify(user)
         })
     },
-    withdraw(amount, userId) {
+    withdraw(amount) {
         API_HEADERS['Authorization'] = 'Token ' + localStorage.token;
         return fetch(`/api/withdraw/`, {
             method: 'post',
             headers: API_HEADERS,
             body: JSON.stringify({
                 amount,
-                user: userId
             })
         })
     },
-    deposit(amount, userId) {
+    deposit(amount) {
         API_HEADERS['Authorization'] = 'Token ' + localStorage.token;
         return fetch(`/api/deposit/`, {
             method: 'post',
             headers: API_HEADERS,
             body: JSON.stringify({
                 amount,
-                user: userId
             })
         })
     }

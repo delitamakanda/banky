@@ -25,7 +25,7 @@ class ActionViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         account = Account.objects.get(user=self.request.user)
         queryset = self.queryset
-        query_set = queryset.filter(account=account)
+        query_set = queryset.filter(account=account).order_by('-id')
         return query_set
 
 
@@ -85,6 +85,9 @@ def deposit(request):
 
         try:
             account.deposit(
+                uid=account.uid,
+                reference='',
+                reference_type=Action.REFRENCE_TYPE_NONE,
                 amount=amount,
                 deposited_by=request.user,
                 asof=timezone.now(),
@@ -114,6 +117,7 @@ def withdraw(request):
 
         try:
             account.withdraw(
+                uid=account.uid,
                 amount=amount,
                 withdrawn_by=request.user,
                 asof=timezone.now(),

@@ -25,8 +25,8 @@ export default {
         });
     },
 
-	signup: (first_name, last_name, username, pwd, pwd2, email) => {
-		AppDispatcher.dispatch({
+    signup: (first_name, last_name, username, pwd, pwd2, email) => {
+        AppDispatcher.dispatch({
             actionType: AuthConstants.SIGNUP_USER,
             first_name: first_name,
             last_name: last_name,
@@ -35,28 +35,28 @@ export default {
             password2: pwd2,
             email: email
         });
-	},
+    },
 
-	loggedIn: (jwt) => {
+    loggedIn: (jwt) => {
         console.log('Login action dispatches to Store');
 
-		AppDispatcher.dispatch({
+        AppDispatcher.dispatch({
             actionType: AuthConstants.CURRENT_USER,
-			jwt: jwt
+            jwt: jwt
         });
 
         history.push('/dashboard');
-	},
+    },
 
-    logout () {
+    logout() {
         console.log('Logout action dispatches to Store');
 
         AppDispatcher.dispatch({
             actionType: AuthConstants.LOGOUT_USER
         });
     },
-    
-    getCurrentUser () {
+
+    getCurrentUser() {
         console.log('User action dispatches to Store');
 
         AppDispatcher.dispatchAsync(BankApi.getUser(), {
@@ -66,7 +66,7 @@ export default {
         });
     },
 
-    updateCurrentUser (user) {
+    updateCurrentUser(user) {
         console.log('Update User action dispatches to Store');
 
         AppDispatcher.dispatchAsync(BankApi.updateUser(user), {
@@ -79,11 +79,11 @@ export default {
     updateDraft(field, value) {
         AppDispatcher.dispatch({
             type: AuthConstants.UPDATE_DRAFT,
-            payload: {field, value}
+            payload: { field, value }
         });
     },
 
-    fetchAccountUser () {
+    fetchAccountUser() {
         console.log('Account action dispatches to Store');
 
         AppDispatcher.dispatchAsync(BankApi.getAccount(), {
