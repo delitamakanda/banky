@@ -13,6 +13,7 @@ import {
   // Button
 } from "shards-react";
 import { Container } from 'flux/utils';
+import { format } from 'date-fns';
 
 import auth from '../utils/auth';
 import AccountStore from "../stores/AccountStore";
@@ -53,38 +54,44 @@ class DashboardContainer extends Component {
 
   componentDidMount() {
     if (auth.loggedIn()) {
-      AuthActions.getCurrentUser()
-      AuthActions.fetchAccountUser()
-      AccountActions.fetchAccountActions()
+      this.fetchDashboard();
     }
   }
 
-  deposit() {
-    BankActions.depositIntoAccount(+this.refs.amount.value);
-    this.refs.amount.value = '';
+  fetchDashboard() {
     AuthActions.fetchAccountUser()
     AccountActions.fetchAccountActions()
   }
 
-  withdraw() {
-    BankActions.withdrawFromAccount(+this.refs.amount.value);
+  deposit() {
+    BankActions.deposit(Number(this.refs.amount.value));
+    // BankActions.depositIntoAccount(Number(this.refs.amount.value));
     this.refs.amount.value = '';
-    AuthActions.fetchAccountUser()
-    AccountActions.fetchAccountActions()
+  }
+
+  withdraw() {
+    BankActions.withdraw(Number(this.refs.amount.value));
+    // BankActions.withdrawFromAccount(Number(this.refs.amount.value));
+    this.refs.amount.value = '';
   }
 
   render() {
     const {
       // PostsListOne,
-      account,
+      // account,
       user,
       balance,
       rewardsTier,
       actions
     } = this.state;
 
-    console.log(account)
-    console.log(actions)
+    // console.log('actions', actions);
+
+    const withdrawals = actions.filter(w => w.type === 'WITHDRAWN').length;
+    const deposits = actions.filter(w => w.type === 'DEPOSITED').length;
+
+    console.log('deposits', deposits);
+    console.log('withdrawals', withdrawals);
 
     if (!auth.loggedIn()) {
       return <Redirect to="/login" />
@@ -107,7 +114,7 @@ class DashboardContainer extends Component {
                 {user.username}
                 <div>Your balance is ${(balance).toFixed(2)}</div>
                 <div>Your points rewards tier is {rewardsTier}</div>
-                <Piechart x={150} y={100} outerRadius={100} innerRadius={50} data={[{ value: 92 - 34, label: 'Deposit' }, { value: 34, label: 'Withdraw' }]} />
+                {deposits && <Piechart x={150} y={100} outerRadius={100} innerRadius={50} data={[{ value: deposits, label: 'Deposit' }, { value: withdrawals, label: 'Withdraw' }]} />}
                 <div>
                   <input type="number" placeholder="Enter amount" ref="amount" />
                   <button onClick={this.deposit.bind(this)}>Deposit</button>
@@ -120,11 +127,11 @@ class DashboardContainer extends Component {
         <hr />
         <Row>
           {actions.map((action, idx) => (
-            <Col lg="3" md="6" sm="12" className="mb-4" key={idx}>
+            <Col lg="12" md="12" sm="12" className="mb-4" key={idx}>
               <Card small className="card-post card-post--1">
                 <CardBody>
-                  <p className="card-text d-inline-block mb-3">{action.delta} €</p>
-                  <span className="text-muted">{action.type}</span> {action.created}
+                  <p className="card-text d-inline-block mb-3">${action.delta}</p> -
+                  <span style={{ color: action.type === 'DEPOSITED' ? 'lightblue' : 'orange' }}>{action.type}</span> - <span className="text-muted">{format(new Date(action.created), 'yyyy/MM/dd kk:mm:ss')}</span>
                 </CardBody>
               </Card>
             </Col>

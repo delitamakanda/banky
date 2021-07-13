@@ -7,7 +7,7 @@ class Piechart extends Component {
 		super();
 
         this.pie = d3.pie().value((d) => d.value);
-        this.colors = d3.scaleLinear().range(['green', 'orange']);
+        this.colors = d3.scaleLinear().range(['lightblue', 'orange']);
     }
 
     arcGenerator(d, i) {

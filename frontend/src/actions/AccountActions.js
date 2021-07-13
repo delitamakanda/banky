@@ -6,7 +6,7 @@ import BankApi from '../api/BankApi';
 export default {
 
 
-    fetchAccountActions () {
+    fetchAccountActions() {
         console.log('Account actions actions dispatches to Store');
 
         AppDispatcher.dispatchAsync(BankApi.getActionsAccount(), {

@@ -4,7 +4,20 @@ import UIConstants from '../constants';
 
 let _store = {
     menuVisible: false,
-    navItems: []
+    navItems: [
+        {
+            title: 'Home',
+            to: '/',
+            htmlBefore: '',
+            htmlAfter: ''
+        },
+        {
+            title: 'Transactions',
+            to: '/404',
+            htmlBefore: '',
+            htmlAfter: ''
+        }
+    ]
 };
 
 class UIStore extends EventEmitter {

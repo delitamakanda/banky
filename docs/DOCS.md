@@ -19,3 +19,4 @@
 - https://www.mattlayman.com/understand-django/user-authentication/
 
 - https://hakibenita.com/how-to-add-custom-action-buttons-to-django-admin
+- https://simpleisbetterthancomplex.com/article/2021/07/08/what-you-should-know-about-the-django-user-model.html

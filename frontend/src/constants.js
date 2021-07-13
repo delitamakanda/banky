@@ -9,8 +9,15 @@ export default {
 	CREATED_ACTIONS_ACCOUNT_SUCCESS: 'created actions account success',
 	CREATED_ACTIONS_ACCOUNT_ERROR: 'created actions account error',
 
+	UPDATE_BALANCE_ACCOUNT: 'update balance account',
+	
 	WITHDREW_FROM_ACCOUNT: 'withdrew from account',
+	WITHDREW_FROM_ACCOUNT_SUCCESS: 'withdrew from account success',
+	WITHDREW_FROM_ACCOUNT_ERROR: 'withdrew from account error',
+
 	DEPOSITED_INTO_ACCOUNT: 'deposited into account',
+	DEPOSITED_INTO_ACCOUNT_SUCCESS: 'deposited into account success',
+	DEPOSITED_INTO_ACCOUNT_ERROR: 'deposited into account error',
 
 	LOGIN_USER: 'login user',
 	LOGIN_USER_SUCCESS: 'login user success',

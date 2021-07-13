@@ -1,7 +1,7 @@
 import { ReduceStore } from 'flux/utils';
 import BankBalanceStore from './BankBalanceStore';
 import AppDispatcher from '../dispatchers/main';
-import BankConstants from '../constants';
+// import BankConstants from '../constants';
 
 
 //const CHANGE_EVENT = 'change';
@@ -18,8 +18,8 @@ class BankRewardStore extends ReduceStore {
         this.getDispatcher().waitFor([
             BankBalanceStore.getDispatchToken()
         ]);
-        if (action.type === BankConstants.DEPOSITED_INTO_ACCOUNT || action.type === BankConstants.WITHDREW_FROM_ACCOUNT) {
-            let balance = BankBalanceStore.getInitialState();
+        // if (action.type === BankConstants.DEPOSITED_INTO_ACCOUNT || action.type === BankConstants.WITHDREW_FROM_ACCOUNT) {
+            let balance = BankBalanceStore.getState();
             if (balance < 5000)
                 return 'Basic';
             else if (balance < 10000)
@@ -28,8 +28,8 @@ class BankRewardStore extends ReduceStore {
                 return 'Gold';
             else
                 return 'Platinum';
-        }
-        return state;
+        // }
+        // return state;
     }
 }
 

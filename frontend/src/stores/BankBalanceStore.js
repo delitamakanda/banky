@@ -19,11 +19,11 @@ class BankBalanceStore extends ReduceStore {
                 return action.payload.response[0].balance;
 
             case BankConstants.WITHDREW_FROM_ACCOUNT:
-                return state - action.amount;
+                return state - action.payload.amount;
 
 
             case BankConstants.DEPOSITED_INTO_ACCOUNT:
-                return state + action.amount;
+                return state + action.payload.amount;
 
             default:
                 return state;
