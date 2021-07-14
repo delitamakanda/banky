@@ -69,6 +69,9 @@ export default {
     updateCurrentUser(user) {
         console.log('Update User action dispatches to Store');
 
+        // hack
+        user.password2 = user.password
+
         AppDispatcher.dispatchAsync(BankApi.updateUser(user), {
             request: AuthConstants.UPDATE_AUTHENTICATED_USER,
             success: AuthConstants.UPDATE_AUTHENTICATED_USER_SUCCESS,

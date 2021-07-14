@@ -54,6 +54,8 @@ export default {
     },
     updateUser(user) {
         API_HEADERS['Authorization'] = 'Token ' + localStorage.token;
+        // hack
+        // user.password2 = user.password;
         return fetch(`/api/user/${user.id}/`, {
             method: 'put',
             headers: API_HEADERS,

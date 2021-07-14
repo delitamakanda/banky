@@ -13,7 +13,7 @@ let _store = {
         },
         {
             title: 'Transactions',
-            to: '/404',
+            to: '/transactions',
             htmlBefore: '',
             htmlAfter: ''
         }

@@ -1,5 +1,6 @@
 import React from "react";
 import { NavItem, NavLink, Badge, Collapse, DropdownItem } from "shards-react";
+import { Link as RouteNavLink } from "react-router-dom";
 
 export default class Notifications extends React.Component {
   constructor(props) {
@@ -66,7 +67,7 @@ export default class Notifications extends React.Component {
               </p>
             </div>
           </DropdownItem>
-          <DropdownItem className="notification__all text-center">
+          <DropdownItem tag={(props) => <RouteNavLink {...props} />}  to={`/404`} className="notification__all text-center">
             View all Notifications
           </DropdownItem>
         </Collapse>

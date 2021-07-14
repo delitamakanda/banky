@@ -8,6 +8,7 @@ import Dashboard from "./views/Dashboard";
 import Profile from "./views/Profile";
 import Signin from "./views/Signin";
 import Signup from "./views/Signup";
+import Transactions from './views/Transactions';
 
 export default [
     {
@@ -21,6 +22,12 @@ export default [
         exact: true,
         layout: DefaultLayout,
         component: Dashboard
+    },
+    {
+        path: "/transactions",
+        exact: true,
+        layout: DefaultLayout,
+        component: Transactions
     },
     {
         path: "/profile/:username",
