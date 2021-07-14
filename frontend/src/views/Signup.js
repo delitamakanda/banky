@@ -113,7 +113,7 @@ class Signup extends React.Component {
         <Logo title="Budget" />
         <Card small className="mb-4">
           <CardHeader className="border-bottom">
-            <h6>{frenchkiss.t('signup.text')}. <Icon kind="star" /></h6>
+            <h6>{frenchkiss.t('signup.text')}.</h6>
           </CardHeader>
           <ListGroup flush>
             <ListGroupItem className="p3">
@@ -154,12 +154,13 @@ class Signup extends React.Component {
                   </Form>
                 </Col>
               </Row>
-              <p>{frenchkiss.t('signup.cgvText1')} <Button size="sm" squared outline onClick={this.toggleTerms}> {frenchkiss.t('signup.cgvText2')} </Button> {frenchkiss.t('signup.cgvText3')} <Button size="sm" squared outline onClick={this.togglePrivacy}> {frenchkiss.t('signup.cgvText4')} </Button>.</p>
+              <p>{frenchkiss.t('signup.cgvText1')} <Button tag="a" size="sm" theme="light" onClick={this.toggleTerms}> {frenchkiss.t('signup.cgvText2')} </Button> {frenchkiss.t('signup.cgvText3')} <Button size="sm" tag="a" theme="light" onClick={this.togglePrivacy}> {frenchkiss.t('signup.cgvText4')} </Button>.</p>
               {basicModal}
               <Link to="login">{frenchkiss.t('signup.navigateToSignin')}</Link>
             </ListGroupItem>
           </ListGroup>
         </Card>
+        <Icon kind="star" />
       </Container>
     );
   }

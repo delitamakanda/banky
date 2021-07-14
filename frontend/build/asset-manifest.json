@@ -1,28 +1,28 @@
 {
   "files": {
     "main.css": "/static/css/main.80c63a58.chunk.css",
-    "main.js": "/static/js/main.7c08a466.chunk.js",
-    "main.js.map": "/static/js/main.7c08a466.chunk.js.map",
+    "main.js": "/static/js/main.66c6d56c.chunk.js",
+    "main.js.map": "/static/js/main.66c6d56c.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.89bf0eb4.js",
     "runtime-main.js.map": "/static/js/runtime-main.89bf0eb4.js.map",
     "vendors.css": "/static/css/vendors.2bbed092.chunk.css",
     "vendors.js": "/static/js/vendors.7d9b5b81.chunk.js",
     "vendors.js.map": "/static/js/vendors.7d9b5b81.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.e664a0061c650c007ff64880fb952994.js": "/precache-manifest.e664a0061c650c007ff64880fb952994.js",
+    "precache-manifest.599ede112d239d6598af0cec28e78a0f.js": "/precache-manifest.599ede112d239d6598af0cec28e78a0f.js",
     "service-worker.js": "/service-worker.js",
     "static/css/main.80c63a58.chunk.css.map": "/static/css/main.80c63a58.chunk.css.map",
     "static/css/vendors.2bbed092.chunk.css.map": "/static/css/vendors.2bbed092.chunk.css.map",
     "static/js/vendors.7d9b5b81.chunk.js.LICENSE.txt": "/static/js/vendors.7d9b5b81.chunk.js.LICENSE.txt",
-    "static/media/privacy-policies.md": "/static/media/privacy-policies.65776b55.md",
+    "static/media/privacy-policies.md": "/static/media/privacy-policies.68eebd77.md",
     "static/media/shards-dashboards-logo.svg": "/static/media/shards-dashboards-logo.60a85991.svg",
-    "static/media/terms-and-conditions.md": "/static/media/terms-and-conditions.74bae82d.md"
+    "static/media/terms-and-conditions.md": "/static/media/terms-and-conditions.e867da7a.md"
   },
   "entrypoints": [
     "static/js/runtime-main.89bf0eb4.js",
     "static/css/vendors.2bbed092.chunk.css",
     "static/js/vendors.7d9b5b81.chunk.js",
     "static/css/main.80c63a58.chunk.css",
-    "static/js/main.7c08a466.chunk.js"
+    "static/js/main.66c6d56c.chunk.js"
   ]
 }
