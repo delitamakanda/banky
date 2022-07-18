@@ -21,10 +21,10 @@ APPS_DIR = '{0}/apps'.format(BASE_DIR)
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = config('SECRET_KEY', cast=str, default='dummy_key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', cast=bool)
+DEBUG = config('DEBUG', cast=bool, default=True)
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=lambda v: [d for d in [s.strip() for s in v.split(' ')] if d], default='')
 
