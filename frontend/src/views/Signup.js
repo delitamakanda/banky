@@ -3,15 +3,13 @@ import 'whatwg-fetch';
 
 import React from "react";
 import { Link, Redirect } from 'react-router-dom';
-import { Container, Row, Col, Form, FormInput, ListGroup, ListGroupItem, Button, Card, CardHeader, Modal, ModalBody } from "shards-react";
+import { Container, Row, Col, Form, FormInput, ListGroup, ListGroupItem, Button, Card, CardHeader } from "shards-react";
 import AuthActions from '../actions/AuthActions';
 
 import { Logo, Icon } from '../components/ui';
 
 import auth from '../utils/auth';
 import frenchkiss from '../utils/translations';
-
-import marked from 'marked';
 
 class Signup extends React.Component {
 
@@ -24,47 +22,8 @@ class Signup extends React.Component {
       username: '',
       pwd: '',
       pwd2: '',
-      email: '',
-      terms: '',
-      privacies: '',
-      openTerms: false,
-      openPrivacy: false
+      email: ''
     }
-
-    this.toggleTerms = this.toggleTerms.bind(this);
-    this.togglePrivacy = this.togglePrivacy.bind(this);
-  }
-
-  toggleTerms() {
-    this.setState({
-      openTerms: !this.state.openTerms
-    });
-  }
-
-  togglePrivacy() {
-    this.setState({
-      openPrivacy: !this.state.openPrivacy
-    });
-  }
-
-  async componentDidMount() {
-    const termsPath = require("../assets/terms-and-conditions.md");
-    const privacyPath = require("../assets/privacy-policies.md");
-
-    const response = await Promise.all([
-      fetch(termsPath),
-      fetch(privacyPath)
-    ]);
-    const termsData = await response[0].text();
-    const privacyData = await response[1].text();
-
-    if (termsData !== undefined && privacyData !== undefined) {
-      this.setState({
-        terms: termsData,
-        privacies: privacyData
-      });
-    }
-
   }
 
   signup = (event) => {
@@ -86,23 +45,7 @@ class Signup extends React.Component {
   }
 
   render() {
-    const { terms, privacies, openTerms, openPrivacy } = this.state;
     let basicModal;
-    if (openTerms) {
-      basicModal = (
-        <Modal open={openTerms} toggle={this.toggleTerms}>
-          <ModalBody dangerouslySetInnerHTML={{ __html: marked(terms) }}></ModalBody>
-        </Modal>
-      );
-    }
-
-    if (openPrivacy) {
-      basicModal = (
-        <Modal open={openPrivacy} toggle={this.togglePrivacy}>
-          <ModalBody dangerouslySetInnerHTML={{ __html: marked(privacies) }}></ModalBody>
-        </Modal>
-      );
-    }
 
     if (auth.loggedIn()) {
       return <Redirect to="/" />
@@ -154,7 +97,7 @@ class Signup extends React.Component {
                   </Form>
                 </Col>
               </Row>
-              <p>{frenchkiss.t('signup.cgvText1')} <Button tag="a" size="sm" theme="light" onClick={this.toggleTerms}> {frenchkiss.t('signup.cgvText2')} </Button> {frenchkiss.t('signup.cgvText3')} <Button size="sm" tag="a" theme="light" onClick={this.togglePrivacy}> {frenchkiss.t('signup.cgvText4')} </Button>.</p>
+              <p>{frenchkiss.t('signup.cgvText1')} <Link tag="a" size="sm" theme="light" to="/static-pages/terms-and-conditions"> {frenchkiss.t('signup.cgvText2')} </Link> {frenchkiss.t('signup.cgvText3')} <Link size="sm" tag="a" theme="light" to="/static-pages/privacy-policies"> {frenchkiss.t('signup.cgvText4')} </Link>.</p>
               {basicModal}
               <Link to="login">{frenchkiss.t('signup.navigateToSignin')}</Link>
             </ListGroupItem>

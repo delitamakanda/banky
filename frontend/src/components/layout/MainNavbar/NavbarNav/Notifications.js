@@ -67,7 +67,7 @@ export default class Notifications extends React.Component {
               </p>
             </div>
           </DropdownItem>
-          <DropdownItem tag={(props) => <RouteNavLink {...props} />}  to={`/404`} className="notification__all text-center">
+          <DropdownItem tag={(props) => <RouteNavLink {...props} />}  to={`/notifications`} className="notification__all text-center">
             View all Notifications
           </DropdownItem>
         </Collapse>

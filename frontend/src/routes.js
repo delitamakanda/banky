@@ -9,6 +9,8 @@ import Profile from "./views/Profile";
 import Signin from "./views/Signin";
 import Signup from "./views/Signup";
 import Transactions from './views/Transactions';
+import Notifications from './views/Notifications';
+import StaticPages from './views/StaticPages';
 
 export default [
     {
@@ -28,6 +30,12 @@ export default [
         exact: true,
         layout: DefaultLayout,
         component: Transactions
+    },
+    {
+        path: "/notifications",
+        exact: true,
+        layout: DefaultLayout,
+        component: Notifications
     },
     {
         path: "/profile/:username",
@@ -59,4 +67,10 @@ export default [
         layout: CustomLayout,
         component: Signin
     },
+    {
+        path: '/static-pages/:page',
+        exact: true,
+        layout: CustomLayout,
+        component: StaticPages
+    }
 ];

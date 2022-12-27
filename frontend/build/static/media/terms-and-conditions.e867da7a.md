@@ -1,5 +1,0 @@
-## Conditions d'utilisations
-
-Pellentesque tempor ut lectus in facilisis. Aenean ultricies dictum diam. Donec ut ante felis. Vestibulum turpis ante, bibendum in urna sit amet, sodales sollicitudin justo. Nunc nulla augue, rhoncus a lacus id, tempus imperdiet diam. Nunc congue arcu quis lectus tempor, id feugiat justo pulvinar. Curabitur sollicitudin nunc quis egestas lacinia. Donec dapibus facilisis libero, nec commodo ex fringilla in. Maecenas condimentum laoreet nunc vitae sollicitudin. Vivamus finibus vulputate velit, ut dapibus mi semper quis. Curabitur nec consequat lorem. Sed tempus vestibulum tempus. Integer varius sapien sed metus aliquet elementum. Proin eu commodo quam.
-
-Sed vitae porta nulla. Sed est nulla, ornare sit amet tincidunt nec, luctus consectetur odio. Suspendisse sem risus, semper eget sem non, rutrum iaculis elit. In sit amet ornare diam. Nam ac semper metus. Maecenas tincidunt dolor ut vestibulum varius. Nunc nec lectus sapien. Nullam sed metus eu dui tincidunt elementum a sit amet quam.

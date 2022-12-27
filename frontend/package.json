@@ -13,10 +13,10 @@
     "react-scripts": "^3.4.3"
   },
   "scripts": {
-    "start": "react-app-rewired start",
-    "build": "react-app-rewired build",
-    "test": "react-app-rewired test",
-    "eject": "react-scripts eject"
+    "start": "NODE_OPTIONS=--openssl-legacy-provider react-app-rewired start",
+    "build": "NODE_OPTIONS=--openssl-legacy-provider react-app-rewired build",
+    "test": "NODE_OPTIONS=--openssl-legacy-provider react-app-rewired test",
+    "eject": "NODE_OPTIONS=--openssl-legacy-provider react-scripts eject"
   },
   "proxy": "http://localhost:8000",
   "eslintConfig": {
@@ -50,7 +50,7 @@
     "history": "^4.10.1",
     "install": "^0.13.0",
     "lodash.find": "^4.6.0",
-    "marked": "^4.0.10",
+    "marked": "^4.2.5",
     "overlayscrollbars-react": "^0.2.2",
     "radium": "^0.26.0",
     "react-addons-update": "^15.6.2",

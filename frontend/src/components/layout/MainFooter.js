@@ -15,7 +15,9 @@ const MainFooter = ({ contained, menuItems, copyright }) => (
             </NavItem>
           ))}
         </Nav>
+          {copyright && (
         <span className="copyright ml-auto my-auto mr-2">{copyright}</span>
+          )}
       </Row>
     </Container>
   </footer>
@@ -39,12 +41,7 @@ MainFooter.propTypes = {
 MainFooter.defaultProps = {
   contained: false,
   copyright: `Copyright © ${new Date().getFullYear()} Budget`,
-  menuItems: [
-    {
-      title: "Home",
-      to: "/"
-    },
-  ]
+  menuItems: []
 };
 
 export default MainFooter;
