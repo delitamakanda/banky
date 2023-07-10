@@ -22,6 +22,11 @@ const Navbar = (props: Props) => {
                 </Link>
             </Box>
             <Box sx={{ "&:hover": { color: palette.primary[100]}}}>
+                <Link to="/balance" onClick={() => setSelected("balance")} style={{ color: selected === "balance" ? "inherit": palette.grey[700], textDecoration: "inherit"}}>
+                    balance
+                </Link>
+            </Box>
+            <Box sx={{ "&:hover": { color: palette.primary[100]}}}>
                 <Link to="/predictions" onClick={() => setSelected("predictions")} style={{ color: selected === "predictions" ? "inherit": palette.grey[700], textDecoration: "inherit"}}>
                     predictions
                 </Link>

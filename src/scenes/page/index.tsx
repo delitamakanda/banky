@@ -1,8 +1,10 @@
+import { useParams } from "react-router";
 
-function Page() {
+const Page = () => {
+    const { page } = useParams();
     return (
         <>
-        Static Page
+        {page}
         </>
     )
 }
