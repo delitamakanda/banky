@@ -4,6 +4,14 @@ import { themeSettings } from "@/theme"
 import { createTheme } from "@mui/material/styles"
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Navbar from "@/scenes/navbar";
+import Dashboard from "@/scenes/dashboard";
+import Predictions from "@/scenes/predictions";
+import About from "@/scenes/about";
+import Login from "@/scenes/login";
+import Register from "@/scenes/register";
+import NotFound from "@/scenes/notfound";
+import Contact from "@/scenes/contact";
+import Page from "@/scenes/page";
 
 function App() {
   const theme = useMemo(() => createTheme(themeSettings), [])
@@ -15,14 +23,14 @@ function App() {
           <Box width="100%" height="100%" padding="1rem 2rem 4rem 2rem" color="white">
             <Navbar />
             <Routes>
-              <Route path="/" element={<div>Dashboard</div>} />
-              <Route path="/about" element={<div>About</div>} />
-              <Route path="/login" element={<div>Login</div>} />
-              <Route path="/signup" element={<div>Signup</div>} />
-              <Route path="/predictions" element={<div>Signup</div>} />
-              <Route path="/contact" element={<>Contact</>} />
-              <Route path="/pages/:page" element={<div>Static page</div>} />
-              <Route path="*" element={<div>404</div>} />
+              <Route path="/" element={<Dashboard />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<Register />} />
+              <Route path="/predictions" element={<Predictions />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/pages/:page" element={<Page />} />
+              <Route path="*" element={<NotFound />} />
               </Routes>
           </Box>
         </ThemeProvider>
