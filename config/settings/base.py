@@ -41,7 +41,6 @@ DJANGO_APPS = [
 ]
 
 THIRD_PARTY_APPS = [
-    'webpack_loader',
     'rest_framework',
     'rest_framework.authtoken',
     'corsheaders',
@@ -138,10 +137,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
+VITE_APP_DIR = os.path.join(BASE_DIR, 'src')
+
 STATICFILES_DIRS = [
-    # '{0}/static'.format(APPS_DIR)
-    # os.path.join(BASE_DIR, 'static'),
-    os.path.join(BASE_DIR, 'frontend', 'build'),
+    os.path.join(BASE_DIR, 'static'),
+    os.path.join(VITE_APP_DIR, 'dist'),
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
@@ -150,21 +150,8 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
+
 SITE_ID = 1
-
-
-WEBPACK_LOADER = {
-    'DEFAULT': {
-        'CACHE': not DEBUG,
-        'BUNDLE_DIR_NAME': 'frontend/build/',
-        'STATS_FILE': os.path.join(BASE_DIR, 'frontend', 'webpack-stats.dev.json')
-    }
-}
-
-if not DEBUG:
-    WEBPACK_LOADER['DEFAULT'].update({
-        'STATS_FILE': os.path.join(BASE_DIR, 'frontend', 'webpack-stats.prod.json')
-    })
 
 
 REST_FRAMEWORK = {
