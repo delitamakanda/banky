@@ -5,7 +5,7 @@ import DiamondIcon from '@mui/icons-material/Diamond';
 import FlexBetween from "@/components/FlexBetween";
 type Props = {};
 
-const Navbar = (props: Props) => {
+const Footer = (props: Props) => {
     const { palette } = useTheme();
     const [selected, setSelected] = useState("dashboard");
     return <FlexBetween mb="0.25rem" p="0.5rem 0rem" color={palette.grey[300]}>
@@ -17,23 +17,23 @@ const Navbar = (props: Props) => {
         </FlexBetween>
         <FlexBetween gap="2rem">
             <Box sx={{ "&:hover": { color: palette.primary[100]}}}>
-                <Link to="/" onClick={() => setSelected("dashboard")} style={{ color: selected === "dashboard" ? "inherit": palette.grey[700], textDecoration: "inherit"}}>
-                    dashboard
+                <Link to="/contact" onClick={() => setSelected("contact")} style={{ color: selected === "contact" ? "inherit": palette.grey[700], textDecoration: "inherit"}}>
+                    contact
                 </Link>
             </Box>
             <Box sx={{ "&:hover": { color: palette.primary[100]}}}>
-                <Link to="/predictions" onClick={() => setSelected("predictions")} style={{ color: selected === "predictions" ? "inherit": palette.grey[700], textDecoration: "inherit"}}>
-                    predictions
+                <Link to="/about" onClick={() => setSelected("about")} style={{ color: selected === "about" ? "inherit": palette.grey[700], textDecoration: "inherit"}}>
+                    about
                 </Link>
             </Box>
             <Box sx={{ "&:hover": { color: palette.primary[100]}}}>
-                <Link to="/login" onClick={() => setSelected("predictions")} style={{ color: selected === "login" ? "inherit": palette.grey[700], textDecoration: "inherit"}}>
-                    login
+                <Link to="/pages/cgv" onClick={() => setSelected("pages/cgv")} style={{ color: selected === "pages/cgv" ? "inherit": palette.grey[700], textDecoration: "inherit"}}>
+                    cgv
                 </Link>
             </Box>
             <Box sx={{ "&:hover": { color: palette.primary[100]}}}>
-                <Link to="/signup" onClick={() => setSelected("signup")} style={{ color: selected === "signup" ? "inherit": palette.grey[700], textDecoration: "inherit"}}>
-                signup
+                <Link to="/pages/legal" onClick={() => setSelected("pages/legal")} style={{ color: selected === "pages/cgv" ? "inherit": palette.grey[700], textDecoration: "inherit"}}>
+                    legal
                 </Link>
             </Box>
             <Box></Box>
@@ -41,4 +41,4 @@ const Navbar = (props: Props) => {
     </FlexBetween>
 }
 
-export default Navbar;
+export default Footer;

@@ -12,6 +12,7 @@ import Register from "@/scenes/register";
 import NotFound from "@/scenes/notfound";
 import Contact from "@/scenes/contact";
 import Page from "@/scenes/page";
+import Footer from "@/scenes/footer";
 
 function App() {
   const theme = useMemo(() => createTheme(themeSettings), [])
@@ -31,7 +32,8 @@ function App() {
               <Route path="/contact" element={<Contact />} />
               <Route path="/pages/:page" element={<Page />} />
               <Route path="*" element={<NotFound />} />
-              </Routes>
+            </Routes>
+            <Footer />
           </Box>
         </ThemeProvider>
       </BrowserRouter>
