@@ -34,7 +34,6 @@ def render_vite_bundle():
     """
 
     manifest = load_json_from_dist()
-    print(manifest)
 
     imports_files = "".join(
         [

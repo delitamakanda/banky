@@ -165,5 +165,6 @@ REST_FRAMEWORK = {
     )
 }
 
+CORS_ORIGIN_ALLOW_ALL = True
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
