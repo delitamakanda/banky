@@ -1,9 +1,26 @@
 from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
 from django.utils.timezone import now
-from django.utils.translation import ugettext as _
+from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import User
-from api.models import Account, Action
+from api.models import Account, Action, Transaction, KeysPerformanceIndicator, Product
+
+class ProductSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Product
+        fields = '__all__'
+
+
+class KeysPerformanceIndicatorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = KeysPerformanceIndicator
+        fields = '__all__'
+
+
+class TransactionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Transaction
+        fields = '__all__'
 
 
 class ToUpperCaseCharField(serializers.CharField):

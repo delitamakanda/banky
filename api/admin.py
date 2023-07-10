@@ -1,11 +1,11 @@
 from django.contrib import admin
-from .models import Account, Action
+from .models import Account, Action, Transaction, Product, KeysPerformanceIndicator
 from django.http import HttpResponseRedirect
 from django.template.response import TemplateResponse
 from .forms import DepositForm, WithdrawForm
 from django.utils.html import format_html
-from django.core.urlresolvers import reverse
-from django.conf.urls import url
+from django.urls import reverse
+from django.urls import path
 from .errors import Error
 
 
@@ -29,13 +29,13 @@ class AccountAdmin(admin.ModelAdmin):
     def get_urls(self):
         urls = super().get_urls()
         custom_urls = [
-            url(
-                r'^(?P<account_id>.+)/deposit/$',
+            path(
+                '<int:account_id>/deposit/',
                 self.admin_site.admin_view(self.process_deposit),
                 name='account-deposit',
             ),
-            url(
-                r'^(?P<account_id>.+)/withdraw/$',
+            path(
+                '<int:account_id>/withdraw/',
                 self.admin_site.admin_view(self.process_withdraw),
                 name='account-withdraw',
             ),
@@ -114,3 +114,6 @@ class ActionAdmin(admin.ModelAdmin):
 
 admin.site.register(Action, ActionAdmin)
 admin.site.register(Account, AccountAdmin)
+admin.site.register(Transaction)
+admin.site.register(Product)
+admin.site.register(KeysPerformanceIndicator)

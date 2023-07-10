@@ -4,6 +4,8 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 from api.models import Account
 from api.models import Action
+from api.models import Transaction, Product, KeysPerformanceIndicator
+from api.serializers import TransactionSerializer, ProductSerializer, KeysPerformanceIndicatorSerializer
 from api.serializers import ActionSerializer
 from api.serializers import AccountSerializer
 from api.serializers import UserSerializer
@@ -16,6 +18,32 @@ from rest_framework.authtoken.models import Token
 from rest_framework.decorators import api_view
 from .errors import InvalidAmount, ExceedsLimit
 
+
+class TransactionViewSet(viewsets.ModelViewSet):
+    queryset = Transaction.objects.all()
+    serializer_class = TransactionSerializer
+    permission_classes = (IsAuthenticated,)
+    http_method_names = ['get', 'post']
+
+    def get_queryset(self):
+        queryset = Transaction.objects.get(buyer=self.request.user).order_by('-id')
+        return queryset
+
+
+class ProductViewSet(viewsets.ModelViewSet):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+    permission_classes = (IsAuthenticated,)
+    http_method_names = ['get', 'post']
+
+
+class KeysPerformanceIndicatorViewSet(viewsets.ModelViewSet):
+    queryset = KeysPerformanceIndicator.objects.all()
+    serializer_class = KeysPerformanceIndicatorSerializer
+    permission_classes = (IsAuthenticated,)
+    http_method_names = ['get', 'post']
+
+        
 
 class ActionViewSet(viewsets.ModelViewSet):
     queryset = Action.objects.all()
