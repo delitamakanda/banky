@@ -30,12 +30,12 @@ class AccountAdmin(admin.ModelAdmin):
         urls = super().get_urls()
         custom_urls = [
             path(
-                '<int:account_id>/deposit/',
+                '<str:account_id>/deposit/',
                 self.admin_site.admin_view(self.process_deposit),
                 name='account-deposit',
             ),
             path(
-                '<int:account_id>/withdraw/',
+                '<str:account_id>/withdraw/',
                 self.admin_site.admin_view(self.process_withdraw),
                 name='account-withdraw',
             ),

@@ -354,9 +354,9 @@ class Action(models.Model):
         return self.reference_type
 
 class KeysPerformanceIndicator(models.Model):
-    total_profit = models.DecimalField(max_digits=6, decimal_places=2)
-    total_revenue = models.DecimalField(max_digits=6, decimal_places=2)
-    total_expenses = models.DecimalField(max_digits=6, decimal_places=2)
+    total_profit = models.DecimalField(max_digits=10, decimal_places=2)
+    total_revenue = models.DecimalField(max_digits=10, decimal_places=2)
+    total_expenses = models.DecimalField(max_digits=10, decimal_places=2)
     expenses_by_category = models.JSONField(help_text='Expenses by category', default=dict)
     daily_data = models.JSONField(help_text='Daily data', default=dict)
     monthly_data = models.JSONField(help_text='Monthly data', default=dict)
@@ -368,8 +368,8 @@ class KeysPerformanceIndicator(models.Model):
 
 class Product(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    price = models.DecimalField(max_digits=6, decimal_places=2)
-    expense = models.DecimalField(max_digits=6, decimal_places=2)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    expense = models.DecimalField(max_digits=10, decimal_places=2)
     transactions = models.ManyToManyField('Transaction', related_name='transactions', blank=True)
 
     class Meta:
@@ -380,7 +380,7 @@ class Product(models.Model):
 class Transaction(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     buyer = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    amount = models.DecimalField(max_digits=6, decimal_places=2)
+    amount = models.DecimalField(max_digits=10, decimal_places=2)
     products_ids = models.ManyToManyField('Product', related_name='products', blank=True)
     
     class Meta:

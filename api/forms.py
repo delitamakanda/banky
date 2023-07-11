@@ -50,6 +50,7 @@ class WithdrawForm(AccountActionForm):
     email_body_template = ''
 
     field_order = (
+        'uid',
         'amount',
         'comment',
         'send_email',
@@ -85,6 +86,7 @@ class DepositForm(AccountActionForm):
 
     field_order = (
         'amount',
+        'uid',
         'reference_type',
         'reference',
         'comment',

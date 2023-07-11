@@ -22,25 +22,25 @@ from .errors import InvalidAmount, ExceedsLimit
 class TransactionViewSet(viewsets.ModelViewSet):
     queryset = Transaction.objects.all()
     serializer_class = TransactionSerializer
-    permission_classes = (IsAuthenticated,)
+    permission_classes = (AllowAny,)
     http_method_names = ['get', 'post']
 
     def get_queryset(self):
-        queryset = Transaction.objects.get(buyer=self.request.user).order_by('-id')
+        queryset = Transaction.objects.filter(buyer=self.request.user).order_by('-id')
         return queryset
 
 
 class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
-    permission_classes = (IsAuthenticated,)
+    permission_classes = (AllowAny,)
     http_method_names = ['get', 'post']
 
 
 class KeysPerformanceIndicatorViewSet(viewsets.ModelViewSet):
     queryset = KeysPerformanceIndicator.objects.all()
     serializer_class = KeysPerformanceIndicatorSerializer
-    permission_classes = (IsAuthenticated,)
+    permission_classes = (AllowAny,)
     http_method_names = ['get', 'post']
 
         
