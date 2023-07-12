@@ -16,7 +16,6 @@ const Row2 = () => {
     const COLORS = [palette.primary[800], palette.primary[300]];
     const { data: operationalData } = useGetKpisQuery();
     const { data: productData } = useGetProductsQuery();
-    console.log('data:', operationalData);
     const operationalExpenses = useMemo(() => {
         return (
             operationalData && operationalData[0].monthly_data.map(({ month, operationalExpenses, nonOperationalExpenses }) => {

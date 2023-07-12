@@ -8,7 +8,6 @@ import BoxHeader from "@/components/BoxHeader";
 const Row1 = () => {
     const { palette } = useTheme()
     const { data } = useGetKpisQuery();
-    console.log('data:', data);
     const revenueExpenses = useMemo(() => {
         return (
             data && data[0].monthly_data.map(({ month, revenue, expenses }) => {
