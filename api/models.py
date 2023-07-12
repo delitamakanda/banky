@@ -360,6 +360,8 @@ class KeysPerformanceIndicator(models.Model):
     expenses_by_category = models.JSONField(help_text='Expenses by category', default=dict)
     daily_data = models.JSONField(help_text='Daily data', default=dict)
     monthly_data = models.JSONField(help_text='Monthly data', default=dict)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         verbose_name = 'Keys Performance Indicator'
@@ -371,17 +373,21 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     expense = models.DecimalField(max_digits=10, decimal_places=2)
     transactions = models.ManyToManyField('Transaction', related_name='transactions', blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         verbose_name = 'Product'
         verbose_name_plural = 'Products'
-        ordering = ['price']
+        ordering = ['-id']
 
 class Transaction(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     buyer = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     amount = models.DecimalField(max_digits=10, decimal_places=2)
     products_ids = models.ManyToManyField('Product', related_name='products', blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
     
     class Meta:
         verbose_name = 'Transaction'

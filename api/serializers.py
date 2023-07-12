@@ -18,10 +18,10 @@ class KeysPerformanceIndicatorSerializer(serializers.ModelSerializer):
 
 
 class TransactionSerializer(serializers.ModelSerializer):
+    buyer = serializers.StringRelatedField(read_only=True)
     class Meta:
         model = Transaction
         fields = '__all__'
-
 
 class ToUpperCaseCharField(serializers.CharField):
 
