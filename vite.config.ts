@@ -7,6 +7,15 @@ export default defineConfig({
   build: { manifest: true },
   base: process.env.NODE_ENV === 'production'? '/static/' : '/',
   root: './src',
+  server: {
+    port: 3000,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:8000',
+        changeOrigin: true
+      }
+    }
+  },
   resolve: {
     alias: [ { find: '@', replacement: path.resolve(__dirname, 'src')}]
   },
