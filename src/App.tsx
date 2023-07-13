@@ -2,7 +2,7 @@ import { ThemeProvider, CssBaseline, Box, useScrollTrigger, Fab, Fade } from "@m
 import { KeyboardArrowUp } from "@mui/icons-material";
 import React, { useMemo } from "react"
 import { themeSettings } from "@/theme"
-import { createTheme, useTheme } from "@mui/material/styles"
+import { createTheme } from "@mui/material/styles"
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Navbar from "@/scenes/navbar";
 import Dashboard from "@/scenes/dashboard";
@@ -16,7 +16,7 @@ import Page from "@/scenes/page";
 import Balance from "@/scenes/balance";
 
 interface Props {
-  children: React.ReactElement,
+  children?: React.ReactElement,
   window?: () => Window,
 }
 
