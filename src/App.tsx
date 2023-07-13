@@ -1,7 +1,8 @@
-import { ThemeProvider, CssBaseline, Box } from "@mui/material"
-import { useMemo } from "react"
+import { ThemeProvider, CssBaseline, Box, useScrollTrigger, Fab, Fade } from "@mui/material"
+import { KeyboardArrowUp } from "@mui/icons-material";
+import React, { useMemo } from "react"
 import { themeSettings } from "@/theme"
-import { createTheme } from "@mui/material/styles"
+import { createTheme, useTheme } from "@mui/material/styles"
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Navbar from "@/scenes/navbar";
 import Dashboard from "@/scenes/dashboard";
@@ -12,13 +13,44 @@ import Register from "@/scenes/register";
 import NotFound from "@/scenes/notfound";
 import Contact from "@/scenes/contact";
 import Page from "@/scenes/page";
-import Footer from "@/scenes/footer";
 import Balance from "@/scenes/balance";
 
-function App() {
-  const theme = useMemo(() => createTheme(themeSettings), [])
+interface Props {
+  children: React.ReactElement,
+  window?: () => Window,
+}
+
+function ScrollTop(props: Props) {
+  const { children, window } = props;
+
+  const trigger = useScrollTrigger({
+    disableHysteresis: true,
+    threshold: 100,
+    target: window ? window() : undefined,
+  });
+
+  const handleClick = (e: React.MouseEvent<HTMLElement>) => {
+    const anchor = ((e.target as HTMLDivElement).ownerDocument || document).querySelector('#back-to-top-anchor');
+  
+    if (anchor) {
+      anchor.scrollIntoView({ behavior:'smooth', block: 'center' });
+    }
+  }
+
   return (
-    <div className="app">
+    <Fade in={trigger}>
+      <div onClick={handleClick} role="presentation">
+        {children}
+      </div>
+    </Fade>
+  )
+}
+
+function App(props: Props) {
+  const theme = useMemo(() => createTheme(themeSettings), [])
+
+  return (
+    <div className="app" id="back-to-top-anchor">
       <BrowserRouter>
         <ThemeProvider theme={theme}>
           <CssBaseline />
@@ -35,11 +67,20 @@ function App() {
               <Route path="/balance" element={<Balance />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
-            <Footer />
           </Box>
         </ThemeProvider>
       </BrowserRouter>
+      <ScrollTop {...props}>
+      <Fab
+        color="secondary"
+        aria-label="scroll back to top"
+        size="small"
+        sx={{ position: 'fixed', bottom: 30, right: 30 }}>
+          <KeyboardArrowUp />
+        </Fab>
+      </ScrollTop>
     </div>
+    
   )
 }
 
