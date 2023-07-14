@@ -7,11 +7,17 @@ import IconButton from '@mui/material/IconButton';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import MoreIcon from '@mui/icons-material/MoreVert';
+import { useSelector, useDispatch } from 'react-redux';
+import { clearCredentials } from "@/state/auth";
 
 const Navbar = () => {
     const { palette } = useTheme();
     const [selected, setSelected] = useState("dashboard");
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+    
+    const dispatch = useDispatch();
+
+    const { token } = useSelector((state) => state.auth);
 
     const openMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget);
@@ -20,6 +26,10 @@ const Navbar = () => {
     const closeMenu = () => {
         setAnchorEl(null);
     };
+
+    const handleLogout = () => {
+        dispatch(clearCredentials({}));
+    }
     return <FlexBetween mb="0.25rem" p="0.5rem 0rem" color={palette.grey[300]}>
         <FlexBetween gap="0.75rem">
             <DiamondIcon sx={{ fontSize: "30px"}} />
@@ -43,16 +53,28 @@ const Navbar = () => {
                     predictions
                 </Link>
             </Box>
+            {!token ? (
+                <>
+                <Box sx={{ "&:hover": { color: palette.primary[100]}}}>
+                    <Link to="/login" onClick={() => setSelected("login")} style={{ color: selected === "login" ? "inherit": palette.grey[700], textDecoration: "inherit"}}>
+                        login
+                    </Link>
+                </Box>
+                <Box sx={{ "&:hover": { color: palette.primary[100]}}}>
+                    <Link to="/signup" onClick={() => setSelected("signup")} style={{ color: selected === "signup" ? "inherit": palette.grey[700], textDecoration: "inherit"}}>
+                    signup
+                    </Link>
+                </Box>
+                </>
+            ): (
+            <>
             <Box sx={{ "&:hover": { color: palette.primary[100]}}}>
-                <Link to="/login" onClick={() => setSelected("login")} style={{ color: selected === "login" ? "inherit": palette.grey[700], textDecoration: "inherit"}}>
-                    login
-                </Link>
-            </Box>
-            <Box sx={{ "&:hover": { color: palette.primary[100]}}}>
-                <Link to="/signup" onClick={() => setSelected("signup")} style={{ color: selected === "signup" ? "inherit": palette.grey[700], textDecoration: "inherit"}}>
-                signup
-                </Link>
-            </Box>
+                    <Link to="/login" onClick={handleLogout} style={{ color: palette.grey[700], textDecoration: "inherit"}}>
+                    logout
+                    </Link>
+                </Box>
+            </>
+            )}
 
             <Box sx={{ "&:hover": { color: palette.primary[100]}}}>
                 <IconButton
