@@ -1,5 +1,5 @@
 import FormContainer from "@/components/FormContainer";
-import { Typography, Box, Grid, TextField, Link, Button, InputAdornment, IconButton, useTheme } from "@mui/material";
+import { Typography, Box, Grid, TextField, Link, Button, InputAdornment, IconButton, useTheme, CircularProgress } from "@mui/material";
 import { useState, useEffect } from "react";
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
@@ -174,9 +174,11 @@ function Register() {
                 />
               </Grid>
             </Grid>
+            {isLoading && <CircularProgress />}
             <Button
               type="submit"
               fullWidth
+              disabled={isLoading}
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >

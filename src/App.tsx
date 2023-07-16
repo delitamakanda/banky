@@ -14,6 +14,8 @@ import NotFound from "@/scenes/notfound";
 import Contact from "@/scenes/contact";
 import Page from "@/scenes/page";
 import Balance from "@/scenes/balance";
+import Profile from "@/scenes/profile";
+import Unauthorized from "@/scenes/unauthorized";
 
 interface Props {
   children?: React.ReactElement,
@@ -47,7 +49,7 @@ function ScrollTop(props: Props) {
 }
 
 function App(props: Props) {
-  const theme = useMemo(() => createTheme(themeSettings), [])
+  const theme = useMemo(() => createTheme(themeSettings), []);
 
   return (
     <div className="app" id="back-to-top-anchor">
@@ -57,14 +59,23 @@ function App(props: Props) {
           <Box width="100%" height="100%" padding="1rem 2rem 4rem 2rem" color="white">
             <Navbar />
             <Routes>
-              <Route path="/" element={<Dashboard />} />
+            <Route path='/' element={<Unauthorized/>}>
+              <Route path='/' element={<Dashboard/>}/>
+            </Route>
               <Route path="/about" element={<About />} />
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Register />} />
-              <Route path="/predictions" element={<Predictions />} />
+              <Route path="/predictions" element={<Unauthorized/>}>
+                <Route path='/predictions' element={<Predictions/>}/>
+              </Route>
               <Route path="/contact" element={<Contact />} />
               <Route path="/pages/:page" element={<Page />} />
-              <Route path="/balance" element={<Balance />} />
+              <Route path="/balance" element={<Unauthorized/>}>
+                <Route path='/balance' element={<Balance/>}/>
+              </Route>
+              <Route path="/profile" element={<Unauthorized/>}>
+                <Route path='/profile' element={<Profile/>}/>
+              </Route>
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Box>

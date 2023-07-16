@@ -3,7 +3,7 @@ import { GetKpisResponse, GetTransactionsResponse, GetProductsResponse, AuthToke
 
 export const api = createApi({
     baseQuery: fetchBaseQuery({
-        baseUrl: import.meta.env.VITE_BASE_URL,
+        baseUrl: import.meta.env.VITE_BASE_URL as string,
         prepareHeaders: (headers, { getState }) => {
             const { token } = getState().auth
             // If we have a token set in state, let's assume that we should be passing it.
@@ -14,7 +14,7 @@ export const api = createApi({
         }
     }),
     reducerPath: 'main',
-    tagTypes: ["Kpis", "Products", "Transactions", "userLogin", "userSignup"],
+    tagTypes: ["Kpis", "Products", "Transactions", "userLogin", "userSignup", "User"],
     endpoints: (build) => ({
         getKpis: build.query<Array<GetKpisResponse>, void>({
             query: () => "/api/keys-performance-indicators/",
@@ -43,7 +43,11 @@ export const api = createApi({
                 body: data,
                 providesTags: ["userSignup"]
             })
-        })
+        }),
+        getUser: build.query<User, void>({
+            query: () => "/api/users/i/",
+            providesTags: ["User"]
+        }),
     })
 });
 
@@ -51,4 +55,4 @@ export const { useGetKpisQuery,
     useGetProductsQuery,
     useGetTransactionsQuery,
     useLoginMutation,
-    useSignupMutation }  = api;
+    useSignupMutation, useGetUserQuery }  = api;

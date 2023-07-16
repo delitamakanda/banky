@@ -1,6 +1,6 @@
 import FormContainer from "@/components/FormContainer";
 import { VisibilityOff, Visibility } from "@mui/icons-material";
-import { Box, Button, Checkbox, FormControlLabel, Grid, IconButton, InputAdornment, Link, TextField, Typography, useTheme } from "@mui/material";
+import { Box, Button, Checkbox, CircularProgress, FormControlLabel, Grid, IconButton, InputAdornment, Link, TextField, Typography, useTheme } from "@mui/material";
 import { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import { useLoginMutation } from "@/state/api";
@@ -95,10 +95,12 @@ function Login() {
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             />
+            { isLoading && <CircularProgress /> }
             <Button
               type="submit"
               fullWidth
               variant="contained"
+              disabled={isLoading}
               sx={{ mt: 3, mb: 2 }}
             >
               Sign In

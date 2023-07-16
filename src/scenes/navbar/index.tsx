@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import {Link} from 'react-router-dom';
-import { Box, Typography, useTheme } from '@mui/material';
+import { Avatar, Box, Divider, ListItemIcon, Typography, useTheme, Tooltip } from '@mui/material';
 import DiamondIcon from '@mui/icons-material/Diamond';
 import FlexBetween from "@/components/FlexBetween";
 import IconButton from '@mui/material/IconButton';
@@ -9,11 +9,13 @@ import Menu from '@mui/material/Menu';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import { useSelector, useDispatch } from 'react-redux';
 import { clearCredentials } from "@/state/auth";
+import { Logout } from "@mui/icons-material";
 
 const Navbar = () => {
     const { palette } = useTheme();
     const [selected, setSelected] = useState("dashboard");
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+    const [accountEl, setAccountEl ] = useState<null | HTMLElement>(null);
     
     const dispatch = useDispatch();
 
@@ -25,6 +27,13 @@ const Navbar = () => {
 
     const closeMenu = () => {
         setAnchorEl(null);
+    };
+    const openAccountMenu = (event: React.MouseEvent<HTMLElement>) => {
+        setAccountEl(event.currentTarget);
+    };
+
+    const closeAccountMenu = () => {
+        setAccountEl(null);
     };
 
     const handleLogout = () => {
@@ -53,7 +62,7 @@ const Navbar = () => {
                     predictions
                 </Link>
             </Box>
-            {!token ? (
+            {!token ? 
                 <>
                 <Box sx={{ "&:hover": { color: palette.primary[100]}}}>
                     <Link to="/login" onClick={() => setSelected("login")} style={{ color: selected === "login" ? "inherit": palette.grey[700], textDecoration: "inherit"}}>
@@ -66,15 +75,42 @@ const Navbar = () => {
                     </Link>
                 </Box>
                 </>
-            ): (
-            <>
-            <Box sx={{ "&:hover": { color: palette.primary[100]}}}>
-                    <Link to="/login" onClick={handleLogout} style={{ color: palette.grey[700], textDecoration: "inherit"}}>
+            : <><Box sx={{ "&:hover": { color: palette.primary[100]}}}>
+            <Tooltip title="Account settings">
+          <IconButton
+            onClick={openAccountMenu}
+            size="small"
+          >
+            <Avatar sx={{ width: 32, height: 32 }} />
+          </IconButton>
+        </Tooltip>
+        </Box>
+        <Menu
+        anchorEl={accountEl}
+        id="account-menu"
+        open={Boolean(accountEl)}
+        onClose={closeAccountMenu}
+        onClick={closeAccountMenu}
+        transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+        anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+      >
+        <MenuItem onClick={closeAccountMenu}>
+            <Avatar /> <Link to="/profile" style={{ color: palette.grey[800], textDecoration: "inherit"}}>
+                    Profile
+                </Link>
+            </MenuItem>
+            <Divider />
+            <MenuItem onClick={closeAccountMenu}>
+                <ListItemIcon>
+                <Logout fontSize="small" />
+                </ListItemIcon>
+                <Link to="/login" onClick={handleLogout} style={{ color: palette.grey[800], textDecoration: "inherit"}}>
                     logout
-                    </Link>
-                </Box>
-            </>
-            )}
+                </Link>
+            </MenuItem>
+      </Menu>
+        </>
+        }
 
             <Box sx={{ "&:hover": { color: palette.primary[100]}}}>
                 <IconButton
@@ -103,19 +139,16 @@ const Navbar = () => {
             open={Boolean(anchorEl)}
             onClose={closeMenu}
             >
+            
             <MenuItem onClick={closeMenu}>
-                <Box sx={{ "&:hover": { color: palette.primary[100]}}}>
-                    <Link to="/contact" onClick={() => setSelected("contact")} style={{ color: selected === "contact" ? "inherit": palette.grey[700], textDecoration: "inherit"}}>
-                        contact
-                    </Link>
-                </Box>
+                <Link to="/contact" style={{ color: palette.grey[700], textDecoration: "inherit"}}>
+                    contact
+                </Link>
             </MenuItem>
             <MenuItem onClick={closeMenu}>
-                <Box sx={{ "&:hover": { color: palette.primary[100]}}}>
-                    <Link to="/about" onClick={() => setSelected("about")} style={{ color: selected === "about" ? "inherit": palette.grey[700], textDecoration: "inherit"}}>
-                        about
-                    </Link>
-                </Box>
+                <Link to="/about" style={{ color: palette.grey[700], textDecoration: "inherit"}}>
+                    about
+                </Link>
             </MenuItem>
             <MenuItem onClick={closeMenu}>
                 <Box sx={{ "&:hover": { color: palette.primary[100]}}}>
@@ -125,11 +158,9 @@ const Navbar = () => {
                 </Box>
             </MenuItem>
             <MenuItem onClick={closeMenu}>
-                <Box sx={{ "&:hover": { color: palette.primary[100]}}}>
-                    <Link to="/pages/legal" onClick={() => setSelected("pages/legal")} style={{ color: selected === "pages/cgv" ? "inherit": palette.grey[700], textDecoration: "inherit"}}>
-                        legal
-                    </Link>
-                </Box>
+                <Link to="/pages/legal" style={{ color: palette.grey[700], textDecoration: "inherit"}}>
+                    legal
+                </Link>
             </MenuItem>
             </Menu>
         </FlexBetween>
