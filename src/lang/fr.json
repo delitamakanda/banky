@@ -1,0 +1,22 @@
+{
+    "translation": {
+        "welcome": "bienvenue",
+        "description": {
+            "part1": "Modifier",
+            "part2": "Apprendre React"
+        },
+        "loginPage": {
+            "title": "Connexion",
+            "signinBtn": "Se connecter",
+            "usernameLabel": "Pseudo",
+            "usernameHelperText": "Please enter your username",
+            "passwordLabel": "Mot de passe",
+            "passwordHelperText": "Please enter your password",
+            "rememberLabel": "Se souvenir",
+            "link": "Vous n'avez pas de compte ? S'inscrire."
+        },
+        "aboutPage": {
+            "date": "Aujourd'hui, nous sommes le {{date, DATE_HUGE}}"
+        }
+    }
+}

@@ -10,9 +10,16 @@ import MoreIcon from '@mui/icons-material/MoreVert';
 import { useSelector, useDispatch } from 'react-redux';
 import { clearCredentials } from "@/state/auth";
 import { Logout } from "@mui/icons-material";
+import { useTranslation } from "react-i18next";
+
+const lngs = {
+    fr: { nativeName: 'FR' },
+    en: { nativeName: 'EN' }
+}
 
 const Navbar = () => {
     const { palette } = useTheme();
+    const { t, i18n } = useTranslation();
     const [selected, setSelected] = useState("dashboard");
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const [accountEl, setAccountEl ] = useState<null | HTMLElement>(null);
@@ -111,6 +118,13 @@ const Navbar = () => {
       </Menu>
         </>
         }
+        <Box sx={{ "&:hover": { color: palette.primary[100]}}}>
+                {Object.keys(lngs).map((lng) => (
+                    <button key={lng} style={{ fontWeight: i18n.resolvedLanguage === lng ? 'bold' : 'normal' }} type="submit" onClick={() =>  i18n.changeLanguage(lng)}>
+                    {lngs[lng].nativeName}
+                  </button>
+                ))}
+            </Box>
 
             <Box sx={{ "&:hover": { color: palette.primary[100]}}}>
                 <IconButton

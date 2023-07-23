@@ -6,8 +6,10 @@ import { useNavigate } from 'react-router-dom';
 import { useLoginMutation } from "@/state/api";
 import { useDispatch, useSelector } from 'react-redux';
 import { setCredentials } from "@/state/auth";
+import { useTranslation, Trans } from 'react-i18next';
 
 function Login() {
+    const { t } = useTranslation();
     const { palette } = useTheme();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -44,7 +46,7 @@ function Login() {
     return (
         <FormContainer>
         <Typography component="h1" variant="h5">
-            Login
+            <Trans i18nKey="loginPage.title"/>
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
@@ -52,12 +54,12 @@ function Login() {
               required
               fullWidth
               id="username"
-              label="Username"
+              label={t('loginPage.usernameLabel')}
               name="username"
               autoComplete="username"
               autoFocus
               onChange={(e) => setUsername(e.target.value)}
-              helperText="Please enter your username"
+              helperText={t('loginPage.usernameHelperText')}
               sx={{"& .MuiInputBase-root": {
                 backgroundColor: palette.grey[300],
             },
@@ -67,10 +69,10 @@ function Login() {
               margin="normal"
               required
               fullWidth
-              helperText="Please enter your password"
+              helperText={t('loginPage.passwordHelperText')}
               onChange={(e) => setPassword(e.target.value)}
               name="password"
-              label="Password"
+              label={t('loginPage.passwordLabel')}
               type={showPassword ? 'text' : 'password'}
                   InputProps={{
                     startAdornment: <InputAdornment position="end">
@@ -93,7 +95,7 @@ function Login() {
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
+              label={t('loginPage.rememberLabel')}
             />
             { isLoading && <CircularProgress /> }
             <Button
@@ -103,14 +105,14 @@ function Login() {
               disabled={isLoading}
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign In
+              {t('loginPage.signinBtn')}
             </Button>
             <Grid container>
               <Grid item xs>
               </Grid>
               <Grid item>
                 <Link href="/signup" variant="body2">
-                  {"Don't have an account? Sign Up"}
+                  {t('loginPage.link')}
                 </Link>
               </Grid>
             </Grid>

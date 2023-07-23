@@ -1,0 +1,22 @@
+{
+    "translation": {
+        "welcome": "welcome",
+        "description": {
+            "part1": "Edit",
+            "part2": "Learn React"
+        },
+        "loginPage": {
+            "title": "Login",
+            "signinBtn": "Sign In",
+            "usernameLabel": "Username",
+            "usernameHelperText": "Please enter your username",
+            "passwordLabel": "Password",
+            "passwordHelperText": "Please enter your password",
+            "rememberLabel": "Remember me",
+            "link": "Don't have an account? Sign Up"
+        },
+        "aboutPage": {
+            "date": "Today is {{date, DATE_HUGE}}"
+        }
+    }
+}
