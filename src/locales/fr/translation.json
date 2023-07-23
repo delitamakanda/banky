@@ -16,7 +16,10 @@
             "link": "Vous n'avez pas de compte ? S'inscrire."
         },
         "aboutPage": {
-            "date": "Aujourd'hui, nous sommes le {{date, DATE_HUGE}}"
+            "date": "Aujourd'hui, nous sommes le {{date, DATE_HUGE}}",
+            "date_morning": "Bonjour! Aujourdhui, nous sommes le {{date, DATE_HUGE}}. Excellente journée!",
+            "date_afternoon": "Bon après midi! Nous sommes le {{date, DATE_HUGE}}",
+            "date_evening": "Bonsoir! Aujourd'hui nous étions le {{date, DATE_HUGE}}"
         }
     }
 }

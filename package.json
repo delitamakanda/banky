@@ -18,6 +18,7 @@
     "@reduxjs/toolkit": "^1.9.5",
     "i18next": "^23.2.11",
     "i18next-browser-languagedetector": "^7.1.0",
+    "i18next-http-backend": "^2.2.1",
     "intl-pluralrules": "^2.0.1",
     "luxon": "^3.3.0",
     "marked": "^5.1.1",
@@ -30,6 +31,7 @@
     "regression": "^2.0.1"
   },
   "devDependencies": {
+    "@types/luxon": "^3.3.1",
     "@types/node": "^20.4.1",
     "@types/react": "^18.2.14",
     "@types/react-dom": "^18.2.6",

@@ -16,7 +16,10 @@
             "link": "Don't have an account? Sign Up"
         },
         "aboutPage": {
-            "date": "Today is {{date, DATE_HUGE}}"
+            "date": "Today is {{date, DATE_HUGE}}",
+            "date_morning": "Good morning! Today is {{date, DATE_HUGE}}. Have a nice day!",
+            "date_afternoon": "Good afternoon! It\\'s {{date, DATE_HUGE}}",
+            "date_evening": "Good evening! Today was the {{date, DATE_HUGE}}"
         }
     }
 }

@@ -3,11 +3,13 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import { DateTime } from 'luxon';
+import Backend from 'i18next-http-backend';
 
-import fr from '@/lang/fr.json';
-import en from '@/lang/en.json';
+import fr from '@/locales/fr/translation.json';
+import en from '@/locales/en/translation.json';
 
 await i18n
+    .use(Backend)
     .use(LanguageDetector)
     .use(initReactI18next)
     .init({
