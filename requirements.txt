@@ -13,4 +13,4 @@ whitenoise==5.2.0
 waitress
 psycopg2-binary
 django-cors-headers==4.2.0
-drf-yasg==1.10.0
+drf-yasg==1.17.1
