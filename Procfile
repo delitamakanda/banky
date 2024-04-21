@@ -1,2 +1,2 @@
-web: waitress-serve --port=$PORT config.wsgi:application
+web: gunicorn config.wsgi --log-file -
 release: bash release.sh
