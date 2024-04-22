@@ -57,7 +57,7 @@ const Row2 = () => {
                 <YAxis yAxisId="left" orientation="left" axisLine={false} tickLine={false} style={{ fontSize: '10px'}} />
                 <YAxis yAxisId="right" orientation="right" axisLine={false} tickLine={false} style={{ fontSize: '10px'}} />
                 <Tooltip />
-                <Line yAxisId="left" type="monotone" dot={true} dataKey="Non Operational Expenses" stroke={palette.tertiary[500]} />
+                <Line yAxisId="left" type="monotone" dot={true} dataKey="Non Operational Expenses" stroke={palette.tertiary[500] as string} />
                 <Line yAxisId="right" type="monotone" dataKey="Operational Expenses" dot={true} stroke={palette.primary.main} />
                 </LineChart>
             </ResponsiveContainer>
@@ -74,15 +74,16 @@ const Row2 = () => {
                 paddingAngle={2}
                 dataKey="value"
                 >
-                {data.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                {data.map((_entry, index: number) => (
+                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]! as string} />
                 ))}
                 </Pie>
                 </PieChart>
                 <Box ml="-0.7rem" flexBasis="40%" textAlign="center">
                     <Typography variant="h5">Target Sales</Typography>
+                   
                     <Typography m="0.3rem 0" variant="h3" color={palette.primary[300]}>83</Typography>
-                    <Typography variant="h6">Finance goals of the campaign that is desired</Typography>
+                    <Typography variant="h6">Finance goals of the campaign that is desired.</Typography>
                 </Box>
                 <Box flexBasis="40%">
                     <Typography variant="h5">Losses in Revenue</Typography>
@@ -104,11 +105,11 @@ const Row2 = () => {
                 }}
                 >
                 <CartesianGrid stroke={palette.grey[800]} />
-                <XAxis type="number" dataKey="price" name="price" tickLine={false} axisLine={false}  style={{ fontSize: '10px'}} tickFormatter={(v) => `$${v}`} />
-                <YAxis type="number" dataKey="expense" name="expense" tickLine={false} axisLine={false}  style={{ fontSize: '10px'}}  tickFormatter={(v) => `$${v}`}  />
+                <XAxis type="number" dataKey="price" name="price" tickLine={false} axisLine={false}  style={{ fontSize: '10px'}} tickFormatter={(v) => `$${v as string}`} />
+                <YAxis type="number" dataKey="expense" name="expense" tickLine={false} axisLine={false}  style={{ fontSize: '10px'}}  tickFormatter={(v) => `$${v as string}`}  />
                 <ZAxis type="number" range={[20]} />
-                <Tooltip formatter={(v) => `$${v}`} />
-                <Scatter name="Product Expense Ratio" data={productExpenseData} fill={palette.tertiary[500]} />
+                <Tooltip formatter={(v) => `$${v as string}`} />
+                <Scatter name="Product Expense Ratio" data={productExpenseData} fill={palette.tertiary[500] as string} />
                 </ScatterChart>
             </ResponsiveContainer>
         </DashboardBox>

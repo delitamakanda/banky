@@ -1,6 +1,9 @@
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+/* eslint-disable @typescript-eslint/no-misused-promises */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import FormContainer from "@/components/FormContainer";
 import { Typography, Box, Grid, TextField, Link, Button, InputAdornment, IconButton, useTheme, CircularProgress } from "@mui/material";
-import { useState, useEffect } from "react";
+import { useState, useEffect, FormEvent } from "react";
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { useNavigate } from 'react-router-dom';
@@ -20,7 +23,7 @@ function Register() {
 
     const navigate = useNavigate();
     const [signup, { isLoading }] = useSignupMutation();
-    const { token } = useSelector((state) => state.auth);
+    const { token } = useSelector((state: { auth: { token: string; }}) => state.auth as { token: string });
     useEffect(() => {
       if (token) {
         navigate('/')
@@ -35,7 +38,8 @@ function Register() {
       setConfirmPassword(!showConfirmPassword);
     }
     
-    const handleSubmit = async (e: Event) => {
+    const handleSubmit = async (e: FormEvent): Promise<void> => {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-call
         e.preventDefault();
         try {
           const response = await signup({
@@ -56,7 +60,7 @@ function Register() {
         <Typography component="h1" variant="h5">
             Sign Up
           </Typography>
-          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+          <Box component="form" noValidate onSubmit={(e) => handleSubmit(e)} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField

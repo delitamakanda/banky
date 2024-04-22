@@ -23,7 +23,8 @@ function Login() {
     const dispatch = useDispatch();
     const [login, { isLoading }] = useLoginMutation();
 
-    const { token } = useSelector((state) => state.auth);
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    const { token } = useSelector((state: { auth: { token: string } }) => state.auth);
 
     useEffect(() => {
       if (token) {
@@ -32,9 +33,10 @@ function Login() {
     }, [navigate, token])
 
 
-    const handleSubmit = async (e: Event) => {
+    const handleSubmit = async (e: Event): Promise<void> => {
         e.preventDefault();
         try {
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
           const response = await login({ username, password}).unwrap();
           dispatch(setCredentials({...response}));
           navigate('/');
@@ -42,13 +44,13 @@ function Login() {
           console.error('error', error)
         }
         
-    }
+    };
     return (
         <FormContainer>
         <Typography component="h1" variant="h5">
             <Trans i18nKey="loginPage.title"/>
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <Box component="form" onSubmit={() => handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               required

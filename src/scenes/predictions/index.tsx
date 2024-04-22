@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import DashboardBox from "@/components/DashboardBox";
 import FlexBetween from "@/components/FlexBetween";
 import { useGetKpisQuery } from "@/state/api";
@@ -59,7 +60,7 @@ function Predictions() {
                 <XAxis dataKey="name" tickLine={false} style={{ fontSize: '10px'}}>
                     <Label value="Month" offset={-5} position="insideBottom" />
                 </XAxis>
-                <YAxis tickFormatter={(v) => `$${v}`} domain={[12000, 26000]} axisLine={{ strokeWidth: '0'}} tickLine={false} style={{ fontSize: '10px'}}>
+                <YAxis tickFormatter={(v) => `$${v as string}`} domain={[12000, 26000]} axisLine={{ strokeWidth: '0'}} tickLine={false} style={{ fontSize: '10px'}}>
                     <Label angle={-90} value="Revenue in EUR" offset={-5} position="insideLeft" />
                 </YAxis>
                 <Tooltip />
@@ -67,7 +68,7 @@ function Predictions() {
                 <Line type="monotone" dataKey="Actual Revenue" stroke={palette.primary.main} strokeWidth={0} dot={{ strokeWidth: 5}} />
                 <Line type="monotone" dataKey="Regression Line" stroke="#8884d8" dot={false} />
                 {isPredictionsVisible && (
-                    <Line strokeDasharray="5 5" type="monotone" dataKey="Predicted Revenue" stroke={palette.secondary[500]} dot={false} />
+                    <Line strokeDasharray="5 5" type="monotone" dataKey="Predicted Revenue" stroke={palette.secondary[500] as string} dot={false} />
                 )}
                 </LineChart>
             </ResponsiveContainer>

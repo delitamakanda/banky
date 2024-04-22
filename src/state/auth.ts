@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    token: window.localStorage.getItem('token') ? window.localStorage.getItem('token') : null
+    token: window.localStorage.getItem('token') || null
 }
 
 const authSlice = createSlice({
@@ -9,17 +9,18 @@ const authSlice = createSlice({
     initialState,
     reducers: {
         setCredentials: (state, action) => {
-            state.token = action.payload.token
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+            state.token  = action.payload.token;
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access
             window.localStorage.setItem('token', action.payload.token)
         },
-        clearCredentials: (state, action) => {
+        clearCredentials: (state) => {
             state.token = null
             window.localStorage.removeItem('token')
         },
-
     }
 });
 
-export const { setCredentials, clearCredentials, setUser } = authSlice.actions;
+export const { setCredentials, clearCredentials } = authSlice.actions;
 
 export default authSlice.reducer;

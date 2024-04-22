@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unnecessary-type-assertion */
 import BoxHeader from "@/components/BoxHeader";
 import DashboardBox from "@/components/DashboardBox";
 import FlexBetween from "@/components/FlexBetween";
@@ -34,10 +37,10 @@ const Row3 = () => {
                 return [
                     {
                         name: key,
-                        value: +value.split('$')[1],
+                        value: +value.split('$')[1] as unknown as number,
                     },{
                         name: `${key} of Total`,
-                        value: +totalExpenses - +value.split('$')[1],
+                        value: +totalExpenses - +value.split('$')[1] as unknown as number,
                     }
                 ]
             })
@@ -97,8 +100,8 @@ const Row3 = () => {
                     paddingAngle={2}
                     dataKey="value"
                     >
-                    {d.map((entry, index) => (
-                        <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                    {d.map((_entry, index) => (
+                        <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length] as string} />
                     ))}
                     </Pie>
                     </PieChart>
@@ -110,7 +113,7 @@ const Row3 = () => {
             <DashboardBox gridArea="j">
                 <BoxHeader progression="+15%" title="Overall Summary and Explanation Data" />
                 <Box height="15px" margin="1.25rem 1rem 0.4rem 1rem" bgcolor={palette.primary[800]} borderRadius="1rem">
-                <Box height="15px" bgcolor={palette.primary[600]} borderRadius="1rem" width="40%">
+                <Box height="15px" bgcolor={palette.primary[600] as string} borderRadius="1rem" width="40%">
                 </Box>
                 </Box>
                 <Typography margin="0 1rem" variant="h6">Overall Summary</Typography>

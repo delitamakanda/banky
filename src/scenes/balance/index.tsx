@@ -1,7 +1,5 @@
 import { Box, useTheme } from "@mui/material";
 
-type Props = {}
-
 const gridTemplate = `
     "a b c"
     "a b c"
@@ -14,7 +12,7 @@ const gridTemplate = `
     "g h j"
 `
 
-const Balance = (props: Props) => {
+const Balance = () => {
     const { palette } = useTheme()
     return <Box color={ palette.grey[300]} width="100%" height="100%" display="grid" gap="1.5rem" sx={{ gridTemplateColumns: "repeat(3, minmax(370px, 1fr))", gridTemplateRows: "repeat(10, minmax(60px, 1fr))" ,gridTemplateAreas: gridTemplate}}>
         <Box gridArea="a"></Box>

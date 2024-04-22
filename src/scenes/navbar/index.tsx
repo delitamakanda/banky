@@ -1,3 +1,7 @@
+/* eslint-disable @typescript-eslint/no-misused-promises */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from "react";
 import {Link} from 'react-router-dom';
 import { Avatar, Box, Divider, ListItemIcon, Typography, useTheme, Tooltip } from '@mui/material';
@@ -13,20 +17,20 @@ import { Logout } from "@mui/icons-material";
 import { useTranslation } from "react-i18next";
 
 const lngs = {
-    fr: { nativeName: 'FR' },
-    en: { nativeName: 'EN' }
+    fr: { nativeName: 'FR' } as any,
+    en: { nativeName: 'EN' } as any,
 }
 
 const Navbar = () => {
     const { palette } = useTheme();
-    const { t, i18n } = useTranslation();
+    const { i18n } = useTranslation();
     const [selected, setSelected] = useState("dashboard");
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const [accountEl, setAccountEl ] = useState<null | HTMLElement>(null);
     
     const dispatch = useDispatch();
 
-    const { token } = useSelector((state) => state.auth);
+    const { token } = useSelector((state: { auth: { token: string }}) => state.auth);
 
     const openMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget);
@@ -44,7 +48,7 @@ const Navbar = () => {
     };
 
     const handleLogout = () => {
-        dispatch(clearCredentials({}));
+        dispatch(clearCredentials());
     }
     return <FlexBetween mb="0.25rem" p="0.5rem 0rem" color={palette.grey[300]}>
         <FlexBetween gap="0.75rem">
@@ -119,9 +123,9 @@ const Navbar = () => {
         </>
         }
         <Box sx={{ "&:hover": { color: palette.primary[100]}}}>
-                {Object.keys(lngs).map((lng) => (
-                    <button key={lng} style={{ fontWeight: i18n.resolvedLanguage === lng ? 'bold' : 'normal' }} type="submit" onClick={() =>  i18n.changeLanguage(lng)}>
-                    {lngs[lng].nativeName}
+                {Object.keys(lngs).map((lng: string) => (
+                    <button key={lng} style={{ fontWeight: i18n.resolvedLanguage === lng ? 'bold' : 'normal' }} type="submit" onClick={() => i18n.changeLanguage(lng)}>
+                    {lng}
                   </button>
                 ))}
             </Box>

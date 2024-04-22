@@ -60,24 +60,24 @@ const Row1 = () => {
                 <linearGradient id="colorRevenue" x1="0" y1="0" x2="0" y2="1">
                 <stop
                   offset="5%"
-                  stopColor={palette.primary[300]}
+                  stopColor={palette.primary[300] as string}
                   stopOpacity={0.5}
                 />
                 <stop
                   offset="95%"
-                  stopColor={palette.primary[300]}
+                  stopColor={palette.primary[300] as string}
                   stopOpacity={0}
                 />
               </linearGradient>
               <linearGradient id="colorExpenses" x1="0" y1="0" x2="0" y2="1">
                 <stop
                   offset="5%"
-                  stopColor={palette.primary[300]}
+                  stopColor={palette.primary[300] as string}
                   stopOpacity={0.5}
                 />
                 <stop
                   offset="95%"
-                  stopColor={palette.primary[300]}
+                  stopColor={palette.primary[300] as string}
                   stopOpacity={0}
                 />
               </linearGradient>
@@ -111,7 +111,7 @@ const Row1 = () => {
             <YAxis yAxisId="right" orientation="right" axisLine={false} tickLine={false} style={{ fontSize: '10px'}} />
             <Tooltip />
             <Legend height={20} wrapperStyle={{margin: '0 0 10px 0'}} />
-            <Line yAxisId="left" type="monotone" dot={true} dataKey="profit" stroke={palette.tertiary[500]} />
+            <Line yAxisId="left" type="monotone" dot={true} dataKey="profit" stroke={palette.tertiary[500] as string} />
             <Line yAxisId="right" type="monotone" dataKey="revenue" dot={true} stroke={palette.primary.main} />
             </LineChart>
         </ResponsiveContainer>
@@ -134,12 +134,12 @@ const Row1 = () => {
                 <linearGradient id="colorRevenue" x1="0" y1="0" x2="0" y2="1">
                 <stop
                   offset="5%"
-                  stopColor={palette.primary[300]}
+                  stopColor={palette.primary[300] as string}
                   stopOpacity={0.8}
                 />
                 <stop
                   offset="95%"
-                  stopColor={palette.primary[300]}
+                  stopColor={palette.primary[300] as string}
                   stopOpacity={0}
                 />
               </linearGradient>

@@ -1,0 +1,35 @@
+{
+  "assets/fonts/Inter/static/Inter-Bold.ttf": {
+    "file": "assets/Inter-Bold-790c108b.ttf",
+    "src": "assets/fonts/Inter/static/Inter-Bold.ttf"
+  },
+  "assets/fonts/Inter/static/Inter-Regular.ttf": {
+    "file": "assets/Inter-Regular-41ab0f70.ttf",
+    "src": "assets/fonts/Inter/static/Inter-Regular.ttf"
+  },
+  "assets/fonts/Inter/static/Inter-SemiBold.ttf": {
+    "file": "assets/Inter-SemiBold-e8cbc2b8.ttf",
+    "src": "assets/fonts/Inter/static/Inter-SemiBold.ttf"
+  },
+  "assets/react.svg": {
+    "file": "assets/react-35ef61ed.svg",
+    "src": "assets/react.svg"
+  },
+  "index.css": {
+    "file": "assets/index-787fb192.css",
+    "src": "index.css"
+  },
+  "index.html": {
+    "assets": [
+      "assets/Inter-Regular-41ab0f70.ttf",
+      "assets/Inter-Bold-790c108b.ttf",
+      "assets/Inter-SemiBold-e8cbc2b8.ttf"
+    ],
+    "css": [
+      "assets/index-787fb192.css"
+    ],
+    "file": "assets/index-eb006100.js",
+    "isEntry": true,
+    "src": "index.html"
+  }
+}

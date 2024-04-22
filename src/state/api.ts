@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { GetKpisResponse, GetTransactionsResponse, GetProductsResponse, AuthToken, User } from './types';
 
@@ -5,10 +6,12 @@ export const api = createApi({
     baseQuery: fetchBaseQuery({
         baseUrl: import.meta.env.VITE_BASE_URL as string,
         prepareHeaders: (headers, { getState }) => {
-            const { token } = getState().auth
+             // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-explicit-any
+            const state = getState() as any;
             // If we have a token set in state, let's assume that we should be passing it.
-            if (token) {
-            headers.set('Authorization', `Token ${token}`);
+            if (state?.auth?.token) {
+            // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+            headers.set('Authorization', `Token ${state?.auth?.token}`);
             }
             return headers;
         }

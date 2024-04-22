@@ -20,4 +20,9 @@ export default defineConfig({
     alias: [ { find: '@', replacement: path.resolve(__dirname, 'src')}]
   },
   plugins: [react()],
+  esbuild: {
+    supported: {
+      'top-level-await': true
+    }
+  }
 })
