@@ -7,22 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
     <meta name="theme-color" content="#000000">
-    <title>Bank - {% block title %}{% endblock %}</title> 
-
-    {% if debug %}
-    <script type="module" src="http://localhost:3000/@vite/client"></script>
-    
-    <!-- If you're using vite with React, this next script will be needed for HMR -->
-    <script type="module">
-      import RefreshRuntime from 'http://localhost:3000/@react-refresh'
-      if (RefreshRuntime) {
-        RefreshRuntime.injectIntoGlobalHook(window)
-        window.$RefreshReg$ = () => { }
-        window.$RefreshSig$ = () => (type) => type
-        window.__vite_plugin_react_preamble_installed__ = true
-      }
-    </script>
-    {% endif %}
+    <title>Bank - {% block title %}{% endblock %}</title>
   </head>
 
   <body>
