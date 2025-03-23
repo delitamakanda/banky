@@ -11,11 +11,9 @@ pip install -r requirements-dev.txt
 ```
 
 
-## launch client
-``` bash
-npm install
-npm run dev
-```
+## launch frontend
+[App front](https://github.com/delitamakanda/banky-front)
+
 
 ## launch server
 ``` bash
