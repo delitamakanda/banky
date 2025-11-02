@@ -11,6 +11,7 @@ __pycache__
 /apps/static/js/svg
 .vscode/
 bank/
+bank_venv/
 # Logs
 logs
 *.log
