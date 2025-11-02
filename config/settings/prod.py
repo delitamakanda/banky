@@ -1,28 +1,44 @@
-from config.settings.base import *
+from decouple import Csv
+from config.settings.base import * #noqa
 import dj_database_url
 
-DATABASES['default'] = dj_database_url.config()
-DATABASES['default']['CONN_MAX_AGE'] = 60
+DATABASE_URL = config("DATABASE_URL", default=None)
+database_config = dj_database_url.config(
+    default=DATABASE_URL,
+    conn_max_age=60,
+)
+if database_config:
+    DATABASES['default'].update(database_config)
 DATABASES['default']['ATOMIC_REQUESTS'] = True
 
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+DEBUG = config('DEBUG', cast=bool, default=False)
 
-DEBUG = os.getenv('DEBUG') == 'True'
+SECRET_KEY = config('SECRET_KEY')
 
-SECRET_KEY = os.getenv('SECRET_KEY')
+ALLOWED_HOSTS = [
+    host for host in config('ALLOWED_HOSTS', cast=Csv(), default='') if host
+]
 
+ADMIN_NAME = config('ADMIN_NAME', default=None)
+ADMIN_EMAIL = config('ADMIN_EMAIL', default=None)
+if ADMIN_NAME and ADMIN_EMAIL:
+    ADMINS = [(ADMIN_NAME, ADMIN_EMAIL)]
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(',')
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-ADMINS = [(os.getenv('ADMIN_NAME'), os.getenv('ADMIN_EMAIL'))]
+SECURE_SSL_REDIRECT = config('SECURE_SSL_REDIRECT', cast=bool, default=True)
+SESSION_COOKIE_SECURE = config(
+    'SESSION_COOKIE_SECURE', cast=bool, default=True
+)
+CSRF_COOKIE_SECURE = config('CSRF_COOKIE_SECURE', cast=bool, default=True)
+SECURE_HSTS_SECONDS = config(
+    'SECURE_HSTS_SECONDS', cast=int, default=60 * 60 * 24 * 7
+)
+SECURE_HSTS_INCLUDE_SUBDOMAINS = config(
+    'SECURE_HSTS_INCLUDE_SUBDOMAINS', cast=bool, default=True
+)
+SECURE_HSTS_PRELOAD = config('SECURE_HSTS_PRELOAD', cast=bool, default=True)
+SECURE_REFERRER_POLICY = config('SECURE_REFERRER_POLICY', default='strict-origin')
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
-
-SECURE_HSTS_SECONDS = 60 * 60 * 24 * 7
-SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-SECURE_HSTS_PRELOAD = True
-SECURE_REFERRER_POLICY = 'strict-origin'
-
-SERVER_EMAIL = os.getenv('SERVER_EMAIL')
-
-DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')
+SERVER_EMAIL = config('SERVER_EMAIL', default=None)
+DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL', default=SERVER_EMAIL)
