@@ -3,6 +3,7 @@ from rest_framework.validators import UniqueValidator
 from django.utils.timezone import now
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import User
+from drf_spectacular.utils import extend_schema_field
 from api.models import Account, Action, Transaction, KeysPerformanceIndicator, Product
 
 class ProductSerializer(serializers.ModelSerializer):
@@ -44,7 +45,8 @@ class AccountSerializer(serializers.ModelSerializer):
             'days_since_created',
         )
 
-    def get_days_since_created(self, obj):
+    @extend_schema_field(serializers.IntegerField())
+    def get_days_since_created(obj):
         return (now() - obj.created).days
 
 
@@ -89,9 +91,6 @@ class UserSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         user = User.objects.create_user(
             **validated_data
-            #validated_data['username'],
-            #validated_data['email'],
-            #validated_data['password']
         )
         return user
 
@@ -101,3 +100,7 @@ class UserSerializer(serializers.ModelSerializer):
         if pw != pw2:
             raise serializers.ValidationError(_('Passwords does not match'))
         return data
+
+
+class AmountSerializer(serializers.Serializer):
+    amount = serializers.DecimalField(min_value=0, max_digits=10, decimal_places=2)

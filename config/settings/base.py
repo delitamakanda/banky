@@ -42,7 +42,7 @@ SECURE_HTS_INCLUDE_SUBDOMAINS = config('SECURE_HSTS_INCLUDE_SUBDOMAINS', cast=bo
 SECURE_HTS_PRELOAD = config('SECURE_HSTS_PRELOAD', cast=bool, default=not DEBUG)
 SECURE_REFERRER_POLICY = config('SECURE_REFERRER_POLICY', cast=str, default='strict-origin')
 CSRF_TRUSTED_ORIGINS = [
-	origin for origin in config('CSRF_TRUSTED_ORIGINS', cast=Csv(), default='') if origin
+	 origin for origin in config('CSRF_TRUSTED_ORIGINS', cast=Csv(), default='') if origin
 ]
 
 # Application definition
@@ -167,7 +167,7 @@ SITE_ID = 1
 
 
 REST_FRAMEWORK = {
-	'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+	"DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',
         'rest_framework.authentication.SessionAuthentication',
@@ -193,8 +193,17 @@ REST_FRAMEWORK = {
 SPECTACULAR_SETTINGS = {
     'TITLE': 'Bank API',
     'DESCRIPTION': 'API for managing bank accounts',
-    'VERSION': '1.0.0',
-	'SERVE_INCLUDE_SCHEMA': False,
+    'VERSION': 'v2.0',
+	'LICENSE': {"name": "MIT License", "url": "https://opensource.org/licenses/MIT/"},
+	'DEFAULT_AUTO_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+    'SECURITY_DEFINITIONS': {
+        'Bearer': {
+            'type': 'apiKey',
+            'name': 'Authorization',
+			'in': 'header',
+            'description': 'Bearer token for authentication',
+        },
+    },
 }
 
 CORS_ALLOW_ALL_ORGINS = True

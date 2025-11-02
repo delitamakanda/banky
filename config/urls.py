@@ -18,13 +18,35 @@ from django.urls import path, include
 from django.contrib import admin
 from django.conf.urls.static import static
 from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
+from rest_framework import permissions
+
+class PublicSpectacularAPIView(SpectacularAPIView):
+    permission_classes = [permissions.AllowAny]
+
+class PublicSpectacularRedocView(SpectacularRedocView):
+    permission_classes = [permissions.AllowAny]
+
+class PublicSpectacularSwaggerView(SpectacularSwaggerView):
+    permission_classes = [permissions.AllowAny]
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('api.urls')),
-	path('api/docs/', SpectacularAPIView.as_view(), name='schema-swagger-ui'),
-    path('api/redoc/', SpectacularRedocView.as_view(), name='schema-redoc'),
-    path('api/swagger/', SpectacularSwaggerView.as_view(url_name='schema-swagger-ui'), name='schema-swagger-ui'),
+    path(
+        'swagger/schema/',
+        PublicSpectacularAPIView.as_view(),
+        name='schema',
+    ),
+    path(
+        'swagger/',
+        PublicSpectacularSwaggerView.as_view(url_name='schema'),
+        name='schema-swagger-ui'
+    ),
+    path(
+        'redoc/',
+        PublicSpectacularRedocView.as_view(url_name='schema'),
+        name='schema-redoc'
+    ),
 ]
 
 if settings.DEBUG:
