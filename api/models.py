@@ -245,7 +245,7 @@ def update_user_account(sender, instance, created, **kwargs):
         Create an balance account on signup
         """
     if created:
-        Account.objects.create(user=instance)
+        Account.objects.get_or_create(user=instance)
     instance.account.save()
 
 
