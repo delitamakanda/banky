@@ -20,13 +20,13 @@ from drf_spectacular.openapi import OpenApiTypes
 
 
 class TransactionViewSet(viewsets.ModelViewSet):
-	queryset = Transaction.objects.all()
+	queryset = Transaction.filter(buyer=self.request.user).objects.all()
 	serializer_class = TransactionSerializer
 	permission_classes = (IsAuthenticated,)
 	http_method_names = ['get', 'post']
 
 	def get_queryset(self):
-		queryset = Transaction.objects.all().order_by('-id')
+		queryset = Transaction.filter(buyer=self.request.user).objects.all().order_by('-id')
 		if self.request.user.is_authenticated:
 			queryset = Transaction.objects.filter(buyer=self.request.user).order_by('-id')
 		return queryset
