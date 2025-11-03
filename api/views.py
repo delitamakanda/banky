@@ -20,7 +20,7 @@ from drf_spectacular.openapi import OpenApiTypes
 
 
 class TransactionViewSet(viewsets.ModelViewSet):
-	queryset = Transaction.objects.filter(buyer=self.request.user).all()
+	queryset = Transaction.objects.all()
 	serializer_class = TransactionSerializer
 	permission_classes = (IsAuthenticated,)
 	http_method_names = ['get', 'post']
