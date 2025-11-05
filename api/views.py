@@ -54,7 +54,7 @@ class ActionViewSet(viewsets.ModelViewSet):
 	http_method_names = ['get', 'post']
 
 	def get_queryset(self):
-		account = Account.objects.get(user=self.request.user)
+		account = Account.objects.get(account__user=self.request.user).select_related('account')
 		queryset = self.queryset
 		query_set = queryset.filter(account=account).order_by('-id')
 		return query_set
