@@ -2,7 +2,7 @@ asgiref==3.10.0
 certifi==2025.10.5
 chardet==5.2.0
 dj-database-url==3.0.1
-Django==6.0a1
+Django==6.0.2
 djangorestframework==3.16.1
 idna==3.11
 python-decouple==3.8
